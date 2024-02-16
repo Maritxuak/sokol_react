@@ -1,5 +1,5 @@
 import about1 from "../../images/about-section-img-1.jpg"
-
+import "./about.css"
 const About = () =>{
     return(
         <>

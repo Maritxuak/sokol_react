@@ -18,7 +18,7 @@
     --gap-fluid-: -60rem
 }
 
-.about-section__picture,
+
 .info-card__picture,
 .project-card__picture,
 .project-layout__poster,
@@ -31,7 +31,6 @@
     overflow: hidden
 }
 
-.about-section__picture img,
 .info-card__picture img,
 .project-card__picture img,
 .project-layout__poster img,
@@ -4058,40 +4057,6 @@ svg {
 }
 
 
-.about-section {
-    background: #212121;
-    padding: 130rem 0
-}
-
-.about-section__row {
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center
-}
-
-.about-section__content {
-    margin-right: calc(60rem - 8rem);
-    margin-right: calc(var(--gap-fluid) - 8rem)
-}
-
-.about-section__title {
-    margin: 0 0 32rem
-}
-
-.about-section__text {
-    font-size: 24rem;
-    font-size: var(--fs-4)
-}
-
-.about-section__media {
-    margin-left: -60rem;
-    margin-left: var(--gap-fluid-)
-}
-
-.about-section__picture {
-    padding-bottom: 58.3916083916%;
-    border-radius: 20rem
-}
 
 .benefits-section {
     padding: 130rem 0 65rem
