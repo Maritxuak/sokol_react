@@ -1,0 +1,121 @@
+.hero-section__brand-picture {
+    display: block;
+    position: relative;
+    overflow: hidden
+}
+
+.hero-section__brand-picture img {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    -o-object-fit: contain;
+    object-fit: contain
+}
+.hero-section {
+    padding: 130rem 0
+}
+
+.hero-section__row {
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+.hero-section__content {
+    margin-right: 60rem;
+    margin-right: var(--gap-fluid)
+}
+
+.hero-section__title {
+    margin: 0 0 24rem
+}
+
+.hero-section__text {
+    max-width: 732rem;
+    margin: 0 0 48rem;
+    font-size: 24rem;
+    font-size: var(--fs-4);
+    line-height: 1.22
+}
+
+.hero-section__brand {
+    margin-left: -60rem;
+    margin-left: var(--gap-fluid-);
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start
+}
+
+.hero-section__brand-item {
+    max-width: 100%;
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 162rem;
+    flex: 0 0 162rem
+}
+
+.hero-section__brand-item+.hero-section__brand-item {
+    margin-left: -34rem;
+    position: relative;
+    z-index: 1
+}
+
+.hero-section__brand-picture {
+    padding-bottom: 100%;
+    -webkit-box-shadow: inset 0 0 0 4rem #fff;
+    box-shadow: inset 0 0 0 4rem #fff;
+    border-radius: 50%;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none
+}
+
+.hero-section__brand-picture img {
+    mix-blend-mode: lighten
+}
+
+.hero-section__services {
+    margin-top: 130rem;
+    display: grid;
+    grid-template-columns: minmax(calc(50% - 30rem), 1fr) 1fr 1fr;
+    grid-template-columns: minmax(calc(50% - var(--gap)), 1fr) 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-gap: 60rem;
+    grid-gap: var(--gap-fluid);
+    gap: 60rem;
+    gap: var(--gap-fluid);
+    grid-template-areas: "a b c""a b c""d e e""d f f"
+}
+
+.hero-section__services-col:nth-child(1) {
+    grid-area: a
+}
+
+.hero-section__services-col:nth-child(2) {
+    grid-area: b
+}
+
+.hero-section__services-col:nth-child(3) {
+    grid-area: c
+}
+
+.hero-section__services-col:nth-child(4) {
+    grid-area: d
+}
+
+.hero-section__services-col:nth-child(5) {
+    grid-area: e
+}
+
+.hero-section__services-col:nth-child(6) {
+    grid-area: f
+}
+
+.hero-section__services-card {
+    height: 100%
+}

@@ -6,6 +6,8 @@ import services_card_4 from "../../images/services-card-4.jpg"
 import services_card_5 from "../../images/services-card-5.jpg"
 import services_card_2 from "../../images/services-card-2.jpg"
 import services_card_1 from "../../images/services-card-1.jpg"
+import arrow1 from "../../images/icons/arrow-type-1.svg"
+import "./heroSection.css"
 const HeroSection = () => {
     return (
         <section class="hero-section">
@@ -34,7 +36,7 @@ const HeroSection = () => {
                                     <span class="btn__title">Связаться</span>
                                     <span class="btn__icon btn__icon--dir-rtl">
                                         <svg class="u-icon">
-                                            <use xlinkHref="../../images/icons/icons.svg#arrow-type-1"></use>
+                                            <use xlinkHref={arrow1}></use>
                                         </svg>
                                     </span>
                                 </span>
