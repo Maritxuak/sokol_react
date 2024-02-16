@@ -8,6 +8,7 @@ import services_card_2 from "../../images/services-card-2.jpg"
 import services_card_1 from "../../images/services-card-1.jpg"
 import arrow1 from "../../images/icons/arrow-type-1.svg"
 import "./heroSection.css"
+
 const HeroSection = () => {
     return (
         <section class="hero-section">
