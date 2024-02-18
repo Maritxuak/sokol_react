@@ -1,5 +1,5 @@
 import React, {useEffect, useRef } from "react"
-import Swiper, { Navigation, Pagination } from 'swiper';
+import Swiper, { navigation, pagination } from 'swiper';
 import "./ourWorkflow.css"
 import terms_cooperation_1 from "../../images/terms-cooperation-img-1.jpg"
 import info_card_1 from "../../images/info-card-1.jpg"
@@ -30,7 +30,7 @@ const OurWorkflow = () => {
           const sliderContainer = sliderElement.querySelector('.swiper-wrapper');
           const slides = Array.from(sliderContainer.children);
     
-          if (this.selector === '.js-our-workflow-slider-init') {
+          if (this.selector === '.swiper-container') {
             const firstSlide = slides.shift();
             sliderContainer.appendChild(firstSlide);
           }
@@ -41,10 +41,10 @@ const OurWorkflow = () => {
     }
     
     useEffect(() => {
-      const ourWorkflowSliderElement = document.querySelector('.js-our-workflow-slider-init');
+      const ourWorkflowSliderElement = document.querySelector('.swiper-container');
     
       if (ourWorkflowSliderElement) {
-        const ourWorkflowSlider = new Swiper('.js-our-workflow-slider-init', {
+        const ourWorkflowSlider = new Swiper('.swiper-container', {
           slidesPerView: 'auto',
           spaceBetween: 0,
           centeredSlides: true,
@@ -54,8 +54,8 @@ const OurWorkflow = () => {
             clickable: true,
           },
           navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
+            nextEl: '.swip-btn-next',
+            prevEl: '.swip-btn-prev',
           },
     
           on: {
@@ -135,15 +135,15 @@ const OurWorkflow = () => {
                     </div>
                 </div>
             </div>
-            <div className="js-our-workflow-slider-init our-workflow-section__slider our-workflow-slider">
+            <div className="swiper-container js-our-workflow-slider-init our-workflow-section__slider our-workflow-slider">
                 <div className="slider-control our-workflow-section__slider-control">
-                    <button type="button" className="swiper-button swiper-button--theme-gray swiper-button-prev js-our-workflow-slider-btn-prev">
+                    <button type="button" className="swip-btn-prev swiper-button swiper-button--theme-gray swiper-button-prev js-our-workflow-slider-btn-prev">
                         <svg className="u-icon">
                             <Arrow2 />
                         </svg>
                     </button>
                     <span className="swiper-pagination"></span>
-                    <button type="button" className="swiper-button swiper-button--theme-gray swiper-button-next js-our-workflow-slider-btn-next">
+                    <button type="button" className="swip-btn-next swiper-button swiper-button--theme-gray swiper-button-next js-our-workflow-slider-btn-next">
                         <svg className="u-icon">
                             <Arrow2 />
                         </svg>
