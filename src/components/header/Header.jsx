@@ -1,32 +1,32 @@
 import "./header.css"
-
+import React, { useState } from "react"
 import headerlogo from '../../images/logo.png'
-const Header = () => {
+const Header = ({click, setClick, scroll, setScroll, handleScroll, handleBool, bool}) => {
     return (
-<header class="@@el header">
-  <div class="container container--size-md header__container">
-    <div class="header__inner">
-      <a href="/" class="logo header__logo">
-        <picture class="logo__img">
+<header className={scroll < 300 ? "header--theme-sticky header" : "header--theme-sticky header is-sticky"}>
+  <div className="container container--size-md header__container">
+    <div className="header__inner">
+      <a href="/" className="logo header__logo">
+        <picture className="logo__img">
           <img src={headerlogo} alt="Рантье" width="68" height="68" />
         </picture>
-        <span class="logo__text">
-          <span class="logo__title">Рантье</span>
+        <span className="logo__text">
+          <span className="logo__title">Рантье</span>
         </span>
       </a>
-      <div class="header__dropdown">
-        <ul class="header__contacts">
-          <li class="header__contacts-item">
-            <a href="mailto:cokol@gmail.com" class="header__contacts-link">Cokol@gmail.com</a>
+      <div className="header__dropdown">
+        <ul className="header__contacts">
+          <li className="header__contacts-item">
+            <a href="mailto:cokol@gmail.com" className="header__contacts-link">Cokol@gmail.com</a>
           </li>
-          <li class="header__contacts-item">
-            <a href="tel:+89994839500" class="header__contacts-link">8 (999) 483 95 00</a>
+          <li className="header__contacts-item">
+            <a href="tel:+89994839500" className="header__contacts-link">8 (999) 483 95 00</a>
           </li>
         </ul>
       </div>
-      <a href="#cta-section" class="js-link-anchor btn btn--size-md btn--theme-accent-fill header__btn-action">
-        <span class="btn__inner">
-          <span class="btn__title">Обсудить идею</span>
+      <a href="#cta-section" className="js-link-anchor btn btn--size-md btn--theme-accent-fill header__btn-action">
+        <span className="btn__inner">
+          <span className="btn__title">Обсудить идею</span>
         </span>
       </a>
     </div>
@@ -34,54 +34,58 @@ const Header = () => {
 
 
   
-  <div class="container container--size-md header__container-nav">
-    <div class="header__inner">
-      <a href="/" class="logo header__logo">
-        <picture class="logo__img">
+  <div className="container container--size-md header__container-nav">
+    <div className="header__inner">
+      <a href="/" className="logo header__logo">
+        <picture className="logo__img">
           <img src={headerlogo} alt="Рантье" width="68" height="68" />
         </picture>
       </a>
-      <div class="header__dropdown">
-        <nav class="header__nav" role="navigation">
-          <ul class="header__nav-list">
-            <li class="header__nav-item">
-              <a href="#" class="header__nav-link">О компании</a>
+      <div className="header__dropdown">
+        <nav className="header__nav" role="navigation">
+          <ul className="header__nav-list">
+            <li className="header__nav-item">
+              <a href="#" className="header__nav-link">О компании</a>
             </li>
-            <li class="header__nav-item">
-              <a href="#" class="header__nav-link is-active">Услуги</a>
+            <li className="header__nav-item">
+              <a href="#" className="header__nav-link is-active">Услуги</a>
             </li>
-            <li class="header__nav-item">
-              <a href="#" class="header__nav-link">Специалисты</a>
+            <li className="header__nav-item">
+              <a href="#" className="header__nav-link">Специалисты</a>
             </li>
-            <li class="header__nav-item">
-              <a href="#" class="header__nav-link">Подход</a>
+            <li className="header__nav-item">
+              <a href="#" className="header__nav-link">Подход</a>
             </li>
-            <li class="header__nav-item">
-              <a href="#" class="header__nav-link">Репутация</a>
+            <li className="header__nav-item">
+              <a href="#" className="header__nav-link">Репутация</a>
             </li>
-            <li class="header__nav-item">
-              <a href="#" class="header__nav-link">Проекты</a>
+            <li className="header__nav-item">
+              <a href="#" className="header__nav-link">Проекты</a>
             </li>
-            <li class="header__nav-item">
-              <a href="#" class="header__nav-link">Консультация</a>
+            <li className="header__nav-item">
+              <a href="#" className="header__nav-link">Консультация</a>
             </li>
           </ul>
         </nav>
-        <ul class="d-lg-block header__contacts">
-          <li class="header__contacts-item">
-            <a href="mailto:cokol@gmail.com" class="header__contacts-link">Cokol@gmail.com</a>
+        <ul className="d-lg-block header__contacts">
+          <li className="header__contacts-item">
+            <a href="mailto:cokol@gmail.com" className="header__contacts-link">Cokol@gmail.com</a>
           </li>
-          <li class="header__contacts-item">
-            <a href="tel:+89994839500" class="header__contacts-link">8 (999) 483 95 00</a>
+          <li className="header__contacts-item">
+            <a href="tel:+89994839500" className="header__contacts-link">8 (999) 483 95 00</a>
           </li>
         </ul>
       </div>
-      <a href="#cta-section" class="js-link-anchor btn btn--size-md btn--theme-accent-fill header__btn-action">
-        <span class="btn__inner">
-          <span class="btn__title">Обсудить идею</span>
+      <a href="#cta-section" className="js-link-anchor btn btn--size-md btn--theme-accent-fill header__btn-action">
+        <span className="btn__inner">
+          <span className="btn__title">Обсудить идею</span>
         </span>
       </a>
-      <button type="button" class="js-header-toggle d-lg-block header__toggle">
+      <button
+            type="button"
+            className={click ? "js-header-toggle d-lg-block header__toggle" : "js-header-toggle d-lg-block header__toggle is-active"}
+            onClick={ () => setClick(!click)}
+          >
         <span></span>
         <span></span>
         <span></span>

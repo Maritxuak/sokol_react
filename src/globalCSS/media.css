@@ -18,6 +18,9 @@
     .d-md-block {
         display: none !important
     }
+    .d-lg-block {
+        display: none !important
+    }
 }
 
 @media (min-width:1200px) {
@@ -26,9 +29,6 @@
         box-shadow: 0 0 0 2rem #0583f2
     }
 
-    .d-lg-block {
-        display: none !important
-    }
 
     .btn--theme-accent-fill:hover {
         background: #056cf2
@@ -369,7 +369,7 @@
         opacity: 0
     }
 
-    body:not(.is-menu-opened) .header__dropdown {
+    .is-menu-opened .header__dropdown {
         pointer-events: none;
         -webkit-transform: translateX(100vw);
         -ms-transform: translateX(100vw);

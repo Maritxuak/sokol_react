@@ -17,8 +17,6 @@
     --gap-fluid: 60rem;
     --gap-fluid-: -60rem
 }
-
-
 .info-card__picture,
 .project-card__picture,
 .project-layout__poster,
@@ -3173,6 +3171,11 @@ svg {
     overflow: hidden
 }
 
+.is-show .faq-card__dropdown{
+    height: 155rem;
+    transition: all .5s;
+}
+
 .faq-card__text {
     margin-right: 144rem;
     padding: 0 54rem 48rem;
@@ -4070,9 +4073,7 @@ svg {
     margin-bottom: 24rem
 }
 
-.our-workflow-section {
-    padding: 65rem 0
-}
+
 
 .our-workflow-section__title {
     margin: 0 0 136rem
