@@ -1,4 +1,4 @@
-import React, {useEffect, useRef } from "react"
+import React, {useEffect, useRef,  useState} from "react"
 import "./ourWorkflow.css"
 import Swiper from 'swiper';
 import terms_cooperation_1 from "../../images/terms-cooperation-img-1.jpg"
@@ -16,6 +16,23 @@ import { ReactComponent as ServiceType3 } from "../../images/icons/services-type
 
 
 const OurWorkflow = () => {
+
+    const termsCooperationSliderServiceButtons = useRef(null);
+    const [activeIndex, setActiveIndex] = useState(0);
+  
+    const handleButtonClick = (index) => {
+      setActiveIndex(index);
+      termsCooperationSliderServiceButtons.current.childNodes.forEach((btn, btnIndex) => {
+        btn.classList.remove('is-active');
+        if (btnIndex === index) {
+          btn.classList.add('is-active');
+        }
+      });
+    };
+
+
+
+
     const sliderRef = useRef(null);
     useEffect(() => {
       const ourWorkflowSliderElement = document.querySelector('.swiper-container');
