@@ -1,6 +1,7 @@
 import React, {useEffect, useRef } from "react"
-import Swiper, { navigation, pagination } from 'swiper';
+import { navigation, pagination } from 'swiper';
 import "./ourWorkflow.css"
+import Swiper from 'swiper';
 import terms_cooperation_1 from "../../images/terms-cooperation-img-1.jpg"
 import info_card_1 from "../../images/info-card-1.jpg"
 import our_workflow_road_graph_1 from "../../images/our-workflow-road-graph-1.svg"
@@ -8,12 +9,40 @@ import our_workflow_road_graph_2 from "../../images/our-workflow-road-graph-2.sv
 import our_workflow_road_graph_3 from "../../images/our-workflow-road-graph-3.svg"
 import our_workflow_road_graph_4 from "../../images/our-workflow-road-graph-4.svg"
 import our_workflow_road_map_desktop from "../../images/our-workflow-road-map-desktop.svg"
-import {ReactComponent as Client} from "../../images/icons/icons.svg#client"
+import {ReactComponent as Client} from "../../images/icons/client.svg"
 import { ReactComponent as Arrow2 } from "../../images/icons/arrow-type-2.svg";
-import { ReactComponent as ServiceType1 } from "../../images/icons/icons.svg#services-type-1.svg";
-import { ReactComponent as ServiceType2 } from "../../images/icons/icons.svg#services-type-2.svg";
-import { ReactComponent as ServiceType3 } from "../../images/icons/icons.svg#services-type-3.svg";
+import { ReactComponent as ServiceType1 } from "../../images/icons/services-type-1.svg";
+import { ReactComponent as ServiceType2 } from "../../images/icons/services-type-2.svg";
+import { ReactComponent as ServiceType3 } from "../../images/icons/services-type-3.svg";
 import SwipersOurWorkFlow from "../swipersOurWorkFlow/SwipersOurWorkFlow";
+
+const SliderInit = (Swiper) => {
+    class SliderInit {
+      constructor(selector, options) {
+        this.selector = selector;
+        this.options = options;
+        this.init();
+      }
+    
+      init() {
+        const sliderElement = document.querySelector(this.selector);
+        if (sliderElement) {
+          const sliderContainer = sliderElement.querySelector('.swiper-wrapper');
+          const slides = Array.from(sliderContainer.children);
+    
+          if (this.selector === '.swiper-container') {
+            const firstSlide = slides.shift();
+            sliderContainer.appendChild(firstSlide);
+          }
+    
+          this.swiper = new Swiper(sliderElement, this.options);
+        }
+      }
+    }
+  
+    return SliderInit;
+  };
+
 const OurWorkflow = () => {
     const sliderRef = useRef(null);
 
@@ -45,7 +74,9 @@ const OurWorkflow = () => {
     
       if (ourWorkflowSliderElement) {
         const ourWorkflowSlider = new Swiper('.swiper-container', {
-          slidesPerView: 'auto',
+            observeParents: true, 
+            observer: true, 
+            slidesPerView: 'auto',
           spaceBetween: 0,
           centeredSlides: true,
           loop: true,
@@ -53,6 +84,7 @@ const OurWorkflow = () => {
             el: '.swiper-pagination',
             clickable: true,
           },
+          navigation:true,
           navigation: {
             nextEl: '.swip-btn-next',
             prevEl: '.swip-btn-prev',
@@ -77,7 +109,13 @@ const OurWorkflow = () => {
         });
         sliderRef.current = ourWorkflowSlider;
       }
-    
+      document.querySelector('.js-our-workflow-slider-btn-next').addEventListener('click', () => {
+        sliderRef.current.slideNext();
+      });
+      
+      document.querySelector('.js-our-workflow-slider-btn-prev').addEventListener('click', () => {
+        sliderRef.current.slidePrev();
+      });
       return () => {
         if (sliderRef.current) {
           sliderRef.current.destroy();

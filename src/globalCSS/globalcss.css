@@ -4707,3 +4707,12 @@ select.cta-section__form-select {
     margin-top: 56rem
 }
 
+.spec{
+    display: block !important;
+}
+
+@media(max-width: 1200px){
+    .spec{
+        display: none !important;
+    }
+}

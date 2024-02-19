@@ -29,7 +29,6 @@
         box-shadow: 0 0 0 2rem #0583f2
     }
 
-
     .btn--theme-accent-fill:hover {
         background: #056cf2
     }
@@ -175,7 +174,7 @@
     }
 
     .d-lg-none {
-        display: none !important
+        display: none 
     }
 
     .logo__img {
@@ -432,6 +431,7 @@
     }
 
     .hero-section__brand {
+        display: flex !important;
         margin: 0 0 30rem;
         -webkit-box-pack: center;
         -ms-flex-pack: center;

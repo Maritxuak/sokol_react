@@ -46,7 +46,7 @@ const HeroSection = () => {
                             </a>
                         </div>
                     </div>
-                    <div className="row__col--3 d-lg-none hero-section__col hero-section__col--brands">
+                    <div className="row__col--3 spec d-lg-none hero-section__col hero-section__col--brands">
                         <div className="hero-section__brand">
                             <div className="hero-section__brand-item">
                                 <picture className="hero-section__brand-picture">
