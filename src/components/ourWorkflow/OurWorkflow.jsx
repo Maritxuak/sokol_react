@@ -1,5 +1,4 @@
 import React, {useEffect, useRef } from "react"
-import { navigation, pagination } from 'swiper';
 import "./ourWorkflow.css"
 import Swiper from 'swiper';
 import terms_cooperation_1 from "../../images/terms-cooperation-img-1.jpg"
@@ -14,61 +13,10 @@ import { ReactComponent as Arrow2 } from "../../images/icons/arrow-type-2.svg";
 import { ReactComponent as ServiceType1 } from "../../images/icons/services-type-1.svg";
 import { ReactComponent as ServiceType2 } from "../../images/icons/services-type-2.svg";
 import { ReactComponent as ServiceType3 } from "../../images/icons/services-type-3.svg";
-import SwipersOurWorkFlow from "../swipersOurWorkFlow/SwipersOurWorkFlow";
 
-const SliderInit = (Swiper) => {
-    class SliderInit {
-      constructor(selector, options) {
-        this.selector = selector;
-        this.options = options;
-        this.init();
-      }
-    
-      init() {
-        const sliderElement = document.querySelector(this.selector);
-        if (sliderElement) {
-          const sliderContainer = sliderElement.querySelector('.swiper-wrapper');
-          const slides = Array.from(sliderContainer.children);
-    
-          if (this.selector === '.swiper-container') {
-            const firstSlide = slides.shift();
-            sliderContainer.appendChild(firstSlide);
-          }
-    
-          this.swiper = new Swiper(sliderElement, this.options);
-        }
-      }
-    }
-  
-    return SliderInit;
-  };
 
 const OurWorkflow = () => {
     const sliderRef = useRef(null);
-
-    class SliderInit {
-      constructor(selector, options) {
-        this.selector = selector;
-        this.options = options;
-        this.init();
-      }
-    
-      init() {
-        const sliderElement = document.querySelector(this.selector);
-        if (sliderElement) {
-          const sliderContainer = sliderElement.querySelector('.swiper-wrapper');
-          const slides = Array.from(sliderContainer.children);
-    
-          if (this.selector === '.swiper-container') {
-            const firstSlide = slides.shift();
-            sliderContainer.appendChild(firstSlide);
-          }
-    
-          this.swiper = new Swiper(sliderElement, this.options);
-        }
-      }
-    }
-    
     useEffect(() => {
       const ourWorkflowSliderElement = document.querySelector('.swiper-container');
     
@@ -180,7 +128,16 @@ const OurWorkflow = () => {
                             <Arrow2 />
                         </svg>
                     </button>
-                    <span className="swiper-pagination"></span>
+                    <span className="swiper-pagination">
+                    <span className="swiper-pagination-bullet"></span>
+                    <span className="swiper-pagination-bullet"></span>
+                    <span className="swiper-pagination-bullet"></span>
+                    <span className="swiper-pagination-bullet"></span>
+                    <span className="swiper-pagination-bullet"></span>
+                    <span className="swiper-pagination-bullet"></span>
+                    <span className="swiper-pagination-bullet"></span>
+                    <span className="swiper-pagination-bullet"></span>
+                    </span>
                     <button type="button" className="swip-btn-next swiper-button swiper-button--theme-gray swiper-button-next js-our-workflow-slider-btn-next">
                         <svg className="u-icon">
                             <Arrow2 />
