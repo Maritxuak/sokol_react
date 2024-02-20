@@ -17,7 +17,8 @@ import { ReactComponent as ServiceType3 } from "../../images/icons/services-type
 
 const OurWorkflow = () => {
 
-    const termsCooperationSliderServiceButtons = useRef(null);
+    const termsServicesSliderRef = useRef(null);
+
     
     const [slide,setSlide] = React.useState(0)
 
@@ -25,7 +26,6 @@ const OurWorkflow = () => {
     const handleSetSlide = (item) => {
         setSlide(item)
     }
-
 
 
 
