@@ -16,6 +16,18 @@ import { ReactComponent as ServiceType3 } from "../../images/icons/services-type
 
 
 const OurWorkflow = () => {
+    const termsServicesSliderRef = useRef(null);
+
+    const handleClick = () => {
+      termsServicesSliderRef.current.slideTo(1);
+    };
+  
+  
+
+
+
+
+
 
     const termsCooperationSliderServiceButtons = useRef(null);
     const [activeIndex, setActiveIndex] = useState(0);
@@ -282,7 +294,7 @@ const OurWorkflow = () => {
                                 </div>
                                 <div className="terms-cooperation__services">
                                     <div className="terms-cooperation__services-list">
-                                        <button type="button" className="js-terms-cooperation-slider-btn-nav terms-cooperation__services-item">
+                                        <button type="button" className="js-terms-cooperation-slider-btn-nav terms-cooperation__services-item " onClick={handleClick}>
                                             <span className="terms-cooperation__services-item-icon">
                                                 <svg className="u-icon">
                                                     <ServiceType1 />

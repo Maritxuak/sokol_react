@@ -1,5 +1,5 @@
 
-import Swiper from "swiper"
+
 import React, {useRef, useEffect} from "react"
 import project_services_section_slider_img_1 from "../../images/project-card-1.jpg"
 import project_services_section_slider_img_2 from "../../images/project-card-2.jpg"
@@ -7,7 +7,8 @@ import project_services_section_slider_img_3 from "../../images/project-card-1.j
 import project_services_section_slider_img_4 from "../../images/project-card-2.jpg"
 import project_services_section_slider_img_5 from "../../images/project-card-1.jpg"
 import { ReactComponent as Arrow2 } from "../../images/icons/arrow-type-2.svg";
-
+import {Pagination} from "swiper/modules"
+import Swiper from 'swiper';
 const ProjectServicesSection = () => {
     const sliderRef = useRef(null);
 
@@ -22,7 +23,7 @@ const ProjectServicesSection = () => {
           spaceBetween: 0,
           centeredSlides: true,
           loop: true,
-          pagination: {
+          Pagination: {
             el: '.swiper-pagination',
             clickable: true,
           },
@@ -71,8 +72,9 @@ const ProjectServicesSection = () => {
             <div className="container container--size-md project-services-section__container">
                 <h2 className="project-services-section__title">Проектные успехи</h2>
                 <div className="js-project-services-slider-init project-services-section__slider swiper">
-                    <div className="swiper-wrapper">
-                        <div className="swiper-slide project-services-section__slider-slide">
+                    <div
+                    className="swiper-wrapper">
+                        <div  className="swiper-slide project-services-section__slider-slide">
                             <picture className="bg-color bg-color--theme-darkgrey bg-color--opacity-55 project-services-section__slider-picture">
                                 <img src={project_services_section_slider_img_1} alt="Цифровое воссоединение" />
                             </picture>
@@ -84,7 +86,7 @@ const ProjectServicesSection = () => {
                                     </span>
                                 </a>
                             </div>
-                        </div>
+                        </div >
                         <div className="swiper-slide project-services-section__slider-slide">
                             <picture className="bg-color bg-color--theme-darkgrey bg-color--opacity-55 project-services-section__slider-picture">
                                 <img src={project_services_section_slider_img_2} alt="IT-инновации в синхроне" />
