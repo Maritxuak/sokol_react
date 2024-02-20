@@ -18,17 +18,13 @@ import { ReactComponent as ServiceType3 } from "../../images/icons/services-type
 const OurWorkflow = () => {
 
     const termsCooperationSliderServiceButtons = useRef(null);
-    const [activeIndex, setActiveIndex] = useState(0);
-  
-    const handleButtonClick = (index) => {
-      setActiveIndex(index);
-      termsCooperationSliderServiceButtons.current.childNodes.forEach((btn, btnIndex) => {
-        btn.classList.remove('is-active');
-        if (btnIndex === index) {
-          btn.classList.add('is-active');
-        }
-      });
-    };
+    
+    const [slide,setSlide] = React.useState(0)
+
+
+    const handleSetSlide = (item) => {
+        setSlide(item)
+    }
 
 
 
@@ -282,7 +278,7 @@ const OurWorkflow = () => {
                                 </div>
                                 <div className="terms-cooperation__services">
                                     <div className="terms-cooperation__services-list">
-                                        <button type="button" className="js-terms-cooperation-slider-btn-nav terms-cooperation__services-item">
+                                        <button type="button" onClick={() => handleSetSlide(1)} value={slide} className="js-terms-cooperation-slider-btn-nav terms-cooperation__services-item ">
                                             <span className="terms-cooperation__services-item-icon">
                                                 <svg className="u-icon">
                                                     <ServiceType1 />
@@ -290,7 +286,7 @@ const OurWorkflow = () => {
                                             </span>
                                             <span className="terms-cooperation__services-item-title">Конкретное<br />решение</span>
                                         </button>
-                                        <button type="button" className="js-terms-cooperation-slider-btn-nav terms-cooperation__services-item">
+                                        <button type="button" onClick={() => handleSetSlide(2)} value={slide} className="js-terms-cooperation-slider-btn-nav terms-cooperation__services-item">
                                             <span className="terms-cooperation__services-item-icon">
                                                 <svg className="u-icon">
                                                     <ServiceType2 />
@@ -298,7 +294,7 @@ const OurWorkflow = () => {
                                             </span>
                                             <span className="terms-cooperation__services-item-title">Лендинг</span>
                                         </button>
-                                        <button type="button" className="js-terms-cooperation-slider-btn-nav terms-cooperation__services-item">
+                                        <button type="button" onClick={() => handleSetSlide(3)} value={slide} className="js-terms-cooperation-slider-btn-nav terms-cooperation__services-item">
                                             <span className="terms-cooperation__services-item-icon">
                                                 <svg className="u-icon">
                                                     <ServiceType3 />
@@ -314,12 +310,12 @@ const OurWorkflow = () => {
                             <div className="terms-cooperation__main">
                                 <div className="js-terms-cooperation-slider-init terms-cooperation__main-services">
                                     <div className="swiper-wrapper">
-                                        <div className="swiper-slide terms-cooperation__main-services-card">
+                                        <div className={slide === 0 ? "swiper-slide terms-cooperation__main-services-card swiper-slide-active" : "swiper-slide terms-cooperation__main-services-card"}>
                                             <picture className="terms-cooperation__main-services-card-picture">
                                                 <img src={terms_cooperation_1} alt="Условия сотрудничества" />
                                             </picture>
                                         </div>
-                                        <div className="swiper-slide terms-cooperation__main-services-card">
+                                        <div className={slide === 1 ? "swiper-slide terms-cooperation__main-services-card swiper-slide-active" : "swiper-slide terms-cooperation__main-services-card"}>
                                             <div className="terms-cooperation__main-services-card-content">
                                                 <h3 className="terms-cooperation__main-services-card-title">Вам нужно конкретное решение</h3>
                                                 <div className="content terms-cooperation__main-services-card-text">
@@ -327,7 +323,7 @@ const OurWorkflow = () => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="swiper-slide terms-cooperation__main-services-card">
+                                        <div className={slide === 2 ? "swiper-slide terms-cooperation__main-services-card swiper-slide-active" : "swiper-slide terms-cooperation__main-services-card"}>
                                             <div className="terms-cooperation__main-services-card-content">
                                                 <h3 className="terms-cooperation__main-services-card-title">Вам нужен лендинг</h3>
                                                 <div className="content terms-cooperation__main-services-card-text">
@@ -335,7 +331,7 @@ const OurWorkflow = () => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="swiper-slide terms-cooperation__main-services-card">
+                                        <div className={slide === 3 ? "swiper-slide terms-cooperation__main-services-card swiper-slide-active" : "swiper-slide terms-cooperation__main-services-card"}>
                                             <div className="terms-cooperation__main-services-card-content">
                                                 <h3 className="terms-cooperation__main-services-card-title">Вам нужен сайт-визитка</h3>
                                                 <div className="content terms-cooperation__main-services-card-text">
