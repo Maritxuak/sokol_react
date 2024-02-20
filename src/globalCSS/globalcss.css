@@ -893,7 +893,10 @@ svg {
 .iti--separate-dial-code .iti__selected-dial-code {
     margin-left: 6px
 }
-
+.header__btn-action:hover{
+    background-color: #046fcc;
+    color: rgb(255, 255, 255);
+}
 .iti--container {
     position: absolute;
     top: -1000px;
@@ -2413,6 +2416,9 @@ svg {
     opacity: 0
 }
 
+.nice-select{
+    overflow: none;
+}
 .nice-select .list {
     margin: 16rem 8rem 16rem 0;
     padding: 0;
@@ -4422,7 +4428,11 @@ svg {
 }
 
 select.cta-section__form-select {
-    position: absolute
+    position: absolute;
+    opacity: 0;
+    width: 0px;
+    padding: 0px;
+    height: 0px;
 }
 
 .project-layout__poster {
