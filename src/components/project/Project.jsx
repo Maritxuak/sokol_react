@@ -26,6 +26,7 @@ const ProjectServicesSection = () => {
           Pagination: {
             el: '.swiper-pagination',
             clickable: true,
+            type: 'bullets',
           },
           navigation: {
             nextEl: '.js-project-services-slider-btn-next',
