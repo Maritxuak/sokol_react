@@ -780,7 +780,7 @@
 
     .swiper-button .u-icon {
         width: 37rem;
-        height: 12rem
+        height: 24rem
     }
 
     .our-workflow-slider__slide {
@@ -1031,10 +1031,10 @@
     }
 
     .faq-card__icon {
-        width: 20rem;
-        height: 20rem;
-        -ms-flex-preferred-size: 20rem;
-        flex-basis: 20rem
+        width: 28rem;
+        height: 28rem;
+        -ms-flex-preferred-size: 28rem;
+        flex-basis: 28rem
     }
 
     .faq-card__text {

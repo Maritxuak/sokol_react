@@ -1,4 +1,4 @@
-import React, {useEffect, useRef,  useState} from "react"
+import React, { useEffect, useRef, useState } from "react"
 import "./ourWorkflow.css"
 import Swiper from 'swiper';
 import terms_cooperation_1 from "../../images/terms-cooperation-img-1.jpg"
@@ -8,7 +8,8 @@ import our_workflow_road_graph_2 from "../../images/our-workflow-road-graph-2.sv
 import our_workflow_road_graph_3 from "../../images/our-workflow-road-graph-3.svg"
 import our_workflow_road_graph_4 from "../../images/our-workflow-road-graph-4.svg"
 import our_workflow_road_map_desktop from "../../images/our-workflow-road-map-desktop.svg"
-import {ReactComponent as Client} from "../../images/icons/client.svg"
+import our_workflow_road_map_mobile from "../../images/our-workflow-road-map-mobile.svg"
+import { ReactComponent as Client } from "../../images/icons/client.svg"
 import { ReactComponent as Arrow2 } from "../../images/icons/arrow-type-2.svg";
 import { ReactComponent as ServiceType1 } from "../../images/icons/services-type-1.svg";
 import { ReactComponent as ServiceType2 } from "../../images/icons/services-type-2.svg";
@@ -19,8 +20,8 @@ const OurWorkflow = () => {
 
     const termsServicesSliderRef = useRef(null);
 
-    
-    const [slide,setSlide] = React.useState(0)
+
+    const [slide, setSlide] = React.useState(0)
 
 
     const handleSetSlide = (item) => {
@@ -31,66 +32,124 @@ const OurWorkflow = () => {
 
     const sliderRef = useRef(null);
     useEffect(() => {
-      const ourWorkflowSliderElement = document.querySelector('.swiper-container');
-    
-      if (ourWorkflowSliderElement) {
-        const ourWorkflowSlider = new Swiper('.swiper-container', {
-            observeParents: true, 
-            observer: true, 
-            slidesPerView: 'auto',
-          spaceBetween: 0,
-          centeredSlides: true,
-          loop: true,
-          pagination: {
-            el: '.swiper-pagination',
-            clickable: true,
-          },
-          navigation:true,
-          navigation: {
-            nextEl: '.swip-btn-next',
-            prevEl: '.swip-btn-prev',
-          },
-    
-          on: {
-            slideChange: function () {
-              const activeSlide = this.slides[this.activeIndex];
-              const activeSlideIndex = activeSlide.getAttribute('data-our-workflow-slide');
-              const graphs = document.querySelectorAll('.our-workflow-section__road-graph');
-    
-              graphs.forEach(graph => {
-                const graphIndex = graph.getAttribute('data-our-workflow-graph');
-                if (graphIndex === activeSlideIndex) {
-                  graph.classList.add('is-show');
-                } else {
-                  graph.classList.remove('is-show');
-                }
-              });
-            },
-          },
-        });
-        sliderRef.current = ourWorkflowSlider;
-      }
-      document.querySelector('.js-our-workflow-slider-btn-next').addEventListener('click', () => {
-        sliderRef.current.slideNext();
-      });
-      
-      document.querySelector('.js-our-workflow-slider-btn-prev').addEventListener('click', () => {
-        sliderRef.current.slidePrev();
-      });
-      return () => {
-        if (sliderRef.current) {
-          sliderRef.current.destroy();
+        const ourWorkflowSliderElement = document.querySelector('.swiper-container');
+
+        if (ourWorkflowSliderElement) {
+            const ourWorkflowSlider = new Swiper('.swiper-container', {
+                observeParents: true,
+                observer: true,
+                slidesPerView: 'auto',
+                spaceBetween: 0,
+                centeredSlides: true,
+                loop: true,
+                initialSlide: 1,
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                navigation: true,
+                navigation: {
+                    nextEl: '.swip-btn-next',
+                    prevEl: '.swip-btn-prev',
+                },
+
+                on: {
+                    slideChange: function () {
+                        const activeSlide = this.slides[this.activeIndex];
+                        const activeSlideIndex = activeSlide.getAttribute('data-our-workflow-slide');
+                        const graphs = document.querySelectorAll('.our-workflow-section__road-graph');
+                        graphs.forEach(graph => {
+                            const graphIndex = graph.getAttribute('data-our-workflow-graph');
+                            if (graphIndex === activeSlideIndex) {
+                                graph.classList.add('is-show');
+                            } else {
+                                graph.classList.remove('is-show');
+                            }
+                        });
+
+                    },
+                },
+            });
+            sliderRef.current = ourWorkflowSlider;
         }
-      };
+        document.querySelector('.js-our-workflow-slider-btn-next').addEventListener('click', () => {
+            sliderRef.current.slideNext();
+        });
+
+        document.querySelector('.js-our-workflow-slider-btn-prev').addEventListener('click', () => {
+            sliderRef.current.slidePrev();
+        });
+        return () => {
+            if (sliderRef.current) {
+                sliderRef.current.destroy();
+            }
+        };
     }, []);
-  
+    const el = [
+        {
+            id: 1,
+            title: "Обсуждение проектаы",
+            buldsubtitle: "Мы уделяем особое внимание удобству и внешнему виду любых интерфейсов, как для ваших внешних пользователей (клиентов), так и для внутренних (сотрудников).",
+            subtitle: "Мы верим, что хороший пользовательский опыт способен снижать издержки на внедрение любых решений, сокращать звонки на горячую линию и убеждать людей пользоваться дистанционным сервисом, экономя при этом деньги и время.",
+            section: "1"
+          },
+        {
+            id: 2,
+            title: "Обсуждение проекта",
+            buldsubtitle: "Мы уделяем особое внимание удобству и внешнему виду любых интерфейсов, как для ваших внешних пользователей (клиентов), так и для внутренних (сотрудников).",
+            subtitle: "Мы верим, что хороший пользовательский опыт способен снижать издержки на внедрение любых решений, сокращать звонки на горячую линию и убеждать людей пользоваться дистанционным сервисом, экономя при этом деньги и время.",
+            section: "2",
+        },
+        {
+            id: 3,
+            title: "Обсуждение проекта",
+            buldsubtitle: "Мы уделяем особое внимание удобству и внешнему виду любых интерфейсов, как для ваших внешних пользователей (клиентов), так и для внутренних (сотрудников).",
+            subtitle: "Мы верим, что хороший пользовательский опыт способен снижать издержки на внедрение любых решений, сокращать звонки на горячую линию и убеждать людей пользоваться дистанционным сервисом, экономя при этом деньги и время.",
+            section: "2"
+        },
+        {
+            id: 4,
+            title: "Обсуждение проекта",
+            buldsubtitle: "Мы уделяем особое внимание удобству и внешнему виду любых интерфейсов, как для ваших внешних пользователей (клиентов), так и для внутренних (сотрудников).",
+            subtitle: "Мы верим, что хороший пользовательский опыт способен снижать издержки на внедрение любых решений, сокращать звонки на горячую линию и убеждать людей пользоваться дистанционным сервисом, экономя при этом деньги и время.",
+            section: "3"
+        },
+        {
+            id: 5,
+            title: "Обсуждение проекта",
+            buldsubtitle: "Мы уделяем особое внимание удобству и внешнему виду любых интерфейсов, как для ваших внешних пользователей (клиентов), так и для внутренних (сотрудников).",
+            subtitle: "Мы верим, что хороший пользовательский опыт способен снижать издержки на внедрение любых решений, сокращать звонки на горячую линию и убеждать людей пользоваться дистанционным сервисом, экономя при этом деньги и время.",
+            section: "3"
+        },
+        {
+            id: 6,
+            title: "Обсуждение проекта",
+            buldsubtitle: "Мы уделяем особое внимание удобству и внешнему виду любых интерфейсов, как для ваших внешних пользователей (клиентов), так и для внутренних (сотрудников).",
+            subtitle: "Мы верим, что хороший пользовательский опыт способен снижать издержки на внедрение любых решений, сокращать звонки на горячую линию и убеждать людей пользоваться дистанционным сервисом, экономя при этом деньги и время.",
+            section: "3"
+        },
+        {
+            id: 7,
+            title: "Обсуждение проекта",
+            buldsubtitle: "Мы уделяем особое внимание удобству и внешнему виду любых интерфейсов, как для ваших внешних пользователей (клиентов), так и для внутренних (сотрудников).",
+            subtitle: "Мы верим, что хороший пользовательский опыт способен снижать издержки на внедрение любых решений, сокращать звонки на горячую линию и убеждать людей пользоваться дистанционным сервисом, экономя при этом деньги и время.",
+            section: "4"
+        },
+        {
+            id: 8,
+            title: "Обсуждение проекта",
+            buldsubtitle: "Мы уделяем особое внимание удобству и внешнему виду любых интерфейсов, как для ваших внешних пользователей (клиентов), так и для внутренних (сотрудников).",
+            subtitle: "Мы верим, что хороший пользовательский опыт способен снижать издержки на внедрение любых решений, сокращать звонки на горячую линию и убеждать людей пользоваться дистанционным сервисом, экономя при этом деньги и время.",
+            section: "4"
+        }
+    ];
     return (
         <section className="our-workflow-section">
             <div className="container container--size-md our-workflow-section__container">
                 <h2 className="our-workflow-section__title">Как мы работаем</h2>
                 <div className="our-workflow-section__road">
                     <picture className="our-workflow-section__road-map">
-                        <source media="(max-width: 1199px)" srcset="images/our-workflow-road-map-mobile.svg" width="320" height="320" />
+                        <source media="(max-width: 1199px)" srcset={our_workflow_road_map_mobile} width="320" height="320" />
                         <img src={our_workflow_road_map_desktop} alt="Как мы работаем" width="994" height="234" />
                     </picture>
                     <div className="our-workflow-section__road-graph-wrap">
@@ -141,16 +200,12 @@ const OurWorkflow = () => {
                             <Arrow2 />
                         </svg>
                     </button>
-                    <span className="swiper-pagination">
-                    <span className="swiper-pagination-bullet"></span>
-                    <span className="swiper-pagination-bullet"></span>
-                    <span className="swiper-pagination-bullet"></span>
-                    <span className="swiper-pagination-bullet"></span>
-                    <span className="swiper-pagination-bullet"></span>
-                    <span className="swiper-pagination-bullet"></span>
-                    <span className="swiper-pagination-bullet"></span>
-                    <span className="swiper-pagination-bullet"></span>
-                    </span>
+                    <div className="swiper-pagination">
+                    {el.map((item) => (
+                        <span className="swiper-pagination-bullet">
+                        </span>
+                    ))}
+                    </div>
                     <button type="button" className="swip-btn-next swiper-button swiper-button--theme-gray swiper-button-next js-our-workflow-slider-btn-next">
                         <svg className="u-icon">
                             <Arrow2 />
@@ -158,94 +213,19 @@ const OurWorkflow = () => {
                     </button>
                 </div>
                 <div className="swiper-wrapper">
-                    <div className="swiper-slide our-workflow-slider__slide our-workflow-slider__slide--theme-1" data-our-workflow-slide="slide-1">
-                        <div className="our-workflow-slider__slide-row">
-                            <div className="our-workflow-slider__slide-content">
-                                <div className="our-workflow-slider__slide-title">Обсуждение проекта</div>
-                                <div className="our-workflow-slider__slide-suptitle">Мы уделяем особое внимание удобству и внешнему виду любых интерфейсов, как для ваших внешних пользователей (клиентов), так и для внутренних (сотрудников).</div>
-                                <div className="content our-workflow-slider__slide-text">
-                                    <p>Мы верим, что хороший пользовательский опыт способен снижать издержки на внедрение любых решений, сокращать звонки на горячую линию и убеждать людей пользоваться дистанционным сервисом, экономя при этом деньги и время.</p>
+                    {el.map((item) => (
+                        <div ve className={`swiper-slide our-workflow-slider__slide our-workflow-slider__slide--theme-${item.id}`} data-our-workflow-slide={`slide-${item.section}`}>
+                            <div className="our-workflow-slider__slide-row">
+                                <div className="our-workflow-slider__slide-content">
+                                    <div className="our-workflow-slider__slide-title">{item.title}</div>
+                                    <div className="our-workflow-slider__slide-suptitle">{item.boldsubtitle}</div>
+                                    <div className="content our-workflow-slider__slide-text">
+                                        <p>{item.subtitle}</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div className="swiper-slide our-workflow-slider__slide our-workflow-slider__slide--theme-2" data-our-workflow-slide="slide-2">
-                        <div className="our-workflow-slider__slide-row">
-                            <div className="our-workflow-slider__slide-content">
-                                <div className="our-workflow-slider__slide-title">Концепт</div>
-                                <div className="our-workflow-slider__slide-suptitle">Мы уделяем особое внимание удобству и внешнему виду любых интерфейсов, как для ваших внешних пользователей (клиентов), так и для внутренних (сотрудников).</div>
-                                <div className="content our-workflow-slider__slide-text">
-                                    <p>Мы верим, что хороший пользовательский опыт способен снижать издержки на внедрение любых решений, сокращать звонки на горячую линию и убеждать людей пользоваться дистанционным сервисом, экономя при этом деньги и время.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="swiper-slide our-workflow-slider__slide our-workflow-slider__slide--theme-3" data-our-workflow-slide="slide-2">
-                        <div className="our-workflow-slider__slide-row">
-                            <div className="our-workflow-slider__slide-content">
-                                <div className="our-workflow-slider__slide-title">Функционнальные требования</div>
-                                <div className="our-workflow-slider__slide-suptitle">Мы уделяем особое внимание удобству и внешнему виду любых интерфейсов, как для ваших внешних пользователей (клиентов), так и для внутренних (сотрудников).</div>
-                                <div className="content our-workflow-slider__slide-text">
-                                    <p>Мы верим, что хороший пользовательский опыт способен снижать издержки на внедрение любых решений, сокращать звонки на горячую линию и убеждать людей пользоваться дистанционным сервисом, экономя при этом деньги и время.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="swiper-slide our-workflow-slider__slide our-workflow-slider__slide--theme-4" data-our-workflow-slide="slide-3">
-                        <div className="our-workflow-slider__slide-row">
-                            <div className="our-workflow-slider__slide-content">
-                                <div className="our-workflow-slider__slide-title">UX\UI дизайн</div>
-                                <div className="our-workflow-slider__slide-suptitle">Мы уделяем особое внимание удобству и внешнему виду любых интерфейсов, как для ваших внешних пользователей (клиентов), так и для внутренних (сотрудников).</div>
-                                <div className="content our-workflow-slider__slide-text">
-                                    <p>Мы верим, что хороший пользовательский опыт способен снижать издержки на внедрение любых решений, сокращать звонки на горячую линию и убеждать людей пользоваться дистанционным сервисом, экономя при этом деньги и время.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="swiper-slide our-workflow-slider__slide our-workflow-slider__slide--theme-5" data-our-workflow-slide="slide-3">
-                        <div className="our-workflow-slider__slide-row">
-                            <div className="our-workflow-slider__slide-content">
-                                <div className="our-workflow-slider__slide-title">Alpha версия</div>
-                                <div className="our-workflow-slider__slide-suptitle">Мы уделяем особое внимание удобству и внешнему виду любых интерфейсов, как для ваших внешних пользователей (клиентов), так и для внутренних (сотрудников).</div>
-                                <div className="content our-workflow-slider__slide-text">
-                                    <p>Мы верим, что хороший пользовательский опыт способен снижать издержки на внедрение любых решений, сокращать звонки на горячую линию и убеждать людей пользоваться дистанционным сервисом, экономя при этом деньги и время.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="swiper-slide our-workflow-slider__slide our-workflow-slider__slide--theme-6" data-our-workflow-slide="slide-3">
-                        <div className="our-workflow-slider__slide-row">
-                            <div className="our-workflow-slider__slide-content">
-                                <div className="our-workflow-slider__slide-title">Beta версия</div>
-                                <div className="our-workflow-slider__slide-suptitle">Мы уделяем особое внимание удобству и внешнему виду любых интерфейсов, как для ваших внешних пользователей (клиентов), так и для внутренних (сотрудников).</div>
-                                <div className="content our-workflow-slider__slide-text">
-                                    <p>Мы верим, что хороший пользовательский опыт способен снижать издержки на внедрение любых решений, сокращать звонки на горячую линию и убеждать людей пользоваться дистанционным сервисом, экономя при этом деньги и время.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="swiper-slide our-workflow-slider__slide our-workflow-slider__slide--theme-7" data-our-workflow-slide="slide-4">
-                        <div className="our-workflow-slider__slide-row">
-                            <div className="our-workflow-slider__slide-content">
-                                <div className="our-workflow-slider__slide-title">Seo-продвижение</div>
-                                <div className="our-workflow-slider__slide-suptitle">Мы уделяем особое внимание удобству и внешнему виду любых интерфейсов, как для ваших внешних пользователей (клиентов), так и для внутренних (сотрудников).</div>
-                                <div className="content our-workflow-slider__slide-text">
-                                    <p>Мы верим, что хороший пользовательский опыт способен снижать издержки на внедрение любых решений, сокращать звонки на горячую линию и убеждать людей пользоваться дистанционным сервисом, экономя при этом деньги и время.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="swiper-slide our-workflow-slider__slide our-workflow-slider__slide--theme-8" data-our-workflow-slide="slide-4">
-                        <div className="our-workflow-slider__slide-row">
-                            <div className="our-workflow-slider__slide-content">
-                                <div className="our-workflow-slider__slide-title">Поддержка продукта</div>
-                                <div className="our-workflow-slider__slide-suptitle">Мы уделяем особое внимание удобству и внешнему виду любых интерфейсов, как для ваших внешних пользователей (клиентов), так и для внутренних (сотрудников).</div>
-                                <div className="content our-workflow-slider__slide-text">
-                                    <p>Мы верим, что хороший пользовательский опыт способен снижать издержки на внедрение любых решений, сокращать звонки на горячую линию и убеждать людей пользоваться дистанционным сервисом, экономя при этом деньги и время.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    ))}
                 </div>
             </div>
             <div className="container container--size-md our-workflow-section__container">
