@@ -7,22 +7,15 @@ import our_workflow_road_graph_1 from "../../images/our-workflow-road-graph-1.sv
 import our_workflow_road_graph_2 from "../../images/our-workflow-road-graph-2.svg"
 import our_workflow_road_graph_3 from "../../images/our-workflow-road-graph-3.svg"
 import our_workflow_road_graph_4 from "../../images/our-workflow-road-graph-4.svg"
-import  our_workflow_road_map_desktop from "../../images/our-workflow-road-map-desktop.svg"
+import our_workflow_road_map_desktop from "../../images/our-workflow-road-map-desktop.svg"
 import {ReactComponent as Client} from "../../images/icons/client.svg"
 import { ReactComponent as Arrow2 } from "../../images/icons/arrow-type-2.svg";
 import { ReactComponent as ServiceType1 } from "../../images/icons/services-type-1.svg";
 import { ReactComponent as ServiceType2 } from "../../images/icons/services-type-2.svg";
 import { ReactComponent as ServiceType3 } from "../../images/icons/services-type-3.svg";
-import our_workflow_road_map_mobile from "../../images/our-workflow-road-map-mobile.svg"
+
+
 const OurWorkflow = () => {
-    const termsServicesSliderRef = useRef(null);
-
-    const handleClick = () => {
-      termsServicesSliderRef.current.slideTo(1);
-    };
-  
-
-
 
     const termsCooperationSliderServiceButtons = useRef(null);
     const [activeIndex, setActiveIndex] = useState(0);
@@ -101,7 +94,7 @@ const OurWorkflow = () => {
                 <h2 className="our-workflow-section__title">Как мы работаем</h2>
                 <div className="our-workflow-section__road">
                     <picture className="our-workflow-section__road-map">
-                        <source media="(max-width: 1199px)" srcset={our_workflow_road_map_mobile} width="320" height="320" />
+                        <source media="(max-width: 1199px)" srcset="images/our-workflow-road-map-mobile.svg" width="320" height="320" />
                         <img src={our_workflow_road_map_desktop} alt="Как мы работаем" width="994" height="234" />
                     </picture>
                     <div className="our-workflow-section__road-graph-wrap">
@@ -153,7 +146,14 @@ const OurWorkflow = () => {
                         </svg>
                     </button>
                     <span className="swiper-pagination">
-
+                    <span className="swiper-pagination-bullet"></span>
+                    <span className="swiper-pagination-bullet"></span>
+                    <span className="swiper-pagination-bullet"></span>
+                    <span className="swiper-pagination-bullet"></span>
+                    <span className="swiper-pagination-bullet"></span>
+                    <span className="swiper-pagination-bullet"></span>
+                    <span className="swiper-pagination-bullet"></span>
+                    <span className="swiper-pagination-bullet"></span>
                     </span>
                     <button type="button" className="swip-btn-next swiper-button swiper-button--theme-gray swiper-button-next js-our-workflow-slider-btn-next">
                         <svg className="u-icon">
@@ -282,7 +282,7 @@ const OurWorkflow = () => {
                                 </div>
                                 <div className="terms-cooperation__services">
                                     <div className="terms-cooperation__services-list">
-                                        <button type="button" className="js-terms-cooperation-slider-btn-nav terms-cooperation__services-item " onClick={handleClick}>
+                                        <button type="button" className="js-terms-cooperation-slider-btn-nav terms-cooperation__services-item">
                                             <span className="terms-cooperation__services-item-icon">
                                                 <svg className="u-icon">
                                                     <ServiceType1 />
