@@ -3627,19 +3627,19 @@ svg {
 
 .u-input--theme-white:focus {
     -webkit-box-shadow: 0 0 0 2rem #0583f2;
-    box-shadow: 0 0 0 2rem #0583f2
+    box-shadow: 0 0 0 2rem #0583f2;
+    /* border: 1px 1px 1px 1px solid #0583f2; */
 }
 
 .u-input--size-md {
     min-height: 56rem;
-    padding: 0rem 24rem 8rem;
+    padding: 0rem;
     font-size: 16rem;
     font-size: var(--fs-7)
 }
 
 .u-input--size-md.u-input--iti {
-    padding-top: 12rem;
-    padding-bottom: 12rem
+    padding: 0rem auto;
 }
 
 .u-input--status-error {
@@ -4835,7 +4835,8 @@ select.cta-section__form-select {
     font-family: 'Roboto', sans-serif;
     font-size: 15px;
     position: relative;
-    width: 100%
+    width: 100%;
+    height: 100%;
 }
 
 .react-tel-input :disabled {
@@ -5828,12 +5829,12 @@ select.cta-section__form-select {
     margin-bottom: 0 !important;
     padding-left: 48px;
     margin-left: 0;
-    background: #FFFFFF;
+    background: #ffffff00;
+    border: none;
 
     border-radius: 5px;
     line-height: 25px;
     height: 35px;
-    width: 300px;
     outline: none
 }
 .form-control:focus {
@@ -5862,12 +5863,13 @@ select.cta-section__form-select {
     bottom: 0;
     padding: 0;
     background-color: #f5f5f5;
-    border-radius: 3px 0 0 3px
+    border-radius: 14px 0 0 14px
 }
 
 .react-tel-input .flag-dropdown:hover,
 .react-tel-input .flag-dropdown:focus {
     cursor: pointer
+    
 }
 
 .react-tel-input .flag-dropdown.invalid-number {
@@ -5877,13 +5879,15 @@ select.cta-section__form-select {
 .react-tel-input .flag-dropdown.open {
     z-index: 2;
     border: none;
-    background: #fff;
-    border-radius: 3px 0 0 0
+    background: #e4e4e4;
+    border-radius: 14px 0 0 0
+
 }
 
 .react-tel-input .flag-dropdown.open .selected-flag {
-    background: #fff;
-    border-radius: 3px 0 0 0
+    background: #f5f5f5;
+    border-radius: 14px 0 0 0;
+
 }
 
 .react-tel-input input[disabled]+.flag-dropdown:hover {
@@ -5899,15 +5903,11 @@ select.cta-section__form-select {
     position: relative;
     width: 38px;
     height: 100%;
-    padding: 0 0 0 8px;
+    padding: 0 0 0 16px;
     border: none;
     border-radius: 3px 0 0 3px
 }
 
-.react-tel-input .selected-flag:hover,
-.react-tel-input .selected-flag:focus {
-    background-color: #fff
-}
 
 .react-tel-input .selected-flag .flag {
     position: absolute;
@@ -5931,25 +5931,30 @@ select.cta-section__form-select {
     border-top: none;
     border-bottom: 4px solid #555
 }
-
-.react-tel-input .country-list {
+.react-tel-input .country-list:hover{
     -webkit-box-shadow: 0px 0px 0px 2px rgba(5, 131, 242);
     -moz-box-shadow: 0px 0px 0px 2px rgba(5, 131, 242);
-    box-shadow: 0px 0px 0px 2px rgba(5, 131, 242) !important;
-    padding: 10px;
-    border: 10px solid #ffffff;
-    outline: none;
-    z-index: 1;
-    left: -21rem;
-    list-style: none;
-    position: absolute;
-    margin: 10px 0 10px -1px;
-    box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.35);
-    background-color: white;
-    width: 300px;
-    max-height: 200px;
-    overflow-y: scroll;
-    border-radius: 0 0 10px 10px
+        box-shadow: 0px 0px 0px 2px rgba(5, 131, 242) !important;
+}
+.react-tel-input .country-list {
+        box-shadow: 0px 0px 0px 2px rgba(5, 131, 242, 0) !important;
+        padding: 10px;
+        border: 10px solid #ffffff;
+        outline: none;
+        z-index: 1;
+        left: 1px;
+        top: 47px;
+        left: 0\    rem;
+        list-style: none;
+        position: absolute;
+        margin: 10px 0 10px -1px;
+        box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.35);
+        background-color: white;
+        width: 300px;
+        max-height: 200px;
+        overflow-y: scroll;
+        border-radius: 0 0 10px 10px;
+        transition: all .5s;
 }
 
 .react-tel-input .country-list .flag {
@@ -6034,4 +6039,11 @@ select.cta-section__form-select {
     background: #fff;
     padding: 0 2px;
     white-space: nowrap
+}
+.react-tel-input{
+    min-height: 56rem;
+}
+.iti--allow-dropdown input[type=tel]{
+    margin-left: 10rem;
+    height: 56rem;
 }

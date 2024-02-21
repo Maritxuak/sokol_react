@@ -18,7 +18,7 @@ const ProjectServicesSection = () => {
                 slidesPerView: 'auto',
                 spaceBetween: 0,
                 centeredSlides: true,
-                loop: true,
+                loop: false,
                 Pagination: {
                     el: '.swiper-pagination',
                     clickable: true,
@@ -33,14 +33,7 @@ const ProjectServicesSection = () => {
                         const activeSlide = this.slides[this.activeIndex];
                         const activeSlideIndex = activeSlide.getAttribute('data-our-workflow-slide');
                         const paginationBullets = document.querySelectorAll('.swiper-pagination-bullet');
-                        paginationBullets.forEach(bullet => {
-                            const bulletIndex = bullet.getAttribute('value');
-                            if (bulletIndex === activeSlideIndex) {
-                                bullet.classList.add('swiper-pagination-bullet-active');
-                            } else {
-                                bullet.classList.remove('swiper-pagination-bullet-active');
-                            }
-                        });
+                        
                     },
                 },
 
@@ -60,6 +53,54 @@ const ProjectServicesSection = () => {
             }
         };
     }, []);
+
+    
+    const handleBulletClick3 = (element) => {
+        const blockLeft = document.querySelector('.js-project-services-slider-btn-prev');
+        const blockRight = document.querySelector('.js-project-services-slider-btn-next');
+        const bullets = document.querySelectorAll('.swiper-pagination-bullet');
+        
+        if (element === 1) {
+            blockLeft.classList.add('swiper-button-disabled');
+        } else {
+            blockLeft.classList.remove('swiper-button-disabled');
+        }
+        
+        if (element === bullets.length) {
+            blockRight.classList.add('swiper-button-disabled');
+        } else {
+            blockRight.classList.remove('swiper-button-disabled');
+        }
+        
+        const mySwiper = new Swiper('.js-project-services-slider-init', {
+            initialSlide: element - 1,
+            centeredSlides: false,
+            pagination: true,
+            loop: false,
+            on: {
+                init: function() {
+                    bullets.forEach((bullet, index) => {
+                        bullet.addEventListener('click', function() {
+                            mySwiper.slideTo(index);
+                        });
+                    });
+                },
+                slideChange: function() {
+                    bullets.forEach((bullet, index) => {
+                        if (index === this.activeIndex) {
+                            bullet.classList.add('swiper-pagination-bullet-active');
+                        } else {
+                            bullet.classList.remove('swiper-pagination-bullet-active');
+                        }
+                    });
+                }
+            }
+        });
+    
+        mySwiper.update();
+    };
+    
+
 
     const el = [
         {
@@ -170,8 +211,8 @@ const ProjectServicesSection = () => {
                             </svg>
                         </button>
                         <div className="swiper-pagination">
-                            {el.map((item) => (
-                                <span value={item.id} className="swiper-pagination-bullet"></span>
+                            {el.map((item)  => (
+                                <span value={item.id} onClick={() => handleBulletClick3((item.id).toString())} className="swiper-pagination-bullet"></span>
                             ))}
                         </div>
                         <button type="button" className="swiper-button swiper-button--theme-gray swiper-button-next js-project-services-slider-btn-next">
