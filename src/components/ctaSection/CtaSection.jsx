@@ -3,11 +3,13 @@ import { ReactComponent as FileAttach } from "../../images/icons/file-attach.svg
 import { ReactComponent as Close } from "../../images/icons/close.svg";
 import React from "react";
 import { useState } from "react";
+import PhoneFileValidation from "../../PhoneFileValidation";
 
 
 
 const CtaSection = () => {
 
+  
   const [click,setClick] = React.useState(true)
 
   const [selected, setSelected] = useState(null);
@@ -62,15 +64,16 @@ const CtaSection = () => {
                     </p>
                   </div>
                   <div className="u-control cta-section__form-line">
-                    <div id="your-destination-element"></div>
+                    <PhoneFileValidation/>
+                    {/* <div id="your-destination-element"></div>
                     <input
                       type="tel"
                       name="cta_phone"
                       id="js-phone-mask"
-                      className="u-input u-input--theme-white u-input--size-md u-input--iti u-control__input"
+                      className="u-input u-input--theme-white u-input--size-md u-input--iti u-control__input is-active-country"
                       required
                       placeholder=""
-                    />
+                    /> */}
                     <p className="u-control__placeholder">
                       <span className="u-control__placeholder-title"></span>
                     </p>

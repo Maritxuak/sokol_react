@@ -1,3 +1,15 @@
+// Страница Услуги 
+// Слайдер, баттоны левые. баттоны между стрелочек. === делаю
+
+
+
+// Форма регистрации - добавить флаги. ===== работаю
+
+// исправить баг с пропаданием бургер меню
+// доделать баттоны на главной странице у первого слайдера
+
+
+
 import './App.css';
 import Header from './components/header/Header';
 import 'bootstrap/dist/css/bootstrap.css';
@@ -16,6 +28,7 @@ import ServicesLayout from './components/servicesLayout/ServicesLayout';
 import TypicalSection from './components/typicalSection/TypicalSection';
 import CtaSection from './components/ctaSection/CtaSection';
 import ProjectLayout from './components/projectLayout/ProjectLayout';
+import PhoneFileValidation from './PhoneFileValidation'
 const Layout = () => {
   return (
     <>
@@ -56,7 +69,9 @@ const Project = () =>{
   );
 };
 function App() {
+
   
+
   const router = createBrowserRouter([
     {
       path: "/",

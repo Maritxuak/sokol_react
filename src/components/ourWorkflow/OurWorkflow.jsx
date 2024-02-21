@@ -40,9 +40,9 @@ const OurWorkflow = () => {
                 observer: true,
                 slidesPerView: 'auto',
                 spaceBetween: 0,
-                centeredSlides: true,
+                centeredSlides: false,
                 loop: true,
-                initialSlide: 1,
+                initialSlide: 0,
                 pagination: {
                     el: '.swiper-pagination',
                     clickable: true,
@@ -74,11 +74,11 @@ const OurWorkflow = () => {
         }
         document.querySelector('.js-our-workflow-slider-btn-next').addEventListener('click', () => {
             sliderRef.current.slideNext();
-        });
-
-        document.querySelector('.js-our-workflow-slider-btn-prev').addEventListener('click', () => {
+          });
+          
+          document.querySelector('.js-our-workflow-slider-btn-prev').addEventListener('click', () => {
             sliderRef.current.slidePrev();
-        });
+          });
         return () => {
             if (sliderRef.current) {
                 sliderRef.current.destroy();
