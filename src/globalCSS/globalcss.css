@@ -3633,13 +3633,13 @@ svg {
 
 .u-input--size-md {
     min-height: 56rem;
-    padding: 0rem;
+    padding: 24rem 24rem 8rem;
     font-size: 16rem;
     font-size: var(--fs-7)
 }
 
-.u-input--size-md.u-input--iti {
-    padding: 0rem auto;
+.u-input--size-md.phone {
+    padding: 0rem;
 }
 
 .u-input--status-error {

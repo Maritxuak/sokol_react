@@ -17,7 +17,7 @@ const PhoneFileValidation = () => {
     }
     return (
         <div className="iti iti--allow-dropdown">
-            <label className="u-input u-input--theme-white u-input--size-md u-input--iti u-control__input is-active-country">
+            <label className="u-input u-input--theme-white u-input--size-md u-input--iti u-control__input is-active-country phone">
                 <PhoneInput
                 country={'ru'}
                 value = {PhoneNumber}

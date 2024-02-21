@@ -172,12 +172,6 @@ const ProjectServicesSection = () => {
             ]
         },
     ];
-
-
-
-
-
-
     return (
         <section className="project-services-section">
             <div className="container container--size-md project-services-section__container">

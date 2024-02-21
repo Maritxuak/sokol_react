@@ -63,7 +63,7 @@ const CtaSection = () => {
                       <span className="u-control__placeholder-title">Имя</span>
                     </p>
                   </div>
-                  <div className="u-control cta-section__form-line">
+                  <div className="u-control cta-section__form-line phone">
                     <PhoneFileValidation/>
                     {/* <div id="your-destination-element"></div>
                     <input

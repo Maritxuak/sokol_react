@@ -1,107 +1,73 @@
-        <>
-        <div className="swiper-container js-our-workflow-slider-init our-workflow-section__slider our-workflow-slider">
-                <div className="slider-control our-workflow-section__slider-control">
-                    <button type="button" className="swip-btn-prev swiper-button swiper-button--theme-gray swiper-button-prev js-our-workflow-slider-btn-prev">
-                        <svg className="u-icon">
-                            <Arrow2 />
-                        </svg>
-                    </button>
-                    <span className="swiper-pagination"></span>
-                    <button type="button" className="swip-btn-next swiper-button swiper-button--theme-gray swiper-button-next js-our-workflow-slider-btn-next">
-                        <svg className="u-icon">
-                            <Arrow2 />
-                        </svg>
-                    </button>
-                </div>
-                <div className="swiper-wrapper">
-                    <div className="swiper-slide our-workflow-slider__slide our-workflow-slider__slide--theme-1" data-our-workflow-slide="slide-1">
-                        <div className="our-workflow-slider__slide-row">
-                            <div className="our-workflow-slider__slide-content">
-                                <div className="our-workflow-slider__slide-title">Обсуждение проекта</div>
-                                <div className="our-workflow-slider__slide-suptitle">Мы уделяем особое внимание удобству и внешнему виду любых интерфейсов, как для ваших внешних пользователей (клиентов), так и для внутренних (сотрудников).</div>
-                                <div className="content our-workflow-slider__slide-text">
-                                    <p>Мы верим, что хороший пользовательский опыт способен снижать издержки на внедрение любых решений, сокращать звонки на горячую линию и убеждать людей пользоваться дистанционным сервисом, экономя при этом деньги и время.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="swiper-slide our-workflow-slider__slide our-workflow-slider__slide--theme-2" data-our-workflow-slide="slide-2">
-                        <div className="our-workflow-slider__slide-row">
-                            <div className="our-workflow-slider__slide-content">
-                                <div className="our-workflow-slider__slide-title">Концепт</div>
-                                <div className="our-workflow-slider__slide-suptitle">Мы уделяем особое внимание удобству и внешнему виду любых интерфейсов, как для ваших внешних пользователей (клиентов), так и для внутренних (сотрудников).</div>
-                                <div className="content our-workflow-slider__slide-text">
-                                    <p>Мы верим, что хороший пользовательский опыт способен снижать издержки на внедрение любых решений, сокращать звонки на горячую линию и убеждать людей пользоваться дистанционным сервисом, экономя при этом деньги и время.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="swiper-slide our-workflow-slider__slide our-workflow-slider__slide--theme-3" data-our-workflow-slide="slide-2">
-                        <div className="our-workflow-slider__slide-row">
-                            <div className="our-workflow-slider__slide-content">
-                                <div className="our-workflow-slider__slide-title">Функционнальные требования</div>
-                                <div className="our-workflow-slider__slide-suptitle">Мы уделяем особое внимание удобству и внешнему виду любых интерфейсов, как для ваших внешних пользователей (клиентов), так и для внутренних (сотрудников).</div>
-                                <div className="content our-workflow-slider__slide-text">
-                                    <p>Мы верим, что хороший пользовательский опыт способен снижать издержки на внедрение любых решений, сокращать звонки на горячую линию и убеждать людей пользоваться дистанционным сервисом, экономя при этом деньги и время.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="swiper-slide our-workflow-slider__slide our-workflow-slider__slide--theme-4" data-our-workflow-slide="slide-3">
-                        <div className="our-workflow-slider__slide-row">
-                            <div className="our-workflow-slider__slide-content">
-                                <div className="our-workflow-slider__slide-title">UX\UI дизайн</div>
-                                <div className="our-workflow-slider__slide-suptitle">Мы уделяем особое внимание удобству и внешнему виду любых интерфейсов, как для ваших внешних пользователей (клиентов), так и для внутренних (сотрудников).</div>
-                                <div className="content our-workflow-slider__slide-text">
-                                    <p>Мы верим, что хороший пользовательский опыт способен снижать издержки на внедрение любых решений, сокращать звонки на горячую линию и убеждать людей пользоваться дистанционным сервисом, экономя при этом деньги и время.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="swiper-slide our-workflow-slider__slide our-workflow-slider__slide--theme-5" data-our-workflow-slide="slide-3">
-                        <div className="our-workflow-slider__slide-row">
-                            <div className="our-workflow-slider__slide-content">
-                                <div className="our-workflow-slider__slide-title">Alpha версия</div>
-                                <div className="our-workflow-slider__slide-suptitle">Мы уделяем особое внимание удобству и внешнему виду любых интерфейсов, как для ваших внешних пользователей (клиентов), так и для внутренних (сотрудников).</div>
-                                <div className="content our-workflow-slider__slide-text">
-                                    <p>Мы верим, что хороший пользовательский опыт способен снижать издержки на внедрение любых решений, сокращать звонки на горячую линию и убеждать людей пользоваться дистанционным сервисом, экономя при этом деньги и время.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="swiper-slide our-workflow-slider__slide our-workflow-slider__slide--theme-6" data-our-workflow-slide="slide-3">
-                        <div className="our-workflow-slider__slide-row">
-                            <div className="our-workflow-slider__slide-content">
-                                <div className="our-workflow-slider__slide-title">Beta версия</div>
-                                <div className="our-workflow-slider__slide-suptitle">Мы уделяем особое внимание удобству и внешнему виду любых интерфейсов, как для ваших внешних пользователей (клиентов), так и для внутренних (сотрудников).</div>
-                                <div className="content our-workflow-slider__slide-text">
-                                    <p>Мы верим, что хороший пользовательский опыт способен снижать издержки на внедрение любых решений, сокращать звонки на горячую линию и убеждать людей пользоваться дистанционным сервисом, экономя при этом деньги и время.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="swiper-slide our-workflow-slider__slide our-workflow-slider__slide--theme-7" data-our-workflow-slide="slide-4">
-                        <div className="our-workflow-slider__slide-row">
-                            <div className="our-workflow-slider__slide-content">
-                                <div className="our-workflow-slider__slide-title">Seo-продвижение</div>
-                                <div className="our-workflow-slider__slide-suptitle">Мы уделяем особое внимание удобству и внешнему виду любых интерфейсов, как для ваших внешних пользователей (клиентов), так и для внутренних (сотрудников).</div>
-                                <div className="content our-workflow-slider__slide-text">
-                                    <p>Мы верим, что хороший пользовательский опыт способен снижать издержки на внедрение любых решений, сокращать звонки на горячую линию и убеждать людей пользоваться дистанционным сервисом, экономя при этом деньги и время.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="swiper-slide our-workflow-slider__slide our-workflow-slider__slide--theme-8" data-our-workflow-slide="slide-4">
-                        <div className="our-workflow-slider__slide-row">
-                            <div className="our-workflow-slider__slide-content">
-                                <div className="our-workflow-slider__slide-title">Поддержка продукта</div>
-                                <div className="our-workflow-slider__slide-suptitle">Мы уделяем особое внимание удобству и внешнему виду любых интерфейсов, как для ваших внешних пользователей (клиентов), так и для внутренних (сотрудников).</div>
-                                <div className="content our-workflow-slider__slide-text">
-                                    <p>Мы верим, что хороший пользовательский опыт способен снижать издержки на внедрение любых решений, сокращать звонки на горячую линию и убеждать людей пользоваться дистанционным сервисом, экономя при этом деньги и время.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
+import React from "react";
+import { useState, useEffect } from "react";
+import { ReactComponent as Close } from "../../images/icons/close.svg";
+import axios from 'axios';
+
+const axiosInstance = axios.create({
+  baseURL: 'http://localhost:8000/api',
+});
+const getAllDignities = async () => {
+  try {
+    const response = await axiosInstance.get('/read/dignities');
+    if (response.data) {
+      console.log(response.data);
+      return response.data.map((item) => ({
+        id: item.id,
+        name: item.name,
+        dsc: item.dsc,
+      }))
+    }else{
+      console.error('Объект data не определен');
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+console.log(dignities)
+const Benifest = () => {
+  const [dignities, setDignities] = useState([]);
+  const [openCardId, setOpenCardId] = useState(null);
+
+  const handleCardClick = (id) => {
+    setOpenCardId(id);
+  };
+
+  useEffect(() => {
+    const fetchDignities = async () => {
+      const dignities = await getAllDignities();
+      setDignities(dignities);
+    };
+
+    fetchDignities().then((dignities) => {
+      setDignities(dignities);
+    });
+  }, []);
+
+  return (
+    <section className="benefits-section">
+      <div className="container container--size-md benefits-section__container">
+        {dignities.map((item) => (
+          <article key={item.id} className={`benefits-section__list-card faq-card ${openCardId === item.id ? 'is-show' : ''}`} onClick={() => handleCardClick(item.id)}>
+            <div className="faq-card__header">
+              <button type="button" className="faq-card__btn js-faq-card-toggle ">
+                <h3 className="faq-card__title">{item.name}</h3>
+              </button>
+              <svg className="u-icon faq-card__icon">
+                <Close />
+              </svg>
             </div>
-        </>
+            <div className="faq-card__dropdown">
+              <div className="content faq-card__text">
+                <p>{item.dsc}</p>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+};
+
+export default Benifest;
