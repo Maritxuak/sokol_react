@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react"
+import React, { useRef, useEffect, useState } from "react"
 import project_services_section_slider_img_1 from "../../images/project-card-1.jpg"
 import project_services_section_slider_img_2 from "../../images/project-card-2.jpg"
 import project_services_section_slider_img_3 from "../../images/project-card-1.jpg"
@@ -9,103 +9,107 @@ import { Pagination } from "swiper/modules"
 import Swiper from 'swiper';
 const ProjectServicesSection = () => {
     const sliderRef = useRef(null);
+
     useEffect(() => {
-        const projectServicesSliderElement = document.querySelector('.js-project-services-slider-init');
-        if (projectServicesSliderElement) {
-            const projectServicesSlider = new Swiper('.js-project-services-slider-init', {
-                observeParents: true,
-                observer: true,
+        const projectLayoutSliderInitElement = document.querySelector('.js-project-services-slider-init');
+
+        if (projectLayoutSliderInitElement) {
+            const projectLayoutSliderInit = new Swiper('.js-project-services-slider-init', {
                 slidesPerView: 'auto',
-                spaceBetween: 0,
                 centeredSlides: true,
                 loop: false,
-                Pagination: {
+                initialSlide: 0,
+                observeParents: true,
+                observer: true,
+                spaceBetween: 0,
+                pagination: {
                     el: '.swiper-pagination',
                     clickable: true,
-                    type: 'bullets',
                 },
                 navigation: {
                     nextEl: '.js-project-services-slider-btn-next',
                     prevEl: '.js-project-services-slider-btn-prev',
                 },
+
                 on: {
                     slideChange: function () {
-                        const activeSlide = this.slides[this.activeIndex];
-                        const activeSlideIndex = activeSlide.getAttribute('data-our-workflow-slide');
-                        const paginationBullets = document.querySelectorAll('.swiper-pagination-bullet');
-                        
-                    },
-                },
+                        const activeSlideProject = this.slides[this.activeIndex];
 
-            });
-            sliderRef.current = projectServicesSlider;
+                    }
+                }
+
+
+            })
+            sliderRef.current = projectLayoutSliderInit
+    
+            
+             
+
         }
-        document.querySelector('.js-project-services-slider-btn-next').addEventListener('click', () => {
-            sliderRef.current.slideNext();
-        });
 
-        document.querySelector('.js-project-services-slider-btn-prev').addEventListener('click', () => {
-            sliderRef.current.slidePrev();
-        });
         return () => {
             if (sliderRef.current) {
                 sliderRef.current.destroy();
             }
+        }
+    }, [])
+
+    useEffect(() => {
+        const updateActiveBullet = () => {
+            const activeIndex = sliderRef.current.activeIndex;
+            const paginationBullets = document.querySelectorAll('.serviceBulletProject');
+            
+            paginationBullets.forEach((bullet, index) => {
+                if (index === activeIndex) {
+                    bullet.classList.add('swiper-pagination-bullet-active');
+                } else {
+                    bullet.classList.remove('swiper-pagination-bullet-active');
+                }
+            });
         };
+    
+        sliderRef.current.on('slideChange', updateActiveBullet);
+        return () => {
+            sliderRef.current.off('slideChange', updateActiveBullet);
+        };
+
+        updateActiveBullet();
     }, []);
 
-    
-    const handleBulletClick3 = (element) => {
-        const blockLeft = document.querySelector('.js-project-services-slider-btn-prev');
-        const blockRight = document.querySelector('.js-project-services-slider-btn-next');
-        const bullets = document.querySelectorAll('.swiper-pagination-bullet');
-        
-        if (element === 1) {
-            blockLeft.classList.add('swiper-button-disabled');
-        } else {
-            blockLeft.classList.remove('swiper-button-disabled');
-        }
-        
-        if (element === bullets.length) {
-            blockRight.classList.add('swiper-button-disabled');
-        } else {
-            blockRight.classList.remove('swiper-button-disabled');
-        }
-        
-        const mySwiper = new Swiper('.js-project-services-slider-init', {
-            initialSlide: element - 1,
-            centeredSlides: false,
-            pagination: true,
-            loop: false,
-            on: {
-                init: function() {
-                    bullets.forEach((bullet, index) => {
-                        bullet.addEventListener('click', function() {
-                            mySwiper.slideTo(index);
-                        });
-                    });
-                },
-                slideChange: function() {
-                    bullets.forEach((bullet, index) => {
-                        if (index === this.activeIndex) {
-                            bullet.classList.add('swiper-pagination-bullet-active');
-                        } else {
-                            bullet.classList.remove('swiper-pagination-bullet-active');
-                        }
-                    });
-                }
-            }
-        });
-    
-        mySwiper.update();
+    const [currentSlideId, setCurrentSlideId] = useState(1);
+
+    const handleSlideChange = (swiper) => {
+        const currentSlide = el[swiper.activeIndex];
+        setCurrentSlideId(currentSlide.id);
     };
     
+    const handleNextClick1 = () => {
+        if (sliderRef.current) {
+            sliderRef.current.slideNext();
+        }
+    };
+    
+    const handlePrevClick1 = () => {
+        if (sliderRef.current) {
+            sliderRef.current.slidePrev();
+        }
+    };
+    const handlePaginationClick = (sliderRef, slideId) => {
+        if (sliderRef.current) {
+            const slideIndex = el.findIndex(item => item.id === slideId);
+            if (slideIndex !== -1) {
+                sliderRef.current.slideTo(slideIndex);
+                setCurrentSlideId(slideId);
+            }
+        }
+    };
+
 
 
     const el = [
         {
             "id": 1,
-            "name": "Ирий",
+            "name": "1Ирий",
             "category_services": 1,
             "bw_preview_photo": project_services_section_slider_img_1,
             "c_preview_photo": { project_services_section_slider_img_1 },
@@ -122,7 +126,7 @@ const ProjectServicesSection = () => {
         },
         {
             "id": 2,
-            "name": "Ирий",
+            "name": "2Ирий",
             "category_services": 1,
             "bw_preview_photo": project_services_section_slider_img_1,
             "c_preview_photo": { project_services_section_slider_img_1 },
@@ -139,7 +143,7 @@ const ProjectServicesSection = () => {
         },
         {
             "id": 3,
-            "name": "Ирий",
+            "name": "3Ирий",
             "category_services": 1,
             "bw_preview_photo": project_services_section_slider_img_1,
             "c_preview_photo": { project_services_section_slider_img_1 },
@@ -156,7 +160,7 @@ const ProjectServicesSection = () => {
         },
         {
             "id": 4,
-            "name": "Ирий",
+            "name": "4Ирий",
             "category_services": 1,
             "bw_preview_photo": project_services_section_slider_img_1,
             "c_preview_photo": { project_services_section_slider_img_1 },
@@ -179,7 +183,7 @@ const ProjectServicesSection = () => {
                 <div className="js-project-services-slider-init project-services-section__slider swiper">
                     <div className="swiper-wrapper">
                         {el.map((item) => (
-                            <div className="swiper-slide project-services-section__slider-slide" data-our-workflow-slide={item.id}>
+                            <div className="swiper-slide project-services-section__slider-slide" data-our-workflow-slide-project={item.id}>
                                 <picture className="bg-color bg-color--theme-darkgrey bg-color--opacity-55 project-services-section__slider-picture">
                                     <img src={item.bw_preview_photo} alt="Цифровое воссоединение" />
                                 </picture>
@@ -199,17 +203,17 @@ const ProjectServicesSection = () => {
 
                     <div className="slider-control project-services-section__slider-control">
 
-                        <button type="button" className="swiper-button swiper-button--theme-gray swiper-button-prev js-project-services-slider-btn-prev">
+                        <button onClick={handlePrevClick1} type="button" className="swiper-button swiper-button--theme-gray swiper-button-prev js-project-services-slider-btn-prev">
                             <svg className="u-icon">
                                 <Arrow2 />
                             </svg>
                         </button>
                         <div className="swiper-pagination">
-                            {el.map((item)  => (
-                                <span value={item.id} onClick={() => handleBulletClick3((item.id).toString())} className="swiper-pagination-bullet"></span>
+                            {el.map((item) => (
+                                <span value={item.id} onClick={() => handlePaginationClick(sliderRef, item.id)} className={item.id === currentSlideId ?"serviceBulletProject swiper-pagination-bullet-active swiper-pagination-bullet swiper-pagination-bullet-project": "serviceBulletProject swiper-pagination-bullet swiper-pagination-bullet-project"}></span>
                             ))}
                         </div>
-                        <button type="button" className="swiper-button swiper-button--theme-gray swiper-button-next js-project-services-slider-btn-next">
+                        <button onClick={handleNextClick1} type="button" className="swiper-button swiper-button--theme-gray swiper-button-next js-project-services-slider-btn-next">
                             <svg className="u-icon">
                                 <Arrow2 />
                             </svg>

@@ -36,18 +36,17 @@ const OurWorkflow = () => {
 
         if (ourWorkflowSliderElement) {
             const ourWorkflowSlider = new Swiper('.swiper-container', {
+                slidesPerView: 'auto',
+                centeredSlides: true,
+                loop: false,
+                initialSlide: 0,
                 observeParents: true,
                 observer: true,
-                slidesPerView: 'auto',
                 spaceBetween: 0,
-                centeredSlides: false,
-                loop: true,
-                initialSlide: 0,
                 pagination: {
                     el: '.swiper-pagination',
                     clickable: true,
                 },
-                navigation: true,
                 navigation: {
                     nextEl: '.swip-btn-next',
                     prevEl: '.swip-btn-prev',
@@ -72,72 +71,117 @@ const OurWorkflow = () => {
             });
             sliderRef.current = ourWorkflowSlider;
         }
-        document.querySelector('.js-our-workflow-slider-btn-next').addEventListener('click', () => {
-            sliderRef.current.slideNext();
-          });
-          
-          document.querySelector('.js-our-workflow-slider-btn-prev').addEventListener('click', () => {
-            sliderRef.current.slidePrev();
-          });
+
         return () => {
             if (sliderRef.current) {
                 sliderRef.current.destroy();
             }
         };
     }, []);
+
+
+    useEffect(() => {
+        const updateActiveBullet = () => {
+            const activeIndex = sliderRef.current.activeIndex;
+            const paginationBullets = document.querySelectorAll('.ourWorkFlowBulletProject');
+            
+            paginationBullets.forEach((bullet, index) => {
+                if (index === activeIndex) {
+                    bullet.classList.add('swiper-pagination-bullet-active');
+                } else {
+                    bullet.classList.remove('swiper-pagination-bullet-active');
+                }
+            });
+        };
+    
+        sliderRef.current.on('slideChange', updateActiveBullet);
+        return () => {
+            sliderRef.current.off('slideChange', updateActiveBullet);
+        };
+
+        updateActiveBullet();
+    }, []);
+
+    const [currentSlideId, setCurrentSlideId] = useState(1);
+
+    const handleSlideChange = (swiper) => {
+        const currentSlide = el[swiper.activeIndex];
+        setCurrentSlideId(currentSlide.id);
+    };
+
+    const handleNextClick1 = () => {
+        if (sliderRef.current) {
+            sliderRef.current.slideNext();
+        }
+    };
+
+    const handlePrevClick1 = () => {
+        if (sliderRef.current) {
+            sliderRef.current.slidePrev();
+        }
+    };
+    const handlePaginationClick = (sliderRef, slideId) => {
+        if (sliderRef.current) {
+            const slideIndex = el.findIndex(item => item.id === slideId);
+            if (slideIndex !== -1) {
+                sliderRef.current.slideTo(slideIndex);
+                setCurrentSlideId(slideId);
+            }
+        }
+    };
     const el = [
         {
             id: 1,
-            title: "Обсуждение проектаы",
+            title: "1Обсуждение проектаы",
             buldsubtitle: "Мы уделяем особое внимание удобству и внешнему виду любых интерфейсов, как для ваших внешних пользователей (клиентов), так и для внутренних (сотрудников).",
             subtitle: "Мы верим, что хороший пользовательский опыт способен снижать издержки на внедрение любых решений, сокращать звонки на горячую линию и убеждать людей пользоваться дистанционным сервисом, экономя при этом деньги и время.",
             section: "1"
-          },
+        },
         {
             id: 2,
-            title: "Обсуждение проекта",
+            title: "2Обсуждение проекта",
             buldsubtitle: "Мы уделяем особое внимание удобству и внешнему виду любых интерфейсов, как для ваших внешних пользователей (клиентов), так и для внутренних (сотрудников).",
             subtitle: "Мы верим, что хороший пользовательский опыт способен снижать издержки на внедрение любых решений, сокращать звонки на горячую линию и убеждать людей пользоваться дистанционным сервисом, экономя при этом деньги и время.",
             section: "2",
         },
         {
             id: 3,
-            title: "Обсуждение проекта",
+            title: "3Обсуждение проекта",
             buldsubtitle: "Мы уделяем особое внимание удобству и внешнему виду любых интерфейсов, как для ваших внешних пользователей (клиентов), так и для внутренних (сотрудников).",
             subtitle: "Мы верим, что хороший пользовательский опыт способен снижать издержки на внедрение любых решений, сокращать звонки на горячую линию и убеждать людей пользоваться дистанционным сервисом, экономя при этом деньги и время.",
             section: "2"
         },
         {
             id: 4,
-            title: "Обсуждение проекта",
+            title: "4Обсуждение проекта",
             buldsubtitle: "Мы уделяем особое внимание удобству и внешнему виду любых интерфейсов, как для ваших внешних пользователей (клиентов), так и для внутренних (сотрудников).",
             subtitle: "Мы верим, что хороший пользовательский опыт способен снижать издержки на внедрение любых решений, сокращать звонки на горячую линию и убеждать людей пользоваться дистанционным сервисом, экономя при этом деньги и время.",
             section: "3"
         },
         {
             id: 5,
-            title: "Обсуждение проекта",
+            title: "5Обсуждение проекта",
             buldsubtitle: "Мы уделяем особое внимание удобству и внешнему виду любых интерфейсов, как для ваших внешних пользователей (клиентов), так и для внутренних (сотрудников).",
             subtitle: "Мы верим, что хороший пользовательский опыт способен снижать издержки на внедрение любых решений, сокращать звонки на горячую линию и убеждать людей пользоваться дистанционным сервисом, экономя при этом деньги и время.",
             section: "3"
         },
         {
             id: 6,
-            title: "Обсуждение проекта",
+            title: "6Обсуждение проекта",
             buldsubtitle: "Мы уделяем особое внимание удобству и внешнему виду любых интерфейсов, как для ваших внешних пользователей (клиентов), так и для внутренних (сотрудников).",
             subtitle: "Мы верим, что хороший пользовательский опыт способен снижать издержки на внедрение любых решений, сокращать звонки на горячую линию и убеждать людей пользоваться дистанционным сервисом, экономя при этом деньги и время.",
             section: "3"
         },
         {
             id: 7,
-            title: "Обсуждение проекта",
+            title: "7Обсуждение проекта",
             buldsubtitle: "Мы уделяем особое внимание удобству и внешнему виду любых интерфейсов, как для ваших внешних пользователей (клиентов), так и для внутренних (сотрудников).",
             subtitle: "Мы верим, что хороший пользовательский опыт способен снижать издержки на внедрение любых решений, сокращать звонки на горячую линию и убеждать людей пользоваться дистанционным сервисом, экономя при этом деньги и время.",
             section: "4"
         },
         {
             id: 8,
-            title: "Обсуждение проекта",
+            title: "8Обсуждение проекта",
             buldsubtitle: "Мы уделяем особое внимание удобству и внешнему виду любых интерфейсов, как для ваших внешних пользователей (клиентов), так и для внутренних (сотрудников).",
             subtitle: "Мы верим, что хороший пользовательский опыт способен снижать издержки на внедрение любых решений, сокращать звонки на горячую линию и убеждать людей пользоваться дистанционным сервисом, экономя при этом деньги и время.",
             section: "4"
@@ -195,18 +239,18 @@ const OurWorkflow = () => {
             </div>
             <div className="swiper-container js-our-workflow-slider-init our-workflow-section__slider our-workflow-slider">
                 <div className="slider-control our-workflow-section__slider-control">
-                    <button type="button" className="swip-btn-prev swiper-button swiper-button--theme-gray swiper-button-prev js-our-workflow-slider-btn-prev">
+                    <button onClick={handlePrevClick1} type="button" className="swip-btn-prev swiper-button swiper-button--theme-gray swiper-button-prev js-our-workflow-slider-btn-prev">
                         <svg className="u-icon">
                             <Arrow2 />
                         </svg>
                     </button>
                     <div className="swiper-pagination">
-                    {el.map((item) => (
-                        <span className="swiper-pagination-bullet">
-                        </span>
-                    ))}
+                        {el.map((item) => (
+                            <span value={item.id} onClick={() => handlePaginationClick(sliderRef, item.id)} className={item.id === currentSlideId ? " ourWorkFlowBulletProject swiper-pagination-bullet swiper-pagination-bullet-active" : "ourWorkFlowBulletProject swiper-pagination-bullet "}>
+                            </span>
+                        ))}
                     </div>
-                    <button type="button" className="swip-btn-next swiper-button swiper-button--theme-gray swiper-button-next js-our-workflow-slider-btn-next">
+                    <button onClick={handleNextClick1} type="button" className="swip-btn-next swiper-button swiper-button--theme-gray swiper-button-next js-our-workflow-slider-btn-next">
                         <svg className="u-icon">
                             <Arrow2 />
                         </svg>
@@ -218,7 +262,7 @@ const OurWorkflow = () => {
                             <div className="our-workflow-slider__slide-row">
                                 <div className="our-workflow-slider__slide-content">
                                     <div className="our-workflow-slider__slide-title">{item.title}</div>
-                                    <div className="our-workflow-slider__slide-suptitle">{item.boldsubtitle}</div>
+                                    <div className="our-workflow-slider__slide-suptitle">{item.buldsubtitle}</div>
                                     <div className="content our-workflow-slider__slide-text">
                                         <p>{item.subtitle}</p>
                                     </div>

@@ -71,21 +71,6 @@ const Project = () =>{
 };
 function App() {
 
-  const [appState, setAppState] = useState({
-    loading: false,
-    repos: null,
-  });
-  
-  useEffect(() => {
-    setAppState({ loading: true });
-    const apiUrl = `http://localhost:8000/api/read/services`;
-    fetch(apiUrl)
-      .then((res) => res.json())
-      .then((repos) => {
-        setAppState({ loading: false, repos: repos });
-      });
-  }, [setAppState]);
-  console.log(appState.repos)
 
   const router = createBrowserRouter([
     {
