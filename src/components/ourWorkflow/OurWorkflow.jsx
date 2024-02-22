@@ -69,6 +69,7 @@ const OurWorkflow = () => {
                     },
                 },
             });
+            
             sliderRef.current = ourWorkflowSlider;
         }
 
@@ -82,7 +83,7 @@ const OurWorkflow = () => {
 
     useEffect(() => {
         const updateActiveBullet = () => {
-            const activeIndex = sliderRef.current.activeIndex;
+            const activeIndex = sliderRef.current.realIndex; // realIndex учитывает нумерацию Swiper с нуля
             const paginationBullets = document.querySelectorAll('.ourWorkFlowBulletProject');
             
             paginationBullets.forEach((bullet, index) => {
@@ -95,11 +96,11 @@ const OurWorkflow = () => {
         };
     
         sliderRef.current.on('slideChange', updateActiveBullet);
+        updateActiveBullet(); // Вызываем здесь для корректного начального состояния пагинации
+    
         return () => {
             sliderRef.current.off('slideChange', updateActiveBullet);
         };
-
-        updateActiveBullet();
     }, []);
 
     const [currentSlideId, setCurrentSlideId] = useState(1);
@@ -120,6 +121,7 @@ const OurWorkflow = () => {
             sliderRef.current.slidePrev();
         }
     };
+
     const handlePaginationClick = (sliderRef, slideId) => {
         if (sliderRef.current) {
             const slideIndex = el.findIndex(item => item.id === slideId);
@@ -197,7 +199,7 @@ const OurWorkflow = () => {
                         <img src={our_workflow_road_map_desktop} alt="Как мы работаем" width="994" height="234" />
                     </picture>
                     <div className="our-workflow-section__road-graph-wrap">
-                        <picture className="our-workflow-section__road-graph our-workflow-section__road-graph--1" data-our-workflow-graph="slide-1">
+                        <picture className="is-show our-workflow-section__road-graph our-workflow-section__road-graph--1" data-our-workflow-graph="slide-1">
                             <img src={our_workflow_road_graph_1} alt="Обсуждение проекта" width="438" height="123" />
                         </picture>
                         <picture className="our-workflow-section__road-graph our-workflow-section__road-graph--2" data-our-workflow-graph="slide-2">
@@ -246,10 +248,15 @@ const OurWorkflow = () => {
                     </button>
                     <div className="swiper-pagination">
                         {el.map((item) => (
-                            <span value={item.id} onClick={() => handlePaginationClick(sliderRef, item.id)} className={item.id === currentSlideId ? " ourWorkFlowBulletProject swiper-pagination-bullet swiper-pagination-bullet-active" : "ourWorkFlowBulletProject swiper-pagination-bullet "}>
+                            <span
+                                value={item.id}
+                                onClick={() => handlePaginationClick(sliderRef, item.id)}
+                                className={item.id === currentSlideId ? "ourWorkFlowBulletProject swiper-pagination-bullet swiper-pagination-bullet-active" : "ourWorkFlowBulletProject swiper-pagination-bullet"}
+                            >
                             </span>
                         ))}
                     </div>
+
                     <button onClick={handleNextClick1} type="button" className="swip-btn-next swiper-button swiper-button--theme-gray swiper-button-next js-our-workflow-slider-btn-next">
                         <svg className="u-icon">
                             <Arrow2 />
@@ -258,7 +265,7 @@ const OurWorkflow = () => {
                 </div>
                 <div className="swiper-wrapper">
                     {el.map((item) => (
-                        <div ve className={`swiper-slide our-workflow-slider__slide our-workflow-slider__slide--theme-${item.id}`} data-our-workflow-slide={`slide-${item.section}`}>
+                        <div velue={item.id} className={`swiper-slide our-workflow-slider__slide our-workflow-slider__slide--theme-${item.id}`} data-our-workflow-slide={`slide-${item.section}`}>
                             <div className="our-workflow-slider__slide-row">
                                 <div className="our-workflow-slider__slide-content">
                                     <div className="our-workflow-slider__slide-title">{item.title}</div>

@@ -55,7 +55,7 @@ const CtaSection = () => {
                     <input
                       type="text"
                       name="cta_name"
-                      className="u-input u-input--theme-white u-input--size-md u-input--status-error u-control__input"
+                      className="u-input u-input--theme-white u-input--size-md u-control__input"
                       placeholder=""
                       value=""
                     />
@@ -65,15 +65,6 @@ const CtaSection = () => {
                   </div>
                   <div className="u-control cta-section__form-line phone">
                     <PhoneFileValidation/>
-                    {/* <div id="your-destination-element"></div>
-                    <input
-                      type="tel"
-                      name="cta_phone"
-                      id="js-phone-mask"
-                      className="u-input u-input--theme-white u-input--size-md u-input--iti u-control__input is-active-country"
-                      required
-                      placeholder=""
-                    /> */}
                     <p className="u-control__placeholder">
                       <span className="u-control__placeholder-title"></span>
                     </p>
@@ -118,227 +109,6 @@ const CtaSection = () => {
                       </button>
                     </label>
                   </div>
-                  {/* <div class="cta-section__form-line u-control">
-                    <select
-                      name="cta_appeal"
-                      id="js-select-init"
-                      class="cta-section__form-select"
-                    >
-                      <option
-                        value="Не выбрано"
-                        selected="selected"
-                        disabled="disabled"
-                      ></option>
-                      <option value="Создание и оптимизация лендингов и мультилендингов">
-                        Создание и оптимизация лендингов и мультилендингов
-                      </option>
-                      <option value="Разработка веб-сайтов под ключ">
-                        Разработка веб-сайтов под ключ
-                      </option>
-                      <option value="Разработка интернет-магазинов">
-                        Разработка интернет-магазинов
-                      </option>
-                      <option value="Интеграция и настройка CRM и ERP систем">
-                        Интеграция и настройка CRM и ERP систем
-                      </option>
-                      <option value="Разработка корпоративных порталов и систем управления">
-                        Разработка корпоративных порталов и систем управления
-                      </option>
-                      <option value="Разработка корпоративных порталов и систем управления">
-                        Разработка корпоративных порталов и систем управления
-                      </option>
-                      <option value="Разработка корпоративных порталов и систем управления">
-                        Разработка корпоративных порталов и систем управления
-                      </option>
-                      <option value="Разработка корпоративных порталов и систем управления">
-                        Разработка корпоративных порталов и систем управления
-                      </option>
-                      <option value="Разработка корпоративных порталов и систем управления">
-                        Разработка корпоративных порталов и систем управления
-                      </option>
-                      <option value="Разработка корпоративных порталов и систем управления">
-                        Разработка корпоративных порталов и систем управления
-                      </option>
-                      <option value="Разработка корпоративных порталов и систем управления">
-                        Разработка корпоративных порталов и систем управления
-                      </option>
-                      <option value="Разработка корпоративных порталов и систем управления">
-                        Разработка корпоративных порталов и систем управления
-                      </option>
-                      <option value="Разработка корпоративных порталов и систем управления">
-                        Разработка корпоративных порталов и систем управления
-                      </option>
-                      <option value="Разработка корпоративных порталов и систем управления">
-                        Разработка корпоративных порталов и систем управления
-                      </option>
-                      <option value="Разработка корпоративных порталов и систем управления">
-                        Разработка корпоративных порталов и систем управления
-                      </option>
-                      <option value="Разработка корпоративных порталов и систем управления">
-                        Разработка корпоративных порталов и систем управления
-                      </option>
-                      <option value="Разработка корпоративных порталов и систем управления">
-                        Разработка корпоративных порталов и систем управления
-                      </option>
-                      <option value="Разработка корпоративных порталов и систем управления">
-                        Разработка корпоративных порталов и систем управления
-                      </option>
-                      <option value="Разработка корпоративных порталов и систем управления">
-                        Разработка корпоративных порталов и систем управления
-                      </option>
-                    </select>
-                    <div
-                      className={click ? "nice-select cta-section__form-select" : "nice-select cta-section__form-select open"}
-                      tabindex="0"
-                      onClick={() => setClick(!click)}
-                    >
-                      <span className="current">
-                        sf
-                      </span>
-                      <div className="nice-select-dropdown">                   
-                          <ul class="list">
-                            <li
-                              data-value="Не выбрано"
-                              class="option selected disabled focus"
-                            ></li>
-                            <li
-                              data-value="Создание и оптимизация лендингов и мультилендингов"
-                              class="option null"
-                            >
-                              Создание и оптимизация лендингов и мультилендингов
-                            </li>
-                            <li
-                              data-value="Разработка веб-сайтов под ключ"
-                              class="option null"
-                            >
-                              Разработка веб-сайтов под ключ
-                            </li>
-                            <li
-                              data-value="Разработка интернет-магазинов"
-                              class="option null"
-                            >
-                              Разработка интернет-магазинов
-                            </li>
-                            <li
-                              data-value="Интеграция и настройка CRM и ERP систем"
-                              class="option null"
-                            >
-                              Интеграция и настройка CRM и ERP систем
-                            </li>
-                            <li
-                              data-value="Разработка корпоративных порталов и систем управления"
-                              class="option null"
-                            >
-                              Разработка корпоративных порталов и систем
-                              управления
-                            </li>
-                            <li
-                              data-value="Разработка корпоративных порталов и систем управления"
-                              class="option null"
-                            >
-                              Разработка корпоративных порталов и систем
-                              управления
-                            </li>
-                            <li
-                              data-value="Разработка корпоративных порталов и систем управления"
-                              class="option null"
-                            >
-                              Разработка корпоративных порталов и систем
-                              управления
-                            </li>
-                            <li
-                              data-value="Разработка корпоративных порталов и систем управления"
-                              class="option null"
-                            >
-                              Разработка корпоративных порталов и систем
-                              управления
-                            </li>
-                            <li
-                              data-value="Разработка корпоративных порталов и систем управления"
-                              class="option null"
-                            >
-                              Разработка корпоративных порталов и систем
-                              управления
-                            </li>
-                            <li
-                              data-value="Разработка корпоративных порталов и систем управления"
-                              class="option null"
-                            >
-                              Разработка корпоративных порталов и систем
-                              управления
-                            </li>
-                            <li
-                              data-value="Разработка корпоративных порталов и систем управления"
-                              class="option null"
-                            >
-                              Разработка корпоративных порталов и систем
-                              управления
-                            </li>
-                            <li
-                              data-value="Разработка корпоративных порталов и систем управления"
-                              class="option null"
-                            >
-                              Разработка корпоративных порталов и систем
-                              управления
-                            </li>
-                            <li
-                              data-value="Разработка корпоративных порталов и систем управления"
-                              class="option null"
-                            >
-                              Разработка корпоративных порталов и систем
-                              управления
-                            </li>
-                            <li
-                              data-value="Разработка корпоративных порталов и систем управления"
-                              class="option null"
-                            >
-                              Разработка корпоративных порталов и систем
-                              управления
-                            </li>
-                            <li
-                              data-value="Разработка корпоративных порталов и систем управления"
-                              class="option null"
-                            >
-                              Разработка корпоративных порталов и систем
-                              управления
-                            </li>
-                            <li
-                              data-value="Разработка корпоративных порталов и систем управления"
-                              class="option null"
-                            >
-                              Разработка корпоративных порталов и систем
-                              управления
-                            </li>
-                            <li
-                              data-value="Разработка корпоративных порталов и систем управления"
-                              class="option null"
-                            >
-                              Разработка корпоративных порталов и систем
-                              управления
-                            </li>
-                            <li
-                              data-value="Разработка корпоративных порталов и систем управления"
-                              class="option null"
-                            >
-                              Разработка корпоративных порталов и систем
-                              управления
-                            </li>
-                            <li
-                              data-value="Разработка корпоративных порталов и систем управления"
-                              class="option null"
-                            >
-                              Разработка корпоративных порталов и систем
-                              управления
-                            </li>
-                          </ul>
-                      </div>
-                    </div>
-                    <p class="u-control__placeholder">
-                      <span class="u-control__placeholder-title">
-                        Что вас интересует?
-                      </span>
-                    </p>
-                  </div> */}
                   <div className={selected === null ? "cta-section__form-line u-control" : "cta-section__form-line u-control is-select-active"} >
                     <select
                       name="cta_appeal"
@@ -432,10 +202,11 @@ const CtaSection = () => {
                     <p class="u-control__placeholder">
                       <span class="u-control__placeholder-title">
                         Что вас интересует?
-                        
                       </span>
                     </p>
-                  </div>
+                    </div>
+                    <textarea className="u-input u-input--theme-white u-input cta-section__form-line" name="" id="" cols="20" rows="5"></textarea>
+                  
                   <div className="u-checkbox cta-section__form-privacy">
                     <label className="u-checkbox__label">
                       <input

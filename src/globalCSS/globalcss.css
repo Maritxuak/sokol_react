@@ -3422,13 +3422,13 @@ svg {
 }
 
 .our-workflow-slider .swiper-pagination-bullet:nth-child(8) {
-    color: #bf0606
+    color: #0583f2
 }
 
 .our-workflow-slider .swiper-pagination-bullet:last-child {
     -webkit-box-ordinal-group: 0;
     -ms-flex-order: -1;
-    order: -1
+    
 }
 
 .info-card {
@@ -4717,7 +4717,6 @@ select.cta-section__form-select {
     -webkit-transition: all .4s 0s;
     transition: all .4s 0s
 }
-
 .services-layout__main-slider {
     background: #2b2a28;
     border-radius: 20rem;
