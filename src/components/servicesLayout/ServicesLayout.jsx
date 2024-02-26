@@ -2,132 +2,9 @@
 import { ReactComponent as Arrow2 } from "../../images/icons/arrow-type-2.svg";
 import React, { useRef, useCallback, useEffect, useState } from "react";
 import Swiper from "swiper";
+import ServiceSliderSecond from "../serviceSlide2/ServiceSlid2";
+import ServiceSlidFirst from "../serviceSlide1/ServiceSlid1";
 const ServicesLayout = () => {
-    const handleBulletClick = (element) => {
-        const ref = document.querySelector('.serviceBullet js-services-slider-btn-nav-1 services-layout__main-nav-btn')
-        const blockLeft = document.querySelector('.js-services-slider-btn-prev-1')
-        const blockRight = document.querySelector('.js-services-slider-btn-next-1')
-        if (element - 1 === 0) {
-            blockLeft.classList.add('swiper-button-disabled')
-        } else {
-            blockLeft.classList.remove('swiper-button-disabled')
-        }
-        if (element - 1 === el2.length - 1) {
-            blockRight.classList.add('swiper-button-disabled')
-        } else {
-            blockRight.classList.remove('swiper-button-disabled')
-        }
-        const mySwiper = new Swiper('.js-services-layout-slider-init-1', {
-            initialSlide: parseInt(element - 1),
-            centeredSlides: false,
-            on: {
-                init: function () {
-                    const paginationBullets = document.querySelectorAll('.serviceBullet');
-
-                    if (element === this.activeIndex) {
-                        paginationBullets[0].classList.add('is-active');
-                    }
-                    paginationBullets.forEach((bullet, index) => {
-                        bullet.addEventListener('click', function () {
-                            mySwiper.slideTo(index);
-                        });
-                    });
-
-                    const paginationBullets2 = document.querySelectorAll('.serviceBullet2');
-
-                    if (element === this.activeIndex) {
-                        paginationBullets2[0].classList.add('is-active');
-                    }
-                    paginationBullets2.forEach((bullet, index) => {
-                        bullet.addEventListener('click', function () {
-                            mySwiper.slideTo(index);
-                        });
-                    });
-                },
-                slideChange: function () {
-                    const activeSlide = this.slides[this.activeIndex];
-                    const activeSlideIndex = parseInt(activeSlide.getAttribute('serviceSlide'));
-                    const paginationBullets = document.querySelectorAll('.serviceBullet');
-                    const paginationBullets1 = document.querySelectorAll('.serviceBullet2');
-                    paginationBullets.forEach((bullet, index) => {
-                        if (index === this.activeIndex) {
-                            bullet.classList.add('is-active');
-                        } else {
-                            bullet.classList.remove('is-active');
-                        }
-                    });
-
-                    paginationBullets1.forEach((bullet, index) => {
-                        if (index === this.activeIndex) {
-                            bullet.classList.add('swiper-pagination-bullet-active');
-                        } else {
-                            bullet.classList.remove('swiper-pagination-bullet-active');
-                        }
-
-                    });
-                }
-            }
-
-        });
-
-
-        mySwiper.update();
-    }
-    const handleBulletClick2 = (element) => {
-        const blockLeft = document.querySelector('.js-services-slider-btn-prev-2');
-        const blockRight = document.querySelector('.js-services-slider-btn-next-2');
-
-        if (element - 1 === 0) {
-            blockLeft.classList.add('swiper-button-disabled');
-        } else {
-            blockLeft.classList.remove('swiper-button-disabled');
-        }
-
-        if (element - 1 === el2.length - 1) {
-            blockRight.classList.add('swiper-button-disabled');
-        } else {
-            blockRight.classList.remove('swiper-button-disabled');
-        }
-
-        const paginationBullets2 = document.querySelectorAll('.serviceBullet23');
-        const paginationBullets22 = document.querySelectorAll('.serviceBullet22');
-
-        const mySwiper = new Swiper('.js-services-layout-slider-init-2', {
-            initialSlide: parseInt(element - 1),
-            centeredSlides: false,
-            pagination: true,
-            loop: false,
-            on: {
-                init: function () {
-                    paginationBullets2.forEach((bullet, index) => {
-                        bullet.addEventListener('click', function () {
-                            mySwiper.slideTo(index);
-                        });
-                    });
-
-                    paginationBullets22.forEach((bullet, index) => {
-                        bullet.addEventListener('click', function () {
-                            mySwiper.slideTo(index);
-                        });
-                    });
-                },
-                slideChange: function () {
-                    const activeSlideIndex = parseInt(this.slides[this.activeIndex].getAttribute('serviceSlide2'));
-
-                    paginationBullets2.forEach((bullet, index) => {
-                        bullet.classList.toggle('is-active', index === this.activeIndex);
-                    });
-
-                    paginationBullets22.forEach((bullet, index) => {
-                        bullet.classList.toggle('swiper-pagination-bullet-active', index === this.activeIndex);
-                    });
-                }
-            }
-        });
-
-        mySwiper.update();
-    };
-
 
     const [idActive, setIdActive] = React.useState(0)
 
@@ -135,199 +12,12 @@ const ServicesLayout = () => {
         setIdActive(pop)
     }, [idActive]);
 
-    const sliderRef1 = useRef(null);
-
-    useEffect(() => {
-        const servicesLayoutSliderInit1Element = document.querySelector('.js-services-layout-slider-init-1');
-
-
-        if (servicesLayoutSliderInit1Element) {
-            const servicesLayoutSliderInit1 = new Swiper('.js-services-layout-slider-init-1', {
-                autoHeight: true,
-                slidesPerView: 1,
-                spaceBetween: 0,
-                loop: false,
-                pagination: {
-                    el: '.js-services-swiper-pagination-1',
-                    type: 'bullets',
-                    clickable: true,
-                },
-                navigation: {
-                    nextEl: '.js-services-slider-btn-next',
-                    prevEl: '.js-services-slider-btn-prev',
-                },
-                on: {
-                    slideChange: function () {
-                        const activeSlide = this.slides[this.activeIndex];
-                        const activeSlideIndex = activeSlide.getAttribute('serviceSlide')
-                        const paginationBullets = document.querySelectorAll('.serviceBullet');
-                        const paginationBullets1 = document.querySelectorAll('.serviceBullet2');
-
-                        paginationBullets.forEach(bullet => {
-                            const bulletIndex = bullet.getAttribute('value');
-
-                            if (bulletIndex === activeSlideIndex) {
-                                bullet.classList.add('is-active');
-                            } else {
-                                bullet.classList.remove('is-active');
-                            }
-
-                        })
-                        paginationBullets1.forEach((bullet, index) => {
-                            if (index === this.activeIndex) {
-                                bullet.classList.add('swiper-pagination-bullet-active');
-                            } else {
-                                bullet.classList.remove('swiper-pagination-bullet-active');
-                            }
-                            const blockLeft = document.querySelector('.js-services-slider-btn-prev-1')
-                            const blockRight = document.querySelector('.js-services-slider-btn-next-1')
-                            if (this.activeIndex === 0) {
-                                blockLeft.classList.add('swiper-button-disabled')
-                            } else {
-                                blockLeft.classList.remove('swiper-button-disabled')
-                            }
-                            if (this.activeIndex === el.length - 1) {
-                                blockRight.classList.add('swiper-button-disabled')
-                            } else {
-                                blockRight.classList.remove('swiper-button-disabled')
-                            }
-
-                        });
-                        /*========== */
-
-                    }
-
-                }
-            });
-
-            sliderRef1.current = servicesLayoutSliderInit1;
-        }
-
-        return () => {
-            if (sliderRef1.current) {
-                sliderRef1.current.destroy();
-            }
-        };
-    }, []);
-    const [currentSlideId, setCurrentSlideId] = useState(1);
-
-    const handleSlideChange = (swiper) => {
-        const currentSlide = el2[swiper.activeIndex];
-        setCurrentSlideId(currentSlide.id);
-    };
-
-    const handleNextClick1 = (sliderRef) => {
-        if (sliderRef.current) {
-            sliderRef.current.slideNext();
-        }
-    };
-
-    const handlePrevClick1 = (sliderRef) => {
-        if (sliderRef.current) {
-            sliderRef.current.slidePrev();
-        }
-    };
-
-    const handlePaginationClick = (sliderRef, slideId) => {
-        if (sliderRef.current) {
-            const slideIndex = el2.findIndex(item => item.id === slideId);
-            if (slideIndex !== -1) {
-                sliderRef.current.slideTo(slideIndex);
-                setCurrentSlideId(slideId);
-            }
-        }
-    };
+    
 
 
 
-
-    const sliderRef = useRef(null);
-
-    useEffect(() => {
-        const servicesLayoutSliderInit2Element = document.querySelector('.js-services-layout-slider-init-2');
-
-        if (servicesLayoutSliderInit2Element) {
-            const servicesLayoutSliderInit2 = new Swiper('.js-services-layout-slider-init-2', {
-                autoHeight: true,
-                slidesPerView: 1,
-                spaceBetween: 0,
-                pagination: true,
-                loop: false,
-                pagination: {
-                    el: '.js-services-swiper-pagination-2',
-                    clickable: true
-                },
-                navigation: {
-                    nextEl: '.js-services-slider-btn-next-2',
-                    prevEl: '.js-services-slider-btn-prev-2',
-                },
-                on: {
-                    slideChange: function () {
-                        const activeSlide = this.slides[this.activeIndex];
-                        const activeSlideIndex2 = activeSlide.getAttribute('serviceSlide2')
-                        const paginationBullets2 = document.querySelectorAll('.serviceBullet23');
-
-
-
-                        paginationBullets2.forEach(bullet => {
-                            const bulletIndex2 = bullet.getAttribute('value');
-
-                            if (bulletIndex2 === activeSlideIndex2) {
-                                bullet.classList.add('is-active');
-                            } else {
-                                bullet.classList.remove('is-active');
-                            }
-
-                        })
-                        const paginationBullets12 = document.querySelectorAll('.serviceBullet22');
-                        paginationBullets12.forEach((bullet, index) => {
-                            if (index === this.activeIndex) {
-                                bullet.classList.add('swiper-pagination-bullet-active');
-                            } else {
-                                bullet.classList.remove('swiper-pagination-bullet-active');
-                            }
-                            const blockLeft = document.querySelector('.js-services-slider-btn-prev-2')
-                            const blockRight = document.querySelector('.js-services-slider-btn-next-2')
-                            if (this.activeIndex === 0) {
-                                blockLeft.classList.add('swiper-button-disabled')
-                            } else {
-                                blockLeft.classList.remove('swiper-button-disabled')
-                            }
-                            if (this.activeIndex === el2.length - 1) {
-                                blockRight.classList.add('swiper-button-disabled')
-                            } else {
-                                blockRight.classList.remove('swiper-button-disabled')
-                            }
-                        });
-                        handleBulletClick2(this.activeIndex + 1);
-                    }
-
-                }
-            });
-
-            sliderRef.current = servicesLayoutSliderInit2;
-        }
-
-        return () => {
-            if (sliderRef.current) {
-                sliderRef.current.destroy();
-            }
-        };
-        servicesLayoutSliderInit2Element()
-    }, []);
-
-    const handleNextClick = () => {
-        if (sliderRef.current) {
-            sliderRef.current.slideNext();
-        }
-    };
-
-    const handlePrevClick = () => {
-        if (sliderRef.current) {
-            sliderRef.current.slidePrev();
-        }
-    };
-
+    // slide2
+    
     const el = [
         {
             id: 1,
@@ -344,6 +34,42 @@ const ServicesLayout = () => {
             title: "3Тестирование и анализ эффективности лендинга",
             description: "Исследование целевой аудитории помогает компаниям разработать более целевые и эффективные стратегии продвижения продукта, создать более убедительные сообщения и предложения, а также улучшить опыт пользователей, что в свою очередь способствует увеличению конверсии и удержанию клиентов."
         },
+        {
+            id: 4,
+            title: "4Тестирование и анализ эффективности лендинга",
+            description: "Исследование целевой аудитории помогает компаниям разработать более целевые и эффективные стратегии продвижения продукта, создать более убедительные сообщения и предложения, а также улучшить опыт пользователей, что в свою очередь способствует увеличению конверсии и удержанию клиентов."
+        },
+        {
+            id: 5,
+            title: "5Тестирование и анализ эффективности лендинга",
+            description: "Исследование целевой аудитории помогает компаниям разработать более целевые и эффективные стратегии продвижения продукта, создать более убедительные сообщения и предложения, а также улучшить опыт пользователей, что в свою очередь способствует увеличению конверсии и удержанию клиентов."
+        },
+        {
+            id: 6,
+            title: "6Тестирование и анализ эффективности лендинга",
+            description: "Исследование целевой аудитории помогает компаниям разработать более целевые и эффективные стратегии продвижения продукта, создать более убедительные сообщения и предложения, а также улучшить опыт пользователей, что в свою очередь способствует увеличению конверсии и удержанию клиентов."
+        },
+        {
+            id: 7,
+            title: "7Тестирование и анализ эффективности лендинга",
+            description: "Исследование целевой аудитории помогает компаниям разработать более целевые и эффективные стратегии продвижения продукта, создать более убедительные сообщения и предложения, а также улучшить опыт пользователей, что в свою очередь способствует увеличению конверсии и удержанию клиентов."
+        },
+        {
+            id: 8,
+            title: "8Тестирование и анализ эффективности лендинга",
+            description: "Исследование целевой аудитории помогает компаниям разработать более целевые и эффективные стратегии продвижения продукта, создать более убедительные сообщения и предложения, а также улучшить опыт пользователей, что в свою очередь способствует увеличению конверсии и удержанию клиентов."
+        },
+        {
+            id: 9,
+            title: "9Тестирование и анализ эффективности лендинга",
+            description: "Исследование целевой аудитории помогает компаниям разработать более целевые и эффективные стратегии продвижения продукта, создать более убедительные сообщения и предложения, а также улучшить опыт пользователей, что в свою очередь способствует увеличению конверсии и удержанию клиентов."
+        },
+        {
+            id: 10,
+            title: "10Тестирование и анализ эффективности лендинга",
+            description: "Исследование целевой аудитории помогает компаниям разработать более целевые и эффективные стратегии продвижения продукта, создать более убедительные сообщения и предложения, а также улучшить опыт пользователей, что в свою очередь способствует увеличению конверсии и удержанию клиентов."
+        },
+
     ]
 
     const el2 = [
@@ -362,6 +88,42 @@ const ServicesLayout = () => {
             title: "3Тестирование и анализ эффективности лендинга",
             description: "Исследование целевой аудитории помогает компаниям разработать более целевые и эффективные стратегии продвижения продукта, создать более убедительные сообщения и предложения, а также улучшить опыт пользователей, что в свою очередь способствует увеличению конверсии и удержанию клиентов."
         },
+        {
+            id: 4,
+            title: "4Тестирование и анализ эффективности лендинга",
+            description: "Исследование целевой аудитории помогает компаниям разработать более целевые и эффективные стратегии продвижения продукта, создать более убедительные сообщения и предложения, а также улучшить опыт пользователей, что в свою очередь способствует увеличению конверсии и удержанию клиентов."
+        },
+        {
+            id: 5,
+            title: "5Тестирование и анализ эффективности лендинга",
+            description: "Исследование целевой аудитории помогает компаниям разработать более целевые и эффективные стратегии продвижения продукта, создать более убедительные сообщения и предложения, а также улучшить опыт пользователей, что в свою очередь способствует увеличению конверсии и удержанию клиентов."
+        },
+        {
+            id: 6,
+            title: "6Тестирование и анализ эффективности лендинга",
+            description: "Исследование целевой аудитории помогает компаниям разработать более целевые и эффективные стратегии продвижения продукта, создать более убедительные сообщения и предложения, а также улучшить опыт пользователей, что в свою очередь способствует увеличению конверсии и удержанию клиентов."
+        },
+        {
+            id: 7,
+            title: "7Тестирование и анализ эффективности лендинга",
+            description: "Исследование целевой аудитории помогает компаниям разработать более целевые и эффективные стратегии продвижения продукта, создать более убедительные сообщения и предложения, а также улучшить опыт пользователей, что в свою очередь способствует увеличению конверсии и удержанию клиентов."
+        },
+        {
+            id: 8,
+            title: "8Тестирование и анализ эффективности лендинга",
+            description: "Исследование целевой аудитории помогает компаниям разработать более целевые и эффективные стратегии продвижения продукта, создать более убедительные сообщения и предложения, а также улучшить опыт пользователей, что в свою очередь способствует увеличению конверсии и удержанию клиентов."
+        },
+        {
+            id: 9,
+            title: "9Тестирование и анализ эффективности лендинга",
+            description: "Исследование целевой аудитории помогает компаниям разработать более целевые и эффективные стратегии продвижения продукта, создать более убедительные сообщения и предложения, а также улучшить опыт пользователей, что в свою очередь способствует увеличению конверсии и удержанию клиентов."
+        },
+        {
+            id: 10,
+            title: "10Тестирование и анализ эффективности лендинга",
+            description: "Исследование целевой аудитории помогает компаниям разработать более целевые и эффективные стратегии продвижения продукта, создать более убедительные сообщения и предложения, а также улучшить опыт пользователей, что в свою очередь способствует увеличению конверсии и удержанию клиентов."
+        },
+
     ]
 
     return (
@@ -400,59 +162,10 @@ const ServicesLayout = () => {
                         </div>
                     </div>
                     <div className="services-layout__main">
-                        <div id="services-layout-1" className={idActive === 1 ? `row services-layout__row-main is-show` : "row services-layout__row-main"}>
-                            <div className="row__col--12 services-layout__main-col services-layout__main-col--title">
-                                <h2 className="services-layout__main-title">Что входит в услугу</h2>
-                            </div>
-                            <div className="row__col--6 services-layout__main-col services-layout__main-col--nav">
-                                <ul className="services-layout__main-nav">
-                                    {el.map((item) => (
-                                        <li className="services-layout__main-nav-item ">
-                                            <button onClick={() => handleBulletClick((item.id).toString())} value={item.id} type="button" className={item.id === 1 ? "serviceBullet js-services-slider-btn-nav-1 services-layout__main-nav-btn is-active" : "serviceBullet js-services-slider-btn-nav-1 services-layout__main-nav-btn"}>{item.title}</button>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                            <div className="row__col--6 services-layout__main-col services-layout__main-col--slider">
-                                <div className="services-layout__main-slider-wrapper">
-                                    <div className="js-services-layout-slider-init-1 services-layout__main-slider">
-                                        <div className="swiper-wrapper">
-                                            {el.map((item) => (
-                                                <div className={"swiper-slide services-layout__main-slider-slide"} serviceSlide={item.id}>
-                                                    <article className="services-layout__main-slider-item">
-                                                        <h3 className="services-layout__main-slider-item-title">{item.title}</h3>
-                                                        <div className="content services-layout__main-slider-item-text">
-                                                            <p>{item.description}</p>
-                                                        </div>
-                                                    </article>
-                                                </div>
-
-                                            ))}
-                                        </div>
-                                    </div>
-                                    <div className="slider-control services-layout__main-slider-control">
-                                        <button type="button" className="swiper-button-disabled js-services-slider-btn-prev-1 swiper-button swiper-button--theme-gray swiper-button-prev swiper-button-disabled'" onClick={handlePrevClick1}>
-                                            <svg className="u-icon">
-                                                <Arrow2 />
-                                            </svg>
-                                        </button>
-
-                                        <div className="js-services-swiper-pagination-1 swiper-pagination">
-                                            {el.map((item) => (
-                                                <span className={item.id === currentSlideId ? "serviceBullet2 swiper-pagination-bullet swiper-pagination-bullet-active" : "serviceBullet2 swiper-pagination-bullet"} onClick={() => handleBulletClick((item.id).toString())} value={item.id}></span>
-                                            ))}
-                                        </div>
-
-                                        <button type="button" className=" js-services-slider-btn-next-1 swiper-button swiper-button--theme-gray swiper-button-next" onClick={handleNextClick1}>
-                                            <svg className="u-icon">
-                                                <Arrow2 />
-                                            </svg>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="services-layout-2" className={idActive === 2 ? `row services-layout__row-main is-show` : "row services-layout__row-main"}>
+                        <ServiceSlidFirst idActive={idActive}/>
+                        
+                        <ServiceSliderSecond idActive={idActive} setIdActive={setIdActive}/>
+                        {/* <div id="services-layout-2" className={idActive === 2 ? `row services-layout__row-main is-show` : "row services-layout__row-main"}>
                             <div className="row__col--12 services-layout__main-col services-layout__main-col--title">
                                 <h2 className="services-layout__main-title">Как это вам поможет</h2>
                             </div>
@@ -460,7 +173,7 @@ const ServicesLayout = () => {
                                 <ul className="services-layout__main-nav">
                                     {el2.map((item) => (
                                         <li className="services-layout__main-nav-item">
-                                            <button onClick={() => handlePaginationClick(sliderRef, item.id)} value={item.id} type="button" className={item.id === 1 ? "is-active serviceBullet23 js-services-slider-btn-nav-2 services-layout__main-nav-btn" : " serviceBullet23 js-services-slider-btn-nav-2 services-layout__main-nav-btn"}>{item.title}</button>
+                                            <button onClick={() => handlePaginationClick2(sliderRef2, item.id)} value={item.id} type="button" className={item.id === 1 ? "is-active serviceBullet23 js-services-slider-btn-nav-2 services-layout__main-nav-btn" : " serviceBullet23 js-services-slider-btn-nav-2 services-layout__main-nav-btn"}>{item.title}</button>
                                         </li>
                                     ))}
 
@@ -484,7 +197,7 @@ const ServicesLayout = () => {
                                         </div>
                                     </div>
                                     <div className="slider-control services-layout__main-slider-control">
-                                        <button type="button" className="swiper-button-disabled js-services-slider-btn-prev-2 swiper-button swiper-button--theme-gray swiper-button-prev" onClick={handlePrevClick1}>
+                                        <button type="button" className="js-services-slider-btn-prev-2 swiper-button swiper-button--theme-gray swiper-button-prev" onClick={handlePrevClick2}>
                                             <svg className="u-icon">
                                                 <Arrow2 />
                                             </svg>
@@ -494,7 +207,7 @@ const ServicesLayout = () => {
                                                 <span className={item.id === currentSlideId ? "serviceBullet22 swiper-pagination-bullet swiper-pagination-bullet-active" : "serviceBullet22 swiper-pagination-bullet"} onClick={() => handlePaginationClick(sliderRef, item.id)} value={item.id}></span>
                                             ))}
                                         </div>
-                                        <button type="button" className="js-services-slider-btn-next-2 swiper-button swiper-button--theme-gray swiper-button-next" onClick={handleNextClick1}>
+                                        <button type="button" className="js-services-slider-btn-next-2 swiper-button swiper-button--theme-gray swiper-button-next" onClick={handleNextClick2}>
                                             <svg className="u-icon">
                                                 <Arrow2 />
                                             </svg>
@@ -502,7 +215,7 @@ const ServicesLayout = () => {
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </section>

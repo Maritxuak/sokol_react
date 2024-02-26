@@ -12,7 +12,6 @@ const ProjectServicesSection = () => {
 
     useEffect(() => {
         const projectLayoutSliderInitElement = document.querySelector('.js-project-services-slider-init');
-
         if (projectLayoutSliderInitElement) {
             const projectLayoutSliderInit = new Swiper('.js-project-services-slider-init', {
                 slidesPerView: 'auto',
@@ -30,21 +29,13 @@ const ProjectServicesSection = () => {
                     nextEl: '.js-project-services-slider-btn-next',
                     prevEl: '.js-project-services-slider-btn-prev',
                 },
-
                 on: {
                     slideChange: function () {
                         const activeSlideProject = this.slides[this.activeIndex];
-
                     }
                 }
-
-
             })
             sliderRef.current = projectLayoutSliderInit
-    
-            
-             
-
         }
 
         return () => {

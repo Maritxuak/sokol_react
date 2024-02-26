@@ -9,6 +9,11 @@ import PhoneFileValidation from "../../PhoneFileValidation";
 
 const CtaSection = () => {
 
+  const [inputContent, setInputContent] = useState('')
+
+  const handleiInputChange = (event) => {
+    setInputContent(event.target.value)
+  } 
   
   const [click,setClick] = React.useState(true)
 
@@ -57,7 +62,6 @@ const CtaSection = () => {
                       name="cta_name"
                       className="u-input u-input--theme-white u-input--size-md u-control__input"
                       placeholder=""
-                      value=""
                     />
                     <p className="u-control__placeholder">
                       <span className="u-control__placeholder-title">Имя</span>
@@ -205,8 +209,16 @@ const CtaSection = () => {
                       </span>
                     </p>
                     </div>
-                    <textarea className="u-input u-input--theme-white u-input cta-section__form-line" name="" id="" cols="20" rows="5"></textarea>
-                  
+                    <div className="u-control cta-section__form-line">
+                      <textarea className={inputContent === '' ? "u-input u-input--theme-white u-input cta-section__form-line textareasection" : "u-input u-input--theme-white u-input cta-section__form-line textareasection textareaactive"} name="" id="" cols="20" rows="5" value={inputContent} onChange={handleiInputChange}>
+                      
+                      </textarea>
+                      <p class="u-control__placeholder">
+                          <span class="u-control__placeholder-title">
+                            Описание
+                          </span>
+                        </p>
+                    </div>
                   <div className="u-checkbox cta-section__form-privacy">
                     <label className="u-checkbox__label">
                       <input

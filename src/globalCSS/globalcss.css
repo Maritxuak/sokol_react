@@ -2521,6 +2521,13 @@ svg {
 .nice-select .option.disabled {
     background-color: transparent;
     color: #999;
+    cursor: default;
+    transition: all .2s;
+}
+
+.nice-select .option.disabled:hover{
+    background-color: transparent;
+    color: rgb(65, 65, 65);
     cursor: default
 }
 
@@ -6045,4 +6052,11 @@ select.cta-section__form-select {
 .iti--allow-dropdown input[type=tel]{
     margin-left: 10rem;
     height: 56rem;
+}
+.textareasection{
+    padding: 24rem 24rem;
+}
+.textareasection:focus ~ .u-control__placeholder .u-control__placeholder-title,
+.textareaactive ~ .u-control__placeholder .u-control__placeholder-title{
+    transform: translate(0, -12rem);
 }
