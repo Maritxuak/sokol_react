@@ -29,6 +29,11 @@ import TypicalSection from './components/typicalSection/TypicalSection';
 import CtaSection from './components/ctaSection/CtaSection';
 import ProjectLayout from './components/projectLayout/ProjectLayout';
 import PhoneFileValidation from './PhoneFileValidation'
+import axios from 'axios';
+
+const axiosInstance = axios.create({
+  baseURL: 'http://localhost:4000/api',
+});
 
 const Layout = () => {
   return (
@@ -42,7 +47,7 @@ const Layout = () => {
 const Main = () => {
   return (
     <>
-      <HeroSection />
+      <HeroSection apiGet = {axiosInstance}/>
       <About />
       <Benifest />
       <OurWorkflow />
@@ -70,7 +75,6 @@ const Project = () =>{
   );
 };
 function App() {
-
 
   const router = createBrowserRouter([
     {

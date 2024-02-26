@@ -11,7 +11,48 @@ import arrow1 from "../../images/icons/arrow-type-1.svg"
 import "./heroSection.css"
 import { ReactComponent as Arrow4 } from "../../images/icons/arrow-type-4.svg";
 import { ReactComponent as Arrow1 } from "../../images/icons/arrow-type-1.svg";
-const HeroSection = () => {
+import axios from 'axios';
+import { useState, useEffect } from "react";
+const HeroSection = ({ apiGet }) => {
+
+    const [dignities, setDignities] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [openCardId, setOpenCardId] = useState(null);
+
+    const handleCardClick = (id) => {
+        setOpenCardId(id);
+    };
+
+    useEffect(() => {
+        const fetchDignities = async () => {
+            try {
+                const response = await apiGet.get('/read/services');
+                if (response.data) {
+                    const formattedDignities = response.data.map((item) => ({
+                        id: item.id,
+                        name: item.name,
+                        category: item.category,
+                        dsc: item.dsc,
+                        included_in_the_service: item.included_in_the_service,
+                    }));
+                    setDignities(formattedDignities);
+                } else {
+                    console.error('Объект data не определен');
+                }
+                setIsLoading(false);
+            } catch (error) {
+                console.error(error);
+                setIsLoading(false);
+            }
+        };
+
+        fetchDignities();
+    }, []);
+
+    if (isLoading) {
+        return <div>Loading...</div>;
+    }
+console.log(dignities)
     return (
         <section className="hero-section">
             <div className="container container--size-md hero-section__container">
@@ -75,46 +116,16 @@ const HeroSection = () => {
                             </div>
                             <div className="services-card__dropdown">
                                 <ul className="services-card__dropdown-list">
-                                    <li>
-                                        <a href="#" className="services-card__link">
-                                            <span className="services-card__link-title">Создание и оптимизация лендингов и мультилендингов</span>
-                                            <svg className="u-icon services-card__link-icon">
-                                            <Arrow4 />
-                                            </svg>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" className="services-card__link">
-                                            <span className="services-card__link-title">Разработка интернет-магазинов</span>
-                                            <svg className="u-icon services-card__link-icon">
-                                                <Arrow4 />
-                                            </svg>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" className="services-card__link">
-                                            <span className="services-card__link-title">Разработка веб-сайтов под ключ</span>
-                                            <svg className="u-icon services-card__link-icon">
-                                            <Arrow4 />
-                                            </svg>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" className="services-card__link">
-                                            <span className="services-card__link-title">Интеграция и настройка CRM и ERP систем</span>
-                                            <svg className="u-icon services-card__link-icon">
-                                            <Arrow4 />
-                                            </svg>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" className="services-card__link">
-                                            <span className="services-card__link-title">Разработка корпоративных порталов и&nbsp;систем управления контентом (CMS)</span>
-                                            <svg className="u-icon services-card__link-icon">
-                                            <Arrow4 />
-                                            </svg>
-                                        </a>
-                                    </li>
+                                    {dignities.filter((item) => item.category === "1").map((item) => (
+                                        <li>
+                                            <a href="#" className="services-card__link">
+                                                <span className="services-card__link-title">{item.name}</span>
+                                                <svg className="u-icon services-card__link-icon">
+                                                    <Arrow4 />
+                                                </svg>
+                                            </a>
+                                        </li>
+                                    ))}
                                 </ul>
                             </div>
                         </article>
@@ -132,14 +143,16 @@ const HeroSection = () => {
                             </div>
                             <div className="services-card__dropdown">
                                 <ul className="services-card__dropdown-list">
+                                {dignities.filter((item) => item.category === "2").map((item) => (
                                     <li>
                                         <a href="#" className="services-card__link">
-                                            <span className="services-card__link-title">Веб-дизайн и&nbsp;разработка пользовательского интерфейса</span>
+                                            <span className="services-card__link-title">{item.name}</span>
                                             <svg className="u-icon services-card__link-icon">
-                                                <Arrow4 />
+                                                
                                             </svg>
                                         </a>
                                     </li>
+                                ))}
                                 </ul>
                             </div>
                         </article>
@@ -157,14 +170,16 @@ const HeroSection = () => {
                             </div>
                             <div className="services-card__dropdown">
                                 <ul className="services-card__dropdown-list">
+                                {dignities.filter((item) => item.category === "3").map((item) => (
                                     <li>
                                         <a href="#" className="services-card__link">
-                                            <span className="services-card__link-title">Техническая поддержка и обслуживание IT&nbsp;-&nbsp;инфраструктуры</span>
+                                            <span className="services-card__link-title">{item.name}</span>
                                             <svg className="u-icon services-card__link-icon">
-                                            <Arrow4 />
+                                                
                                             </svg>
                                         </a>
                                     </li>
+                                ))}
                                 </ul>
                             </div>
                         </article>
@@ -182,22 +197,16 @@ const HeroSection = () => {
                             </div>
                             <div className="services-card__dropdown">
                                 <ul className="services-card__dropdown-list">
+                                {dignities.filter((item) => item.category === "4").map((item) => (
                                     <li>
                                         <a href="#" className="services-card__link">
-                                            <span className="services-card__link-title">Разработка Android приложений</span>
+                                            <span className="services-card__link-title">{item.name}</span>
                                             <svg className="u-icon services-card__link-icon">
-                                            <Arrow4 />
+                                                <Arrow4 />
                                             </svg>
                                         </a>
                                     </li>
-                                    <li>
-                                        <a href="#" className="services-card__link">
-                                            <span className="services-card__link-title">Разработка IOS приложений</span>
-                                            <svg className="u-icon services-card__link-icon">
-                                            <Arrow4 />
-                                            </svg>
-                                        </a>
-                                    </li>
+                                ))}
                                 </ul>
                             </div>
                         </article>
@@ -215,22 +224,16 @@ const HeroSection = () => {
                             </div>
                             <div className="services-card__dropdown">
                                 <ul className="services-card__dropdown-list">
+                                {dignities.filter((item) => item.category === "5").map((item) => (
                                     <li>
                                         <a href="#" className="services-card__link">
                                             <span className="services-card__link-title">Разработка ИИ систем</span>
                                             <svg className="u-icon services-card__link-icon">
-                                            <Arrow4 />
+                                                <Arrow4 />
                                             </svg>
                                         </a>
                                     </li>
-                                    <li>
-                                        <a href="#" className="services-card__link">
-                                            <span className="services-card__link-title">Разработка программно-аппаратных систем</span>
-                                            <svg className="u-icon services-card__link-icon">
-                                            <Arrow4 />
-                                            </svg>
-                                        </a>
-                                    </li>
+                                ))}
                                 </ul>
                             </div>
                         </article>
@@ -248,22 +251,16 @@ const HeroSection = () => {
                             </div>
                             <div className="services-card__dropdown">
                                 <ul className="services-card__dropdown-list">
+                                {dignities.filter((item) => item.category === "6").map((item) => (
                                     <li>
                                         <a href="#" className="services-card__link">
                                             <span className="services-card__link-title">SEO-продвижение и оптимизация сайтов</span>
                                             <svg className="u-icon services-card__link-icon">
-                                            <Arrow4 />
+                                                <Arrow4 />
                                             </svg>
                                         </a>
                                     </li>
-                                    <li>
-                                        <a href="#" className="services-card__link">
-                                            <span className="services-card__link-title">Услуги SMM-специалиста под ключ</span>
-                                            <svg className="u-icon services-card__link-icon">
-                                            <Arrow4 />
-                                            </svg>
-                                        </a>
-                                    </li>
+                                ))}
                                 </ul>
                             </div>
                         </article>

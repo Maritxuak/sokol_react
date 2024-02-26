@@ -5,48 +5,50 @@ import { ReactComponent as Close } from "../../images/icons/close.svg";
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-  baseURL: 'http://localhost:8000/api',
+  baseURL: 'http://localhost:4000/api',
 });
-const getAllDignities = async () => {
-  try {
-    const response = await axiosInstance.get('/read/dignities');
-    if (response.data) {
-      console.log(response.data);
-      return response.data.map((item) => ({
-        id: item.id,
-        name: item.name,
-        dsc: item.dsc,
-      }))
-    }else{
-      console.error('Объект data не определен');
-    }
-  } catch (error) {
-    console.error(error);
-  }
-};
-
 const Benifest = () => {
   const [dignities, setDignities] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [openCardId, setOpenCardId] = useState(null);
 
   const handleCardClick = (id) => {
-    setOpenCardId(id);
+    setOpenCardId(id === openCardId ? null : id);
   };
 
   useEffect(() => {
     const fetchDignities = async () => {
-      const dignities = await getAllDignities();
-      setDignities(dignities);
+      try {
+        const response = await axiosInstance.get('/read/dignities');
+        if (response.data) {
+          const formattedDignities = response.data.map((item) => ({
+            id: item.id,
+            name: item.name,
+            dsc: item.dsc,
+            
+          }));
+          setDignities(formattedDignities);
+        } else {
+          console.error('Объект data не определен');
+        }
+        setIsLoading(false);
+      } catch (error) {
+        console.error(error);
+        setIsLoading(false);
+      }
     };
 
-    fetchDignities().then((dignities) => {
-      setDignities(dignities);
-    });
+    fetchDignities();
   }, []);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <section className="benefits-section">
-      {/* <div className="container container--size-md benefits-section__container">
+      <div className="container container--size-md benefits-section__container">
+        <h2 className="benefits-section__title">За что нас ценят?</h2>
         {dignities.map((item) => (
           <article key={item.id} className={`benefits-section__list-card faq-card ${openCardId === item.id ? 'is-show' : ''}`} onClick={() => handleCardClick(item.id)}>
             <div className="faq-card__header">
@@ -64,7 +66,7 @@ const Benifest = () => {
             </div>
           </article>
         ))}
-      </div> */}
+      </div>
     </section>
   );
 };
