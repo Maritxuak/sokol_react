@@ -42,19 +42,4 @@
 
 
   </body>
-  <script>
-    document.getElementById('js-select-init').addEventListener('change', function() {
-    if (this.value !== "Не выбрано") {
-      var closestUControl = this.closest('.u-control');
-      if (closestUControl) {
-        closestUControl.classList.add('is-select-active');
-      }
-    } else {
-      var closestUControl = this.closest('.u-control');
-      if (closestUControl) {
-        closestUControl.classList.remove('is-select-active');
-      }
-    }
-  });
-  </script>
 </html>

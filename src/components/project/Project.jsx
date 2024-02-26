@@ -7,7 +7,60 @@ import project_services_section_slider_img_5 from "../../images/project-card-1.j
 import { ReactComponent as Arrow2 } from "../../images/icons/arrow-type-2.svg";
 import { Pagination } from "swiper/modules"
 import Swiper from 'swiper';
-const ProjectServicesSection = () => {
+import axios from 'axios';
+const ProjectServicesSection = ({apiGet}) => {
+    const [selectedSlideId, setSelectedSlideId] = useState(null);
+
+
+
+    const [dignities, setDignities] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [openCardId, setOpenCardId] = useState(null);
+  
+    const handleCardClick = (id) => {
+        setSelectedSlideId(id === selectedSlideId ? null : id);
+    };
+    const handleDetailsClick = async () => {
+        if (selectedSlideId) {
+            try {
+                const response = await apiGet.get(`/read/project/${selectedSlideId}`);
+                
+            } catch (error) {
+                console.error('Ошибка при получении информации о проекте:', error);
+            }
+        }
+    };
+    useEffect(() => {
+        const fetchDignities = async () => {
+            try {
+                const response = await apiGet.get('/read/project/');
+                console.log(response.data)
+                if (response.data) {
+                    const formattedDignities = response.data.map((item) => ({
+                        id: item.id,
+                        name: item.name,
+                        category_services: item.category_services,
+                        bw_preview_photo: item.bw_preview_photo,
+                        c_preview_photo: item.c_preview_photo,
+                        title_photo: item.title_photo,
+                        dsc_realization: item.title_photo,
+                        photo_realization: item.photo_realization,
+                        quotes: item.quotes,
+                    }));
+                    setDignities(formattedDignities);
+                } else {
+                    console.error('Объект data не определен');
+                }
+                setIsLoading(false);
+            } catch (error) {
+                setIsLoading(false);
+            }
+        };
+
+        fetchDignities();
+    }, [apiGet]);
+
+
     const sliderRef = useRef(null);
 
     useEffect(() => {
@@ -35,6 +88,7 @@ const ProjectServicesSection = () => {
                     }
                 }
             })
+            
             sliderRef.current = projectLayoutSliderInit
         }
 
@@ -45,32 +99,37 @@ const ProjectServicesSection = () => {
         }
     }, [])
 
-    useEffect(() => {
-        const updateActiveBullet = () => {
-            const activeIndex = sliderRef.current.activeIndex;
-            const paginationBullets = document.querySelectorAll('.serviceBulletProject');
-            
-            paginationBullets.forEach((bullet, index) => {
-                if (index === activeIndex) {
-                    bullet.classList.add('swiper-pagination-bullet-active');
-                } else {
-                    bullet.classList.remove('swiper-pagination-bullet-active');
-                }
-            });
-        };
-    
+   useEffect(() => {
+    const updateActiveBullet = () => {
+        const activeIndex = sliderRef.current.activeIndex;
+        const paginationBullets = document.querySelectorAll('.serviceBulletProject');
+        
+        paginationBullets.forEach((bullet, index) => {
+            if (index === activeIndex) {
+                bullet.classList.add('swiper-pagination-bullet-active');
+            } else {
+                bullet.classList.remove('swiper-pagination-bullet-active');
+            }
+        });
+    };
+
+    if (sliderRef.current) {
         sliderRef.current.on('slideChange', updateActiveBullet);
-        return () => {
-            sliderRef.current.off('slideChange', updateActiveBullet);
-        };
 
         updateActiveBullet();
-    }, []);
+    }
+
+    return () => {
+        if (sliderRef.current) {
+            sliderRef.current.off('slideChange', updateActiveBullet);
+        }
+    };
+}, [dignities]);
 
     const [currentSlideId, setCurrentSlideId] = useState(1);
 
     const handleSlideChange = (swiper) => {
-        const currentSlide = el[swiper.activeIndex];
+        const currentSlide = dignities[swiper.activeIndex];
         setCurrentSlideId(currentSlide.id);
     };
     
@@ -87,7 +146,7 @@ const ProjectServicesSection = () => {
     };
     const handlePaginationClick = (sliderRef, slideId) => {
         if (sliderRef.current) {
-            const slideIndex = el.findIndex(item => item.id === slideId);
+            const slideIndex = dignities.findIndex(item => item.id === slideId);
             if (slideIndex !== -1) {
                 sliderRef.current.slideTo(slideIndex);
                 setCurrentSlideId(slideId);
@@ -95,96 +154,25 @@ const ProjectServicesSection = () => {
         }
     };
 
-
-
-    const el = [
-        {
-            "id": 1,
-            "name": "1Ирий",
-            "category_services": 1,
-            "bw_preview_photo": project_services_section_slider_img_1,
-            "c_preview_photo": { project_services_section_slider_img_1 },
-            "title_photo": { project_services_section_slider_img_1 },
-            "dsc_project": "описание о проекте",
-            "dsc_task": "описание о задаче",
-            "photo_task": { project_services_section_slider_img_1 },
-            "dsc_realization": "описание о реализации",
-            "photo_realization": { project_services_section_slider_img_1 },
-            "quotes": [
-                1,
-                2
-            ]
-        },
-        {
-            "id": 2,
-            "name": "2Ирий",
-            "category_services": 1,
-            "bw_preview_photo": project_services_section_slider_img_1,
-            "c_preview_photo": { project_services_section_slider_img_1 },
-            "title_photo": { project_services_section_slider_img_1 },
-            "dsc_project": "описание о проекте",
-            "dsc_task": "описание о задаче",
-            "photo_task": { project_services_section_slider_img_1 },
-            "dsc_realization": "описание о реализации",
-            "photo_realization": { project_services_section_slider_img_1 },
-            "quotes": [
-                1,
-                2
-            ]
-        },
-        {
-            "id": 3,
-            "name": "3Ирий",
-            "category_services": 1,
-            "bw_preview_photo": project_services_section_slider_img_1,
-            "c_preview_photo": { project_services_section_slider_img_1 },
-            "title_photo": { project_services_section_slider_img_1 },
-            "dsc_project": "описание о проекте",
-            "dsc_task": "описание о задаче",
-            "photo_task": { project_services_section_slider_img_1 },
-            "dsc_realization": "описание о реализации",
-            "photo_realization": { project_services_section_slider_img_1 },
-            "quotes": [
-                1,
-                2
-            ]
-        },
-        {
-            "id": 4,
-            "name": "4Ирий",
-            "category_services": 1,
-            "bw_preview_photo": project_services_section_slider_img_1,
-            "c_preview_photo": { project_services_section_slider_img_1 },
-            "title_photo": { project_services_section_slider_img_1 },
-            "dsc_project": "описание о проекте",
-            "dsc_task": "описание о задаче",
-            "photo_task": { project_services_section_slider_img_1 },
-            "dsc_realization": "описание о реализации",
-            "photo_realization": { project_services_section_slider_img_1 },
-            "quotes": [
-                1,
-                2
-            ]
-        },
-    ];
     return (
         <section className="project-services-section">
             <div className="container container--size-md project-services-section__container">
                 <h2 className="project-services-section__title">Проектные успехи</h2>
                 <div className="js-project-services-slider-init project-services-section__slider swiper">
                     <div className="swiper-wrapper">
-                        {el.map((item) => (
+                        {dignities.map((item) => (
                             <div className="swiper-slide project-services-section__slider-slide" data-our-workflow-slide-project={item.id}>
                                 <picture className="bg-color bg-color--theme-darkgrey bg-color--opacity-55 project-services-section__slider-picture">
                                     <img src={item.bw_preview_photo} alt="Цифровое воссоединение" />
                                 </picture>
                                 <div className="project-services-section__slider-content">
                                     <div className="project-services-section__slider-title">{item.name}</div>
-                                    <a href="#" className="btn btn--size-md btn--theme-accent-fill project-services-section__slider-btn">
-                                        <span className="btn__inner">
-                                            <span className="btn__title">Подробнее</span>
-                                        </span>
-                                    </a>
+                                    <a href="#" className="btn btn--size-md btn--theme-accent-fill project-services-section__slider-btn" onClick={handleDetailsClick}>
+    <span className="btn__inner">
+        <span className="btn__title">Подробнее</span>
+    </span>
+</a>
+
                                 </div>
                             </div >
                         ))}
@@ -200,7 +188,7 @@ const ProjectServicesSection = () => {
                             </svg>
                         </button>
                         <div className="swiper-pagination">
-                            {el.map((item) => (
+                            {dignities.map((item) => (
                                 <span value={item.id} onClick={() => handlePaginationClick(sliderRef, item.id)} className={item.id === currentSlideId ?"serviceBulletProject swiper-pagination-bullet-active swiper-pagination-bullet swiper-pagination-bullet-project": "serviceBulletProject swiper-pagination-bullet swiper-pagination-bullet-project"}></span>
                             ))}
                         </div>

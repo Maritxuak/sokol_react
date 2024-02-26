@@ -26,7 +26,7 @@ const HeroSection = ({ apiGet }) => {
     useEffect(() => {
         const fetchDignities = async () => {
             try {
-                const response = await apiGet.get('/read/services');
+                const response = await apiGet.get('/read/services/');
                 if (response.data) {
                     const formattedDignities = response.data.map((item) => ({
                         id: item.id,
@@ -52,7 +52,7 @@ const HeroSection = ({ apiGet }) => {
     if (isLoading) {
         return <div>Loading...</div>;
     }
-console.log(dignities)
+   
     return (
         <section className="hero-section">
             <div className="container container--size-md hero-section__container">

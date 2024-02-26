@@ -32,7 +32,7 @@ import PhoneFileValidation from './PhoneFileValidation'
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-  baseURL: 'http://localhost:4000/api',
+  baseURL: 'http://localhost:8000/api',
 });
 
 const Layout = () => {
@@ -49,9 +49,9 @@ const Main = () => {
     <>
       <HeroSection apiGet = {axiosInstance}/>
       <About />
-      <Benifest />
+      <Benifest apiGet = {axiosInstance}/>
       <OurWorkflow />
-      <ProjectServicesSection />
+      <ProjectServicesSection apiGet = {axiosInstance}/>
       <CtaSection />
     </>
   );
@@ -69,7 +69,7 @@ const Services = () =>{
 const Project = () =>{
   return(
   <>
-    <ProjectLayout />
+    <ProjectLayout apiGet = {axiosInstance}/>
     <CtaSection />
   </>
   );
@@ -93,7 +93,7 @@ function App() {
     },
     {
       path: "/project",
-      element: <Project />,
+      element: <Project/>,
     },
   ]);
   

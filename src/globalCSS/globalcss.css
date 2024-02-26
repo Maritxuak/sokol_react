@@ -17,6 +17,7 @@
     --gap-fluid: 60rem;
     --gap-fluid-: -60rem
 }
+
 *::-webkit-scrollbar {
     height: 10px;
     width: 10px;
@@ -2966,6 +2967,48 @@ svg {
     border-radius: 20rem;
     position: relative;
     overflow: hidden
+}
+
+
+.hero-section__services {
+    margin-top: 130rem;
+    display: grid;
+    grid-template-columns: minmax(calc(50% - 30rem), 1fr) 1fr 1fr;
+    grid-template-columns: minmax(calc(50% - var(--gap)), 1fr) 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-gap: 60rem;
+    grid-gap: var(--gap-fluid);
+    gap: 60rem;
+    gap: var(--gap-fluid);
+    grid-template-areas: "a b c""a b c""d e e""d f f"
+}
+
+.hero-section__services-col:nth-child(1) {
+    grid-area: a
+}
+
+.hero-section__services-col:nth-child(2) {
+    grid-area: b
+}
+
+.hero-section__services-col:nth-child(3) {
+    grid-area: c
+}
+
+.hero-section__services-col:nth-child(4) {
+    grid-area: d
+}
+
+.hero-section__services-col:nth-child(5) {
+    grid-area: e
+}
+
+.hero-section__services-col:nth-child(6) {
+    grid-area: f
+}
+
+.hero-section__services-card {
+    min-height: 170rem;
 }
 
 .services-card--size-1 .services-card__inner {

@@ -4,10 +4,7 @@ import { useState, useEffect } from "react";
 import { ReactComponent as Close } from "../../images/icons/close.svg";
 import axios from 'axios';
 
-const axiosInstance = axios.create({
-  baseURL: 'http://localhost:4000/api',
-});
-const Benifest = () => {
+const Benifest = ({apiGet}) => {
   const [dignities, setDignities] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [openCardId, setOpenCardId] = useState(null);
@@ -19,7 +16,8 @@ const Benifest = () => {
   useEffect(() => {
     const fetchDignities = async () => {
       try {
-        const response = await axiosInstance.get('/read/dignities');
+        const response = await apiGet.get('/read/dignities/');
+        console.log(response.data)
         if (response.data) {
           const formattedDignities = response.data.map((item) => ({
             id: item.id,
@@ -33,7 +31,7 @@ const Benifest = () => {
         }
         setIsLoading(false);
       } catch (error) {
-        console.error(error);
+        
         setIsLoading(false);
       }
     };
@@ -44,7 +42,6 @@ const Benifest = () => {
   if (isLoading) {
     return <div>Loading...</div>;
   }
-
   return (
     <section className="benefits-section">
       <div className="container container--size-md benefits-section__container">
