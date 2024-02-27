@@ -2996,11 +2996,13 @@ svg {
 }
 
 .hero-section__services-col:nth-child(4) {
+    max-height: 470rem;
     grid-area: d
 }
 
 .hero-section__services-col:nth-child(5) {
-    grid-area: e
+    max-height: 183rem;
+    grid-area: e    
 }
 
 .hero-section__services-col:nth-child(6) {
@@ -3009,6 +3011,7 @@ svg {
 
 .hero-section__services-card {
     min-height: 170rem;
+    max-height: 400rem;
 }
 
 .services-card--size-1 .services-card__inner {
@@ -3099,6 +3102,8 @@ svg {
 }
 
 .services-card__dropdown {
+    
+    overflow-y: auto;
     background: #212121;
     height: 100%;
     padding: 16rem;
@@ -3593,18 +3598,23 @@ svg {
     margin-left: var(--gap-fluid-);
     border-radius: 20rem;
     position: relative;
-    overflow: hidden
+    overflow: hidden;
+    min-height: 400rem;
 }
 
 .terms-cooperation__main-services {
     position: relative;
-    overflow: hidden
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    min-height: 400rem; 
 }
 
 .terms-cooperation__main-services .swiper-wrapper {
     -webkit-box-align: initial;
     -ms-flex-align: initial;
-    align-items: initial
+    align-items: initial;
+    min-height: 400rem; 
 }
 
 .terms-cooperation__main-services .swiper-slide {
@@ -3625,6 +3635,14 @@ svg {
     position: absolute;
     top: 0;
     left: 0
+}
+
+.terms-cooperation__main-services-card-picture img{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 .terms-cooperation__main-services-card-content {
@@ -6102,4 +6120,11 @@ select.cta-section__form-select {
 .textareasection:focus ~ .u-control__placeholder .u-control__placeholder-title,
 .textareaactive ~ .u-control__placeholder .u-control__placeholder-title{
     transform: translate(0, -12rem);
+}
+.none{
+    display: none;
+}
+.slide_our_work{
+    padding: 80rem 60rem;
+    margin: 0rem -1rem;
 }

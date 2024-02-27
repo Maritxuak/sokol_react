@@ -5,7 +5,44 @@ import React, { useRef, useCallback, useEffect, useState } from "react";
 import Swiper from "swiper";
 
 
-const ServiceSlidFirst = ({ idActive, setIdActive }) => {
+const ServiceSlidFirst = ({ idActive, setIdActive, actualId = [], apiGet }) => {    const activeId = actualId;
+    const [dignities, setDignities] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [openCardId, setOpenCardId] = useState(null);
+    console.log("actualId", activeId)
+    const handleCardClick = (id) => {
+        setOpenCardId(id);
+    };
+    useEffect(() => {
+        const fetchDignities = async () => {
+            try {
+                const response = await apiGet.get('/read/dcsCatServices/');
+                if (response.data) {
+                    const formattedDignities = response.data.map((item) => ({
+                        id: item.id,
+                        name: item.name,
+                        category: item.category,
+                        dsc: item.dsc,
+                        included_in_the_service: item.included_in_the_service,
+                    }));
+                    setDignities(formattedDignities);
+                } else {
+                    console.error('Объект data не определен');
+                }
+                setIsLoading(false);
+            } catch (error) {
+                console.error(error);
+                setIsLoading(false);
+            }
+        };
+
+        fetchDignities();
+    }, []);
+
+
+
+
+
     const sliderRef3 = useRef(null);
 
     const handleBulletClick = (element) => {
@@ -20,13 +57,13 @@ const ServiceSlidFirst = ({ idActive, setIdActive }) => {
 
 
     const handlePrevClick1 = () => {
-        const prevSlideId = currentSlideId === 1 ? el.length : currentSlideId - 1;
+        const prevSlideId = currentSlideId === 1 ? dignities.length : currentSlideId - 1;
         sliderRef3.current.slideTo(prevSlideId - 1);
         setCurrentSlideId(prevSlideId);
     };
 
     const handleNextClick1 = () => {
-        const nextSlideId = currentSlideId === el.length ? 1 : currentSlideId + 1;
+        const nextSlideId = currentSlideId === dignities.length ? 1 : currentSlideId + 1;
         sliderRef3.current.slideTo(nextSlideId - 1);
         setCurrentSlideId(nextSlideId);
     };
@@ -54,7 +91,7 @@ const ServiceSlidFirst = ({ idActive, setIdActive }) => {
                 loop: false,
                 allowTouchMove: false,
                 pagination: {
-                    el: '.js-services-swiper-pagination-1',
+                    dignities: '.js-services-swiper-pagination-1',
                     type: 'bullets',
                     clickable: true,
                 },
@@ -96,7 +133,7 @@ const ServiceSlidFirst = ({ idActive, setIdActive }) => {
     const [currentSlideId, setCurrentSlideId] = useState(1);
 
     const handleSlideChange = (swiper) => {
-        const currentSlide = el[swiper.activeIndex];
+        const currentSlide = dignities[swiper.activeIndex];
         setCurrentSlideId(currentSlide.id);
     };
 
@@ -109,64 +146,9 @@ const ServiceSlidFirst = ({ idActive, setIdActive }) => {
 
     const sliderRef = useRef(null);
 
-
-
-
     // slide2
 
-    const el = [
-        {
-            id: 1,
-            title: "1Создание уникального дизайна",
-            description: "Исследование целевой аудитории помогает компаниям разработать более целевые и эффективные стратегии продвижения продукта, создать более убедительные сообщения и предложения, а также улучшить опыт пользователей, что в свою очередь способствует увеличению конверсии и удержанию клиентов."
-        },
-        {
-            id: 2,
-            title: "2Интеграция с CRM системой для управления контактами ЦА.",
-            description: "Исследование целевой аудитории помогает компаниям разработать более целевые"
-        },
-        {
-            id: 3,
-            title: "3Тестирование и анализ эффективности лендинга",
-            description: "Исследование целевой аудитории помогает компаниям разработать более целевые и эффективные стратегии продвижения продукта, создать более убедительные сообщения и предложения, а также улучшить опыт пользователей, что в свою очередь способствует увеличению конверсии и удержанию клиентов."
-        },
-        {
-            id: 4,
-            title: "4Тестирование и анализ эффективности лендинга",
-            description: "Исследование целевой аудитории помогает компаниям разработать более целевые и эффективные стратегии продвижения продукта, создать более убедительные сообщения и предложения, а также улучшить опыт пользователей, что в свою очередь способствует увеличению конверсии и удержанию клиентов."
-        },
-        {
-            id: 5,
-            title: "5Тестирование и анализ эффективности лендинга",
-            description: "Исследование целевой аудитории помогает компаниям разработать более целевые и эффективные стратегии продвижения продукта, создать более убедительные сообщения и предложения, а также улучшить опыт пользователей, что в свою очередь способствует увеличению конверсии и удержанию клиентов."
-        },
-        {
-            id: 6,
-            title: "6Тестирование и анализ эффективности лендинга",
-            description: "Исследование целевой аудитории помогает компаниям разработать более целевые и эффективные стратегии продвижения продукта, создать более убедительные сообщения и предложения, а также улучшить опыт пользователей, что в свою очередь способствует увеличению конверсии и удержанию клиентов."
-        },
-        {
-            id: 7,
-            title: "7Тестирование и анализ эффективности лендинга",
-            description: "Исследование целевой аудитории помогает компаниям разработать более целевые и эффективные стратегии продвижения продукта, создать более убедительные сообщения и предложения, а также улучшить опыт пользователей, что в свою очередь способствует увеличению конверсии и удержанию клиентов."
-        },
-        {
-            id: 8,
-            title: "8Тестирование и анализ эффективности лендинга",
-            description: "Исследование целевой аудитории помогает компаниям разработать более целевые и эффективные стратегии продвижения продукта, создать более убедительные сообщения и предложения, а также улучшить опыт пользователей, что в свою очередь способствует увеличению конверсии и удержанию клиентов."
-        },
-        {
-            id: 9,
-            title: "9Тестирование и анализ эффективности лендинга",
-            description: "Исследование целевой аудитории помогает компаниям разработать более целевые и эффективные стратегии продвижения продукта, создать более убедительные сообщения и предложения, а также улучшить опыт пользователей, что в свою очередь способствует увеличению конверсии и удержанию клиентов."
-        },
-        {
-            id: 10,
-            title: "10Тестирование и анализ эффективности лендинга",
-            description: "Исследование целевой аудитории помогает компаниям разработать более целевые и эффективные стратегии продвижения продукта, создать более убедительные сообщения и предложения, а также улучшить опыт пользователей, что в свою очередь способствует увеличению конверсии и удержанию клиентов."
-        },
 
-    ]
 
 
     return (
@@ -177,9 +159,9 @@ const ServiceSlidFirst = ({ idActive, setIdActive }) => {
                 </div>
                 <div className="row__col--6 services-layout__main-col services-layout__main-col--nav">
                     <ul className="services-layout__main-nav">
-                        {el.map((item) => (
+                        {dignities.filter((item) => actualId.includes(item.id)).map((item) => (
                             <li className="services-layout__main-nav-item" key={item.id}>
-                                <button onClick={() => handlePaginationClick(sliderRef3, item.id)} value={item.id} type="button" className={item.id === currentSlideId ? "serviceBullet js-services-slider-btn-nav-1 services-layout__main-nav-btn is-active" : "serviceBullet js-services-slider-btn-nav-1 services-layout__main-nav-btn"}>{item.title}</button>
+                                <button onClick={() => handlePaginationClick(sliderRef3, item.id)} value={item.id} type="button" className={item.id === currentSlideId ? "serviceBullet js-services-slider-btn-nav-1 services-layout__main-nav-btn is-active" : "serviceBullet js-services-slider-btn-nav-1 services-layout__main-nav-btn"}>{item.name}</button>
                             </li>
                         ))}
                     </ul>
@@ -188,17 +170,18 @@ const ServiceSlidFirst = ({ idActive, setIdActive }) => {
                     <div className="services-layout__main-slider-wrapper">
                         <div className="js-services-layout-slider-init-1 services-layout__main-slider">
                             <div className="swiper-wrapper">
-                                {el.map((item) => (
-                                    <div className={"swiper-slide services-layout__main-slider-slide"} serviceSlide={item.id}>
+                                {dignities.filter((item) => actualId.includes(item.id)).map((item) => (
+                                    <div key={item.id} className={"swiper-slide services-layout__main-slider-slide"} serviceSlide={item.id}>
                                         <article className="services-layout__main-slider-item">
-                                            <h3 className="services-layout__main-slider-item-title">{item.title}</h3>
+                                            <h3 className="services-layout__main-slider-item-title">{item.name}</h3>
                                             <div className="content services-layout__main-slider-item-text">
-                                                <p>{item.description}</p>
+                                                <p>{item.dsc}</p>
                                             </div>
                                         </article>
                                     </div>
-
                                 ))}
+
+
                             </div>
                         </div>
                         <div className="slider-control services-layout__main-slider-control">
@@ -209,7 +192,7 @@ const ServiceSlidFirst = ({ idActive, setIdActive }) => {
                             </button>
 
                             <div className="js-services-swiper-pagination-1 swiper-pagination">
-                                {el.map((item) => (
+                                {dignities.filter((item) => actualId.includes(item.id)).map((item) => (
                                     <span
                                         key={item.id}
                                         className={item.id === currentSlideId ? "serviceBullet2 swiper-pagination-bullet swiper-pagination-bullet-active" : "serviceBullet2 swiper-pagination-bullet"}

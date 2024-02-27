@@ -14,6 +14,7 @@ import { ReactComponent as Arrow2 } from "../../images/icons/arrow-type-2.svg";
 import { ReactComponent as ServiceType1 } from "../../images/icons/services-type-1.svg";
 import { ReactComponent as ServiceType2 } from "../../images/icons/services-type-2.svg";
 import { ReactComponent as ServiceType3 } from "../../images/icons/services-type-3.svg";
+import SwiperOurWorkFlow from "../swiperOurWorkFlow/SwiperOurWorkFlow";
 
 
 const OurWorkflow = () => {
@@ -300,7 +301,8 @@ const OurWorkflow = () => {
                     </div>
                 </article>
                 <article className="our-workflow-section__terms-cooperation terms-cooperation">
-                    <div className="row terms-cooperation__row">
+                    <SwiperOurWorkFlow/>
+                    {/* <div className="row terms-cooperation__row">
                         <div className="row__col--7 terms-cooperation__col terms-cooperation__col--content">
                             <div className="terms-cooperation__content">
                                 <h3 className="terms-cooperation__title">Условия сотрудничества</h3>
@@ -374,7 +376,7 @@ const OurWorkflow = () => {
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                 </article>
             </div>
         </section>

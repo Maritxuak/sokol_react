@@ -30,6 +30,8 @@ import CtaSection from './components/ctaSection/CtaSection';
 import ProjectLayout from './components/projectLayout/ProjectLayout';
 import PhoneFileValidation from './PhoneFileValidation'
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
+import Contact from './components/contact/Contact';
 
 const axiosInstance = axios.create({
   baseURL: 'http://localhost:8000/api',
@@ -59,7 +61,7 @@ const Main = () => {
 const Services = () =>{
   return(
   <>
-    <ServicesLayout />
+    <ServicesLayout  apiGet = {axiosInstance}/>
     <TypicalSection />
     <CtaSection />
   </>
@@ -75,6 +77,7 @@ const Project = () =>{
   );
 };
 function App() {
+  const url = 3
 
   const router = createBrowserRouter([
     {
@@ -93,12 +96,16 @@ function App() {
     },
     {
       path: "/project",
-      element: <Project/>,
+      element: <Project/>
+    },
+    {
+      path: "contacts/:contactId",
+      element: <Contact />,
     },
   ]);
   
-
-const [scroll, setScroll] = React.useState(0);
+  const { id } = useParams();
+  const [scroll, setScroll] = React.useState(0);
   const [data, setData] = useState([]);
   const [click, setClick] = React.useState(true);
 

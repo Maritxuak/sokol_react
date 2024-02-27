@@ -4,7 +4,7 @@ import React, { useRef, useCallback, useEffect, useState } from "react";
 
 const ServiceSliderSecond = ({idActive, setIdActive}) => {
     const sliderRef1 = useRef(null);
-    console.log(idActive)
+    
     const handleBulletClick = (element) => {
         sliderRef1.current.slideTo(parseInt(element) - 1);
         setCurrentSlideId(parseInt(element));

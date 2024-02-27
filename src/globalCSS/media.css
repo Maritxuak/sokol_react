@@ -21,6 +21,7 @@
     .d-lg-block {
         display: none !important
     }
+
 }
 
 @media (min-width:1200px) {
@@ -163,7 +164,11 @@
 }
 
 @media (max-width:1199px) {
-
+    .hero-section__services-card{
+        min-height: 170rem;
+        max-height: 316rem;
+        
+    }
     body.is-menu-opened,
     body.is-mobile-country-open {
         overflow: hidden
@@ -675,6 +680,22 @@
 }
 
 @media (max-width:991px) {
+    .terms-cooperation__main-services{
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        height: 100%;
+        min-height: 346rem; 
+    }
+    .terms-cooperation__main-services .swiper-wrapper{
+        -webkit-box-align: initial;
+        -ms-flex-align: initial;
+        align-items: initial;
+        min-height: 346rem; 
+    }
+    .terms-cooperation__main{
+        min-height: 346rem; 
+    }
     :root {
         --fs-1: 44rem;
         --fs-2: 34rem;

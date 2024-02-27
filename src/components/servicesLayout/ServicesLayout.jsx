@@ -4,15 +4,13 @@ import React, { useRef, useCallback, useEffect, useState } from "react";
 import Swiper from "swiper";
 import ServiceSliderSecond from "../serviceSlide2/ServiceSlid2";
 import ServiceSlidFirst from "../serviceSlide1/ServiceSlid1";
-const ServicesLayout = () => {
+const ServicesLayout = ({apiGet, actualId}) => {
 
     const [idActive, setIdActive] = React.useState(0)
 
     const handleIdActive = useCallback((pop) => {
         setIdActive(pop)
     }, [idActive]);
-
-    
 
 
 
@@ -162,60 +160,9 @@ const ServicesLayout = () => {
                         </div>
                     </div>
                     <div className="services-layout__main">
-                        <ServiceSlidFirst idActive={idActive}/>
+                        <ServiceSlidFirst idActive={idActive} apiGet={apiGet}/>
                         
                         <ServiceSliderSecond idActive={idActive} setIdActive={setIdActive}/>
-                        {/* <div id="services-layout-2" className={idActive === 2 ? `row services-layout__row-main is-show` : "row services-layout__row-main"}>
-                            <div className="row__col--12 services-layout__main-col services-layout__main-col--title">
-                                <h2 className="services-layout__main-title">Как это вам поможет</h2>
-                            </div>
-                            <div className="row__col--6 services-layout__main-col services-layout__main-col--nav">
-                                <ul className="services-layout__main-nav">
-                                    {el2.map((item) => (
-                                        <li className="services-layout__main-nav-item">
-                                            <button onClick={() => handlePaginationClick2(sliderRef2, item.id)} value={item.id} type="button" className={item.id === 1 ? "is-active serviceBullet23 js-services-slider-btn-nav-2 services-layout__main-nav-btn" : " serviceBullet23 js-services-slider-btn-nav-2 services-layout__main-nav-btn"}>{item.title}</button>
-                                        </li>
-                                    ))}
-
-                                </ul>
-                            </div>
-                            <div className="row__col--6 services-layout__main-col services-layout__main-col--slider">
-                                <div className="services-layout__main-slider-wrapper">
-                                    <div className="js-services-layout-slider-init-2 services-layout__main-slider">
-                                        <div className="swiper-wrapper">
-                                            {el2.map((item) => (
-                                                <div className="swiper-slide services-layout__main-slider-slide" serviceSlide2={item.id}>
-                                                    <article className="services-layout__main-slider-item">
-                                                        <h3 className="services-layout__main-slider-item-title">{item.title}</h3>
-                                                        <div className="content services-layout__main-slider-item-text">
-                                                            <p>{item.description}</p>
-                                                        </div>
-                                                    </article>
-                                                </div>
-                                            ))}
-
-                                        </div>
-                                    </div>
-                                    <div className="slider-control services-layout__main-slider-control">
-                                        <button type="button" className="js-services-slider-btn-prev-2 swiper-button swiper-button--theme-gray swiper-button-prev" onClick={handlePrevClick2}>
-                                            <svg className="u-icon">
-                                                <Arrow2 />
-                                            </svg>
-                                        </button>
-                                        <div className="js-services-swiper-pagination-2 swiper-pagination">
-                                            {el2.map((item) => (
-                                                <span className={item.id === currentSlideId ? "serviceBullet22 swiper-pagination-bullet swiper-pagination-bullet-active" : "serviceBullet22 swiper-pagination-bullet"} onClick={() => handlePaginationClick(sliderRef, item.id)} value={item.id}></span>
-                                            ))}
-                                        </div>
-                                        <button type="button" className="js-services-slider-btn-next-2 swiper-button swiper-button--theme-gray swiper-button-next" onClick={handleNextClick2}>
-                                            <svg className="u-icon">
-                                                <Arrow2 />
-                                            </svg>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> */}
                     </div>
                 </div>
             </section>

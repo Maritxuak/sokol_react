@@ -168,11 +168,10 @@ const ProjectServicesSection = ({apiGet}) => {
                                 <div className="project-services-section__slider-content">
                                     <div className="project-services-section__slider-title">{item.name}</div>
                                     <a href="#" className="btn btn--size-md btn--theme-accent-fill project-services-section__slider-btn" onClick={handleDetailsClick}>
-    <span className="btn__inner">
-        <span className="btn__title">Подробнее</span>
-    </span>
-</a>
-
+                                        <span className="btn__inner">
+                                            <span className="btn__title">Подробнее</span>
+                                        </span>
+                                    </a>
                                 </div>
                             </div >
                         ))}

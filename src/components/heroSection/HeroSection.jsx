@@ -13,8 +13,11 @@ import { ReactComponent as Arrow4 } from "../../images/icons/arrow-type-4.svg";
 import { ReactComponent as Arrow1 } from "../../images/icons/arrow-type-1.svg";
 import axios from 'axios';
 import { useState, useEffect } from "react";
-const HeroSection = ({ apiGet }) => {
-
+import NullComponent from "../nullComponent/NullComponent"
+import ServiceSlidFirst from "../serviceSlide1/ServiceSlid1"
+import ServicesLayout from "../servicesLayout/ServicesLayout"
+const HeroSection = ({ currentSlideId, setCurrentSlideId, apiGet }) => {
+    
     const [dignities, setDignities] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [openCardId, setOpenCardId] = useState(null);
@@ -22,6 +25,27 @@ const HeroSection = ({ apiGet }) => {
     const handleCardClick = (id) => {
         setOpenCardId(id);
     };
+
+    const [selectedItemId, setSelectedItemId] = useState(null);
+    const handleItemClick = (itemId) => {
+        const selectedItem = dignities.find(item => item.id === itemId);
+        const includedIds = selectedItem.included_in_the_service.map(String);
+        if (selectedItem) {
+            console.log("Selected Item:", selectedItem);
+            
+            const selectedData = dignities.filter(item => {
+                const includedIds = selectedItem.included_in_the_service.map(String);
+                console.log("Included IDs:", includedIds);
+                return includedIds.includes(String(item.id));
+            });
+            
+            console.log("Selected Data:", selectedData);
+            
+            setSelectedItemId(includedIds);
+        }
+    };
+    console.log("selectedItem", selectedItemId)
+
 
     useEffect(() => {
         const fetchDignities = async () => {
@@ -49,10 +73,6 @@ const HeroSection = ({ apiGet }) => {
         fetchDignities();
     }, []);
 
-    if (isLoading) {
-        return <div>Loading...</div>;
-    }
-   
     return (
         <section className="hero-section">
             <div className="container container--size-md hero-section__container">
@@ -117,8 +137,8 @@ const HeroSection = ({ apiGet }) => {
                             <div className="services-card__dropdown">
                                 <ul className="services-card__dropdown-list">
                                     {dignities.filter((item) => item.category === "1").map((item) => (
-                                        <li>
-                                            <a href="#" className="services-card__link">
+                                        <li key={item.id}>
+                                            <a href="/service" className="services-card__link" onClick={() => handleItemClick(item.id)}>
                                                 <span className="services-card__link-title">{item.name}</span>
                                                 <svg className="u-icon services-card__link-icon">
                                                     <Arrow4 />
@@ -143,16 +163,16 @@ const HeroSection = ({ apiGet }) => {
                             </div>
                             <div className="services-card__dropdown">
                                 <ul className="services-card__dropdown-list">
-                                {dignities.filter((item) => item.category === "2").map((item) => (
-                                    <li>
-                                        <a href="#" className="services-card__link">
-                                            <span className="services-card__link-title">{item.name}</span>
-                                            <svg className="u-icon services-card__link-icon">
-                                                
-                                            </svg>
-                                        </a>
-                                    </li>
-                                ))}
+                                    {dignities.filter((item) => item.category === "2").map((item) => (
+                                        <li>
+                                            <a href="#" className="services-card__link">
+                                                <span className="services-card__link-title">{item.name}</span>
+                                                <svg className="u-icon services-card__link-icon">
+                                                    <Arrow4 />
+                                                </svg>
+                                            </a>
+                                        </li>
+                                    ))}
                                 </ul>
                             </div>
                         </article>
@@ -170,16 +190,16 @@ const HeroSection = ({ apiGet }) => {
                             </div>
                             <div className="services-card__dropdown">
                                 <ul className="services-card__dropdown-list">
-                                {dignities.filter((item) => item.category === "3").map((item) => (
-                                    <li>
-                                        <a href="#" className="services-card__link">
-                                            <span className="services-card__link-title">{item.name}</span>
-                                            <svg className="u-icon services-card__link-icon">
-                                                
-                                            </svg>
-                                        </a>
-                                    </li>
-                                ))}
+                                    {dignities.filter((item) => item.category === "3").map((item) => (
+                                        <li>
+                                            <a href="#" className="services-card__link">
+                                                <span className="services-card__link-title">{item.name}</span>
+                                                <svg className="u-icon services-card__link-icon">
+                                                    <Arrow4 />
+                                                </svg>
+                                            </a>
+                                        </li>
+                                    ))}
                                 </ul>
                             </div>
                         </article>
@@ -197,16 +217,16 @@ const HeroSection = ({ apiGet }) => {
                             </div>
                             <div className="services-card__dropdown">
                                 <ul className="services-card__dropdown-list">
-                                {dignities.filter((item) => item.category === "4").map((item) => (
-                                    <li>
-                                        <a href="#" className="services-card__link">
-                                            <span className="services-card__link-title">{item.name}</span>
-                                            <svg className="u-icon services-card__link-icon">
-                                                <Arrow4 />
-                                            </svg>
-                                        </a>
-                                    </li>
-                                ))}
+                                    {dignities.filter((item) => item.category === "4").map((item) => (
+                                        <li>
+                                            <a href="#" className="services-card__link">
+                                                <span className="services-card__link-title">{item.name}</span>
+                                                <svg className="u-icon services-card__link-icon">
+                                                    <Arrow4 />
+                                                </svg>
+                                            </a>
+                                        </li>
+                                    ))}
                                 </ul>
                             </div>
                         </article>
@@ -224,16 +244,16 @@ const HeroSection = ({ apiGet }) => {
                             </div>
                             <div className="services-card__dropdown">
                                 <ul className="services-card__dropdown-list">
-                                {dignities.filter((item) => item.category === "5").map((item) => (
-                                    <li>
-                                        <a href="#" className="services-card__link">
-                                            <span className="services-card__link-title">Разработка ИИ систем</span>
-                                            <svg className="u-icon services-card__link-icon">
-                                                <Arrow4 />
-                                            </svg>
-                                        </a>
-                                    </li>
-                                ))}
+                                    {dignities.filter((item) => item.category === "5").map((item) => (
+                                        <li>
+                                            <a href="#" className="services-card__link">
+                                                <span className="services-card__link-title">{item.name}</span>
+                                                <svg className="u-icon services-card__link-icon">
+                                                    <Arrow4 />
+                                                </svg>
+                                            </a>
+                                        </li>
+                                    ))}
                                 </ul>
                             </div>
                         </article>
@@ -251,24 +271,27 @@ const HeroSection = ({ apiGet }) => {
                             </div>
                             <div className="services-card__dropdown">
                                 <ul className="services-card__dropdown-list">
-                                {dignities.filter((item) => item.category === "6").map((item) => (
-                                    <li>
-                                        <a href="#" className="services-card__link">
-                                            <span className="services-card__link-title">SEO-продвижение и оптимизация сайтов</span>
-                                            <svg className="u-icon services-card__link-icon">
-                                                <Arrow4 />
-                                            </svg>
-                                        </a>
-                                    </li>
-                                ))}
+                                    {dignities.filter((item) => item.category === "6").map((item) => (
+                                        <li>
+                                            <a href="#" className="services-card__link">
+                                                <span className="services-card__link-title">{item.name}</span>
+                                                <svg className="u-icon services-card__link-icon">
+                                                    <Arrow4 />
+                                                </svg>
+                                            </a>
+                                        </li>
+                                    ))}
                                 </ul>
                             </div>
                         </article>
                     </div>
                 </div>
             </div>
+            <ServicesLayout actualId={selectedItemId}/>
         </section>
     );
+    
 }
 
 export default HeroSection;
+
