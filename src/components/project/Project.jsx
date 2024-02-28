@@ -76,6 +76,7 @@ const ProjectServicesSection = ({apiGet}) => {
                 observeParents: true,
                 observer: true,
                 spaceBetween: 0,
+                autoHeight: false,
                 pagination: {
                     el: '.swiper-pagination',
                     clickable: true,
@@ -147,6 +148,7 @@ const ProjectServicesSection = ({apiGet}) => {
         }
     };
     const handlePaginationClick = (sliderRef, slideId) => {
+        
         if (sliderRef.current) {
             const slideIndex = dignities.findIndex(item => item.id === slideId);
             if (slideIndex !== -1) {
@@ -190,7 +192,7 @@ const ProjectServicesSection = ({apiGet}) => {
                         </button>
                         <div className="swiper-pagination">
                             {dignities.map((item) => (
-                                <span key={item.id} value={item.id} onClick={() => handlePaginationClick(sliderRef, item.id)} className={item.id === currentSlideId ?"serviceBulletProject swiper-pagination-bullet-active swiper-pagination-bullet swiper-pagination-bullet-project": "serviceBulletProject swiper-pagination-bullet swiper-pagination-bullet-project"}></span>
+                                <span key={item.id} value={item.id} onClick={() => handlePaginationClick(sliderRef, item.id)} className={item.id === currentSlideId ? "serviceBulletProject swiper-pagination-bullet-active swiper-pagination-bullet swiper-pagination-bullet-project": "serviceBulletProject swiper-pagination-bullet swiper-pagination-bullet-project"}></span>
                             ))}
                         </div>
                         <button onClick={handleNextClick1} type="button" className="swiper-button swiper-button--theme-gray swiper-button-next js-project-services-slider-btn-next">
