@@ -29,11 +29,15 @@ const SwiperOurWorkFlow = () => {
 
         if(ourworkflowelement) {
             const ourworkswiper = new Swiper('.js-terms-cooperation-slider-init', {
-                autoHeight: true,
                 slidesPerView: 1,
-                spaceBetween: 0,
-                loop: false,
                 allowTouchMove: false,
+                centeredSlides: true,
+                loop: false,
+                autoHeight: true,
+                initialSlide: 0,
+                observeParents: true,
+                observer: true,
+                spaceBetween: 0,
                 pagination: {
                     dignities: '.terms-cooperation__services-list',
                     type: 'bullets',
@@ -120,24 +124,28 @@ const SwiperOurWorkFlow = () => {
                                     </picture>
                             </div>
                             <div class="swiper-slide slide_our_work">
-                                <div className="terms-cooperation__main-services-card-content">
+                                <article className="terms-cooperation__main-services-card-content">
                                     <h3 className="terms-cooperation__main-services-card-title">Вам нужно конкретное решение</h3>
                                     <div className="content terms-cooperation__main-services-card-text">
                                         <p>Наша компания специализируется на анализе и улучшении уже существующих проектов, поэтому, если у вас конкретная проблема или задача, которую требуется решить, связанная с веб-продуктом, мы готовы обсудить возможное сотрудничество для достижения ваших целей.</p>
                                     </div>
-                                </div>
+                                </article>
                             </div>
                             <div class="swiper-slide slide_our_work">
-                                <h3 className="terms-cooperation__main-services-card-title">Вам нужен лендинг</h3>
+                                <article className="terms-cooperation__main-services-card-content">
+                                    <h3 className="terms-cooperation__main-services-card-title">Вам нужен лендинг</h3>
                                     <div className="content terms-cooperation__main-services-card-text">
                                         <p>Наша компания специализируется на крупных проектах и решении определенных проблем уже существующих сайтов. Из-за нашей специализации, мы не можем взяться за создание лендинга, который является более компактным и ограниченным по функционалу, чем типичный веб-продукт, над которым мы работаем.</p>
                                     </div>
+                                </article>
                             </div>
                             <div class="swiper-slide slide_our_work">
-                                <h3 className="terms-cooperation__main-services-card-title">Вам нужен сайт-визитка</h3>
+                                <article className="terms-cooperation__main-services-card-content">
+                                    <h3 className="terms-cooperation__main-services-card-title">Вам нужен сайт-визитка</h3>
                                     <div className="content terms-cooperation__main-services-card-text">
                                         <p>Наши услуги сфокусированы на комплексных проектах и оптимизации уже существующих сайтов с целью максимизации их эффективности. Создание сайта-визитки, как правило, не требует такого уровня задействования, который мы предлагаем, поэтому мы не можем взяться за данную задачу.</p>
                                     </div>
+                                </article>
                             </div>
 
                             

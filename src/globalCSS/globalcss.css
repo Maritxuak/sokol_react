@@ -555,7 +555,9 @@ svg {
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0)
 }
-
+.swiper-wrapper.sd .swiper-slide{
+padding: 20px 30px;
+}
 .swiper-pointer-events {
     -ms-touch-action: pan-y;
     touch-action: pan-y
@@ -3006,12 +3008,13 @@ svg {
 }
 
 .hero-section__services-col:nth-child(6) {
+    max-height: 183rem;
     grid-area: f
 }
 
 .hero-section__services-card {
     min-height: 170rem;
-    max-height: 400rem;
+    max-height: 430rem;
 }
 
 .services-card--size-1 .services-card__inner {
@@ -3599,7 +3602,6 @@ svg {
     border-radius: 20rem;
     position: relative;
     overflow: hidden;
-    min-height: 400rem;
 }
 
 .terms-cooperation__main-services {
@@ -3607,14 +3609,13 @@ svg {
     overflow: hidden;
     width: 100%;
     height: 100%;
-    min-height: 400rem; 
 }
 
 .terms-cooperation__main-services .swiper-wrapper {
     -webkit-box-align: initial;
     -ms-flex-align: initial;
     align-items: initial;
-    min-height: 400rem; 
+
 }
 
 .terms-cooperation__main-services .swiper-slide {
@@ -3645,12 +3646,14 @@ svg {
     left: 0;
 }
 
-.terms-cooperation__main-services-card-content {
-    max-width: 612rem
-}
 
 .terms-cooperation__main-services-card-title {
-    margin: 0 0 25rem
+    margin: 0 auto;
+    width: auto;
+}
+.terms-cooperation__main-services-card-text{
+    margin: 0 auto;
+    padding-top: 15px;
 }
 
 .u-input {
@@ -4830,7 +4833,6 @@ select.cta-section__form-select {
 .terms-cooperation__main .swiper-wrapper{
     position: relative;
     width: 100%;
-    height: 350px;
 }
 .terms-cooperation__main .swiper-wrapper .terms-cooperation__main-services-card{
     content: '';
@@ -4842,6 +4844,7 @@ select.cta-section__form-select {
     transition: all .5s;
     transform: translate(-50%,-60%);
     opacity: 0;
+    padding: 80rem 60rem;
 }
 .terms-cooperation__main .swiper-wrapper .terms-cooperation__main-services-card.swiper-slide-active{
     content: '';
@@ -6124,7 +6127,7 @@ select.cta-section__form-select {
 .none{
     display: none;
 }
-.slide_our_work{
+/* .slide_our_work{
     padding: 80rem 60rem;
     margin: 0rem -1rem;
-}
+} */

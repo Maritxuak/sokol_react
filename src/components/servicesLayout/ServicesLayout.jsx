@@ -18,8 +18,8 @@ const ServicesLayout = ({apiGet, actualId}) => {
         setIdActive(pop)
     }, [idActive]);
 
-    const [dignities, setDignities] = useState([]); // Изменено на dignities
-
+    const [dignities, setDignities] = useState([]);
+    const [object, setObject] = useState([])
     const [isLoading, setIsLoading] = useState(true);
     
     useEffect(() => {
@@ -28,29 +28,21 @@ const ServicesLayout = ({apiGet, actualId}) => {
 
     useEffect(() => {
         const fetchDignities = async () => {
-            try {
-                const response = await apiGet.get('/read/dcsCatServices/');
-                if (response.data) {
-                    const formattedDignities = response.data.map((item) => ({
-                        id: item.id,
-                        name: item.name,
-                        category: item.category,
-                        dsc: item.dsc,
-                        included_in_the_service: item.included_in_the_service,
-                    }));
-                    setDignities(formattedDignities);
-                } else {
-                    console.error('Объект data не определен');
-                }
-                setIsLoading(false);
-            } catch (error) {
-                console.error(error);
-                setIsLoading(false);
-            }
+          try {
+            console.log('id:', id);
+            const response = await apiGet.get(`/read/services/${id}/`);
+            console.log("response", response.data)
+            setDignities([response.data])
+            setObject(response.data)
+    
+            setIsLoading(false);
+          } catch (error) {
+            setIsLoading(false);
+          }
         };
-        
+    
         fetchDignities();
-    }, []);
+      }, []);
     // useEffect(() => {
     //   const fetchDignities = async () => {
     //       try {
@@ -104,9 +96,9 @@ const ServicesLayout = ({apiGet, actualId}) => {
                         </div>
                     </div>
                     <div className="services-layout__main">
-                        <ServiceSlidFirst dignities={dignities} id={id} idActive={idActive} apiGet={apiGet}/>
+                        <ServiceSlidFirst dignities={dignities} object={object} id={id} idActive={idActive} apiGet={apiGet}/>
                         
-                        <ServiceSliderSecond idActive={idActive} setIdActive={setIdActive}/>
+                        <ServiceSliderSecond dignities={dignities} object={object} idActive={idActive} setIdActive={setIdActive}/>
                     </div>
                 </div>
             </section>

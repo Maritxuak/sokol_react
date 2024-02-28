@@ -3,10 +3,10 @@
 import { ReactComponent as Arrow2 } from "../../images/icons/arrow-type-2.svg";
 import React, { useRef, useCallback, useEffect, useState } from "react";
 import Swiper from "swiper";
-import { SelectItemIdProvider} from "../provider/Provider"
+import { SelectItemIdProvider } from "../provider/Provider"
 
-const ServiceSlidFirst = ({ idActive, setIdActive , apiGet , id, dignities = []}) => {
-
+const ServiceSlidFirst = ({ idActive, setIdActive, apiGet, id, dignities = [], object }) => {
+    let sliderKey = 1;
     console.log("айди", id)
 
     const [isLoading, setIsLoading] = useState(true);
@@ -44,37 +44,46 @@ const ServiceSlidFirst = ({ idActive, setIdActive , apiGet , id, dignities = []}
 
 
 
-
     const sliderRef3 = useRef(null);
-
     const handleBulletClick = (element) => {
-        sliderRef3.current.slideTo(parseInt(element) - 1);
-        setCurrentSlideId(parseInt(element));
+        const slideId = parseInt(element);
+        const slideIndex = sliderKey;
+
+        if (slideIndex !== -1) {
+            sliderRef3.current.slideTo(slideIndex);
+            setCurrentSlideId(slideId);
+        }
     };
 
     const handleIdActive = useCallback((pop) => {
         setIdActive(pop)
     }, [idActive]);
-
-
-
-    const handlePrevClick1 = () => {
-        const prevSlideId = currentSlideId === 1 ? dignities.length : currentSlideId - 1;
-        sliderRef3.current.slideTo(prevSlideId - 1);
-        setCurrentSlideId(prevSlideId);
+    const swiperInstance = sliderRef3.current;
+    const handlePrevClick1 = (swiper) => {
+        const currentSlide = document.querySelector('.swiper-slide-active');
+        const currentSlideIndex = parseInt(currentSlide.getAttribute('serviceSlide'));
+    
+        const prevSlideIndex = currentSlideIndex === 1 ? sliderKey - 1 : currentSlideIndex - 1;
+    
+        swiper.slideTo(prevSlideIndex - 1);
+        setCurrentSlideId(prevSlideIndex);
     };
-
-    const handleNextClick1 = () => {
-        const nextSlideId = currentSlideId === dignities.length ? 1 : currentSlideId + 1;
-        sliderRef3.current.slideTo(nextSlideId - 1);
-        setCurrentSlideId(nextSlideId);
+    
+    const handleNextClick1 = (swiper) => {
+        const currentSlide = document.querySelector('.swiper-slide-active');
+        const currentSlideIndex = parseInt(currentSlide.getAttribute('serviceSlide'));
+    
+        const nextSlideIndex = currentSlideIndex === sliderKey - 1 ? 1 : currentSlideIndex + 1;
+    
+        swiper.slideTo(nextSlideIndex - 1);
+        setCurrentSlideId(nextSlideIndex);
     };
-
-
     const updatePaginationBulletClasses = (swiper) => {
         const bullets = document.querySelectorAll('.js-services-swiper-pagination-1 .swiper-pagination-bullet');
+        let currentIndex = sliderKey;
+
         bullets.forEach((bullet, index) => {
-            if (index === swiper.activeIndex) {
+            if (index === currentIndex) {
                 bullet.classList.add('swiper-pagination-bullet-active');
             } else {
                 bullet.classList.remove('swiper-pagination-bullet-active');
@@ -93,7 +102,7 @@ const ServiceSlidFirst = ({ idActive, setIdActive , apiGet , id, dignities = []}
                 loop: false,
                 allowTouchMove: false,
                 pagination: {
-                    dignities: '.js-services-swiper-pagination-1',
+                    el: '.js-services-swiper-pagination-1',
                     type: 'bullets',
                     clickable: true,
                 },
@@ -121,7 +130,6 @@ const ServiceSlidFirst = ({ idActive, setIdActive , apiGet , id, dignities = []}
                     blockRight.addEventListener('click', () => handleNextClick1(sliderRef3.current));
                 }
             }
-
         }
 
         return () => {
@@ -134,24 +142,14 @@ const ServiceSlidFirst = ({ idActive, setIdActive , apiGet , id, dignities = []}
 
     const [currentSlideId, setCurrentSlideId] = useState(1);
 
-    const handleSlideChange = (swiper) => {
-        const currentSlide = dignities[swiper.activeIndex];
-        setCurrentSlideId(currentSlide.id);
-    };
-
-    const handlePaginationClick = (sliderRef3, id) => {
-        sliderRef3.current.slideTo(id - 1);
-        setCurrentSlideId(id);
+    const handlePaginationClick = (sliderRef, sliderKey) => {
+        sliderRef.slideTo(sliderKey - 1);
+        setCurrentSlideId(sliderKey);
     };
 
 
 
     const sliderRef = useRef(null);
-
-    // slide2
-
-
-
 
     return (
         <SelectItemIdProvider>
@@ -161,12 +159,15 @@ const ServiceSlidFirst = ({ idActive, setIdActive , apiGet , id, dignities = []}
                 </div>
                 <div className="row__col--6 services-layout__main-col services-layout__main-col--nav">
                     <ul className="services-layout__main-nav">
-                        
+
                         {dignities.map((item) => (
-                            <li className="services-layout__main-nav-item" key={item.id}>
-                                <button onClick={() => handlePaginationClick(sliderRef3, item.id)} value={item.id} type="button" className={item.id === currentSlideId ? "serviceBullet js-services-slider-btn-nav-1 services-layout__main-nav-btn is-active" : "serviceBullet js-services-slider-btn-nav-1 services-layout__main-nav-btn"}>{item.name}</button>
-                            </li>
+                            item.included_in_the_service.filter((service) => service.category === "1").map((service) => (
+                                <li className="services-layout__main-nav-item" key={sliderKey}>
+                                    <button onClick={() => handlePaginationClick(sliderRef3, sliderKey)} value={sliderKey} type="button" className={service.sliderKey === currentSlideId ? "serviceBullet js-services-slider-btn-nav-1 services-layout__main-nav-btn is-active" : "serviceBullet js-services-slider-btn-nav-1 services-layout__main-nav-btn"}>{service.name}</button>
+                                </li>
+                            ))
                         ))}
+
                     </ul>
                 </div>
                 <div className="row__col--6 services-layout__main-col services-layout__main-col--slider">
@@ -174,14 +175,16 @@ const ServiceSlidFirst = ({ idActive, setIdActive , apiGet , id, dignities = []}
                         <div className="js-services-layout-slider-init-1 services-layout__main-slider">
                             <div className="swiper-wrapper">
                                 {dignities.map((item) => (
-                                    <div key={item.id} className={"swiper-slide services-layout__main-slider-slide"} serviceSlide={item.id}>
-                                        <article className="services-layout__main-slider-item">
-                                            <h3 className="services-layout__main-slider-item-title">{item.name}</h3>
-                                            <div className="content services-layout__main-slider-item-text">
-                                                <p>{item.dsc}</p>
-                                            </div>
-                                        </article>
-                                    </div>
+                                    item.included_in_the_service.filter((service) => service.category === "1").map((service) => (
+                                        <div key={sliderKey} className={"swiper-slide services-layout__main-slider-slide"} serviceSlide={sliderKey++}>
+                                            <article className="services-layout__main-slider-item">
+                                                <h3 className="services-layout__main-slider-item-title">{service.name}</h3>
+                                                <div className="content services-layout__main-slider-item-text">
+                                                    <p>{service.dsc}</p>
+                                                </div>
+                                            </article>
+                                        </div>
+                                    ))
                                 ))}
 
 
@@ -196,11 +199,13 @@ const ServiceSlidFirst = ({ idActive, setIdActive , apiGet , id, dignities = []}
 
                             <div className="js-services-swiper-pagination-1 swiper-pagination">
                                 {dignities.map((item) => (
-                                    <span
-                                        key={item.id}
-                                        className={item.id === currentSlideId ? "serviceBullet2 swiper-pagination-bullet swiper-pagination-bullet-active" : "serviceBullet2 swiper-pagination-bullet"}
-                                        onClick={() => handlePaginationClick(sliderRef3, item.id)}
-                                    ></span>
+                                    item.included_in_the_service.filter((service) => service.category === "1").map((service) => (
+                                        <span
+                                            key={sliderKey}
+                                            className={service.id === currentSlideId ? "serviceBullet2 swiper-pagination-bullet swiper-pagination-bullet-active" : "serviceBullet2 swiper-pagination-bullet"}
+                                            onClick={() => handlePaginationClick(sliderRef3, sliderKey)}
+                                        ></span>
+                                    ))
                                 ))}
                             </div>
 

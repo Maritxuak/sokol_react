@@ -38,8 +38,10 @@ const OurWorkflow = () => {
         if (ourWorkflowSliderElement) {
             const ourWorkflowSlider = new Swiper('.swiper-container', {
                 slidesPerView: 'auto',
+                
                 centeredSlides: true,
                 loop: false,
+                
                 initialSlide: 0,
                 observeParents: true,
                 observer: true,
@@ -292,10 +294,13 @@ const OurWorkflow = () => {
                         </div>
                         <div className="row__col--7 info-card__col info-card__col--content">
                             <div className="info-card__content">
-                                <h3 className="info-card__title">Искусственный интеллект для персонализации контента</h3>
-                                <div className="content info-card__text">
-                                    <p>Мы применяем технологии искусственного интеллекта для автоматической настройки контента сайта в соответствии с потребностями и предпочтениями каждого посетителя, обеспечивая уникальный пользовательский опыт.</p>
+                                <div className="padd">
+                                    <h3 className="info-card__title">Искусственный интеллект для персонализации контента</h3>
+                                    <div className="content info-card__text">
+                                        <p>Мы применяем технологии искусственного интеллекта для автоматической настройки контента сайта в соответствии с потребностями и предпочтениями каждого посетителя, обеспечивая уникальный пользовательский опыт.</p>
+                                    </div>
                                 </div>
+                                
                             </div>
                         </div>
                     </div>

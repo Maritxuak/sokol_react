@@ -8,25 +8,26 @@ import PropTypes from 'prop-types';
 import PhoneInput from 'react-phone-input-2'
 
 
-const CtaSection = ({apiGet}) => {
+const CtaSection = ({ apiGet }) => {
   const [PhoneNumber, setPhoneNumber] = useState('');
   const [valid, setValid] = useState(true);
   const handleChange = (value) => {
-      setPhoneNumber(value);
-      setValid(validatePhoneNumber(value))
+    setPhoneNumber(value);
+    setValid(validatePhoneNumber(value))
   }
 
   const validatePhoneNumber = (phoneNumber) => {
-      const phoneNumberPattern = /^\d{11}$/;
-      return phoneNumberPattern.test(phoneNumber);
+    const phoneNumberPattern = /^\d{11}$/;
+    return phoneNumberPattern.test(phoneNumber);
   }
+  
   const [inputContent, setInputContent] = useState('')
 
   const handleiInputChange = (event) => {
     setInputContent(event.target.value)
-  } 
-  
-  const [click,setClick] = React.useState(true)
+  }
+
+  const [click, setClick] = React.useState(true)
 
   const [selected, setSelected] = useState(null);
 
@@ -44,23 +45,63 @@ const CtaSection = ({apiGet}) => {
   const handleSelect = (option) => {
     setSelected(option);
   };
+
+  //form
+  const [name, setName] = useState('');
+  const [file, setFile] = useState(null);
+
+
+
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    setFile(file);
+  };
+  const handleNameChange = (event) => {
+    setName(event.target.value);
+  };
+  const handlePhoneNumberChange = (event) => {
+    setPhoneNumber(event.target.value);
+  };
   const handleSubmit = async (event) => {
     event.preventDefault();
-  
+
     const formData = new FormData(event.target);
-    formData.append("selectedOption", selected.value);
+    formData.append("category", selected.label);
+    formData.append("number_phone", PhoneNumber)
+    event.preventDefault();
+
+    if (!inputContent) {
+      formData.delete("dsc");
+    } else {
+      formData.append("dsc", inputContent);
+    }
   
+    
+    console.log("Данные для отправки:");
+    for (var pair of formData.entries()) {
+      console.log(pair[0] + ': ' + pair[1]);
+    }
+
+    if (file) {
+      formData.append("document", file);
+    }
+    console.log("Данные для отправки:");
+    for (var pair of formData.entries()) {
+      console.log(pair[0] + ': ' + pair[1]);
+    }
+
+    
     try {
       const response = await fetch("http://localhost:8000/api/create/FeedBack", {
         method: "POST",
         body: formData,
       });
-  
+
       if (response.ok) {
-        // Обработка успешного ответа
+
         console.log("Запись успешно создана!");
       } else {
-        // Обработка ошибки
+
         console.error("Ошибка при создании записи");
       }
     } catch (error) {
@@ -68,6 +109,7 @@ const CtaSection = ({apiGet}) => {
     }
   };
 
+  const [activeForm, setActiveForm] = useState(false)
 
   return (
     <>
@@ -94,7 +136,9 @@ const CtaSection = ({apiGet}) => {
                   <div className="u-control cta-section__form-line">
                     <input
                       type="text"
-                      name="name"
+                      onChange={handleNameChange}
+                      name="username"
+                      value={name}
                       className="u-input u-input--theme-white u-input--size-md u-control__input"
                       placeholder=""
                     />
@@ -103,19 +147,21 @@ const CtaSection = ({apiGet}) => {
                     </p>
                   </div>
                   <div className="u-control cta-section__form-line phone">
-                  <div className="iti iti--allow-dropdown">
-            <label className="u-input u-input--theme-white u-input--size-md u-input--iti u-control__input is-active-country phone">
-                <PhoneInput
-                country={'ru'}
-                value = {PhoneNumber}
-                onChange={handleChange}
-                inputProps={{
-                    required: true,
-                }}
-                />
-            </label>
-            {! valid && <p className="error">Введите действительный номер телефона.</p>}
-        </div>
+                    <div className="iti iti--allow-dropdown">
+                      <label className="u-input u-input--theme-white u-input--size-md u-input--iti u-control__input is-active-country phone">
+
+                        <PhoneInput
+                          name="number_phone"
+                          country={'ru'}
+                          value={PhoneNumber}
+                          onChange={handleChange}
+                          inputProps={{
+                            required: true,
+                          }}
+                        />
+                      </label>
+                      {!valid && <p className="error">Введите действительный номер телефона.</p>}
+                    </div>
                     <p className="u-control__placeholder">
                       <span className="u-control__placeholder-title"></span>
                     </p>
@@ -124,6 +170,7 @@ const CtaSection = ({apiGet}) => {
                     <input
                       type="text"
                       name="name_company"
+                      required
                       className="u-input u-input--theme-white u-input--size-md u-control__input"
                       placeholder=""
                     />
@@ -143,11 +190,12 @@ const CtaSection = ({apiGet}) => {
                         name="document"
                         className="u-control__file-el"
                         value=""
+                        onChange={handleFileChange}
                       />
                       <span className="u-input u-input--theme-white u-input--size-md u-control__file-input"></span>
                       <p className="u-control__placeholder">
                         <span className="u-control__placeholder-title">
-                          Файл с информацией о проекте
+                          {file ? file.name : 'Файл с информацией о проекте'}
                         </span>
                       </p>
                       <button
@@ -165,8 +213,13 @@ const CtaSection = ({apiGet}) => {
                       name="category"
                       id="js-select-init"
                       className="cta-section__form-select"
+                      onChange={(e) => {
+                        const selectedOption = options.find(option => option.value === e.target.value);
+                        setSelected(selectedOption);
+                      }}
                     >
                       <option
+                        required
                         value="Не выбрано"
                         selected="selected"
                         disabled="disabled"
@@ -237,17 +290,17 @@ const CtaSection = ({apiGet}) => {
                       <span className={`${selected ? selected.value : ""} current`}>
                         {selected ? selected.label : ""}
                       </span>
-                      <div className="nice-select-dropdown">                   
-                            {(<ul className="list">
-                              {options.map((option) => (
-                              <li
+                      <div className="nice-select-dropdown">
+                        {(<ul className="list">
+                          {options.map((option) => (
+                            <li
                               key={option.value} onClick={() => handleSelect(option)}
                               className="option selected disabled focus"
-                              >
-                                {option.label}
-                              </li>
-                              ))}
-                            </ul>)}
+                            >
+                              {option.label}
+                            </li>
+                          ))}
+                        </ul>)}
                       </div>
                     </div>
                     <p className="u-control__placeholder">
@@ -255,22 +308,22 @@ const CtaSection = ({apiGet}) => {
                         Что вас интересует?
                       </span>
                     </p>
-                    </div>
-                    <div className="u-control cta-section__form-line">
-                      <textarea name="dsc" className={inputContent === '' ? "u-input u-input--theme-white u-input cta-section__form-line textareasection" : "u-input u-input--theme-white u-input cta-section__form-line textareasection textareaactive"} id="" cols="20" rows="5" value={inputContent} onChange={handleiInputChange}>
-                      
-                      </textarea>
-                      <p className="u-control__placeholder">
-                          <span className="u-control__placeholder-title">
-                            Описание
-                          </span>
-                        </p>
-                    </div>
+                  </div>
+                  <div className="u-control cta-section__form-line">
+                    <textarea name="dsc" className={inputContent === '' ? "u-input u-input--theme-white u-input cta-section__form-line textareasection" : "u-input u-input--theme-white u-input cta-section__form-line textareasection textareaactive"} id="" cols="20" rows="5" value={inputContent} onChange={handleiInputChange}>
+
+                    </textarea>
+                    <p className="u-control__placeholder">
+                      <span className="u-control__placeholder-title">
+                        Описание
+                      </span>
+                    </p>
+                  </div>
                   <div className="u-checkbox cta-section__form-privacy">
                     <label className="u-checkbox__label">
                       <input
                         type="checkbox"
-                        name="cta_privacy"
+
                         className="u-checkbox__control"
                         required
                         value="Персональные данные"
@@ -291,7 +344,7 @@ const CtaSection = ({apiGet}) => {
                   <button
                     type="submit"
                     className="btn btn--size-md btn--theme-accent-fill cta-section__form-btn"
-                    disabled={!selected}
+                    disabled={!selected || !name || !PhoneNumber}
                   >
                     <span className="btn__inner">
                       <span className="btn__title">Отправить</span>
