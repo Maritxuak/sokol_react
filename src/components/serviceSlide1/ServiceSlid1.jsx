@@ -3,41 +3,43 @@
 import { ReactComponent as Arrow2 } from "../../images/icons/arrow-type-2.svg";
 import React, { useRef, useCallback, useEffect, useState } from "react";
 import Swiper from "swiper";
+import { SelectItemIdProvider} from "../provider/Provider"
 
+const ServiceSlidFirst = ({ idActive, setIdActive , apiGet , id, dignities = []}) => {
 
-const ServiceSlidFirst = ({ idActive, setIdActive, actualId = [], apiGet }) => {    const activeId = actualId;
-    const [dignities, setDignities] = useState([]);
+    console.log("айди", id)
+
     const [isLoading, setIsLoading] = useState(true);
     const [openCardId, setOpenCardId] = useState(null);
-    console.log("actualId", activeId)
-    const handleCardClick = (id) => {
-        setOpenCardId(id);
-    };
-    useEffect(() => {
-        const fetchDignities = async () => {
-            try {
-                const response = await apiGet.get('/read/dcsCatServices/');
-                if (response.data) {
-                    const formattedDignities = response.data.map((item) => ({
-                        id: item.id,
-                        name: item.name,
-                        category: item.category,
-                        dsc: item.dsc,
-                        included_in_the_service: item.included_in_the_service,
-                    }));
-                    setDignities(formattedDignities);
-                } else {
-                    console.error('Объект data не определен');
-                }
-                setIsLoading(false);
-            } catch (error) {
-                console.error(error);
-                setIsLoading(false);
-            }
-        };
 
-        fetchDignities();
-    }, []);
+    // const handleCardClick = (id) => {
+    //     setOpenCardId(id);
+    // };
+    // useEffect(() => {
+    //     const fetchDignities = async () => {
+    //         try {
+    //             const response = await apiGet.get('/read/dcsCatServices/');
+    //             if (response.data) {
+    //                 const formattedDignities = response.data.map((item) => ({
+    //                     id: item.id,
+    //                     name: item.name,
+    //                     category: item.category,
+    //                     dsc: item.dsc,
+    //                     included_in_the_service: item.included_in_the_service,
+    //                 }));
+    //                 setDignities(formattedDignities);
+    //             } else {
+    //                 console.error('Объект data не определен');
+    //             }
+    //             setIsLoading(false);
+    //         } catch (error) {
+    //             console.error(error);
+    //             setIsLoading(false);
+    //         }
+    //     };
+
+    //     fetchDignities();
+    // }, []);
 
 
 
@@ -152,14 +154,15 @@ const ServiceSlidFirst = ({ idActive, setIdActive, actualId = [], apiGet }) => {
 
 
     return (
-        <>
+        <SelectItemIdProvider>
             <div id="services-layout-1" className={idActive === 1 ? `row services-layout__row-main is-show` : "row services-layout__row-main"}>
                 <div className="row__col--12 services-layout__main-col services-layout__main-col--title">
-                    <h2 className="services-layout__main-title">Что входит в услугу</h2>
+                    <h2 className="services-layout__main-title">{dignities.name} Что входит в услугу</h2>
                 </div>
                 <div className="row__col--6 services-layout__main-col services-layout__main-col--nav">
                     <ul className="services-layout__main-nav">
-                        {dignities.filter((item) => actualId.includes(item.id)).map((item) => (
+                        
+                        {dignities.map((item) => (
                             <li className="services-layout__main-nav-item" key={item.id}>
                                 <button onClick={() => handlePaginationClick(sliderRef3, item.id)} value={item.id} type="button" className={item.id === currentSlideId ? "serviceBullet js-services-slider-btn-nav-1 services-layout__main-nav-btn is-active" : "serviceBullet js-services-slider-btn-nav-1 services-layout__main-nav-btn"}>{item.name}</button>
                             </li>
@@ -170,7 +173,7 @@ const ServiceSlidFirst = ({ idActive, setIdActive, actualId = [], apiGet }) => {
                     <div className="services-layout__main-slider-wrapper">
                         <div className="js-services-layout-slider-init-1 services-layout__main-slider">
                             <div className="swiper-wrapper">
-                                {dignities.filter((item) => actualId.includes(item.id)).map((item) => (
+                                {dignities.map((item) => (
                                     <div key={item.id} className={"swiper-slide services-layout__main-slider-slide"} serviceSlide={item.id}>
                                         <article className="services-layout__main-slider-item">
                                             <h3 className="services-layout__main-slider-item-title">{item.name}</h3>
@@ -192,7 +195,7 @@ const ServiceSlidFirst = ({ idActive, setIdActive, actualId = [], apiGet }) => {
                             </button>
 
                             <div className="js-services-swiper-pagination-1 swiper-pagination">
-                                {dignities.filter((item) => actualId.includes(item.id)).map((item) => (
+                                {dignities.map((item) => (
                                     <span
                                         key={item.id}
                                         className={item.id === currentSlideId ? "serviceBullet2 swiper-pagination-bullet swiper-pagination-bullet-active" : "serviceBullet2 swiper-pagination-bullet"}
@@ -210,7 +213,7 @@ const ServiceSlidFirst = ({ idActive, setIdActive, actualId = [], apiGet }) => {
                     </div>
                 </div>
             </div>
-        </>
+        </SelectItemIdProvider>
     );
 }
 

@@ -5,13 +5,13 @@ import project_services_section_slider_img_3 from "../../images/project-card-1.j
 import project_services_section_slider_img_4 from "../../images/project-card-2.jpg"
 import project_services_section_slider_img_5 from "../../images/project-card-1.jpg"
 import { ReactComponent as Arrow2 } from "../../images/icons/arrow-type-2.svg";
+import {useParams, Link} from 'react-router-dom';
 import { Pagination } from "swiper/modules"
 import Swiper from 'swiper';
 import axios from 'axios';
 const ProjectServicesSection = ({apiGet}) => {
+    
     const [selectedSlideId, setSelectedSlideId] = useState(null);
-
-
 
     const [dignities, setDignities] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -20,6 +20,7 @@ const ProjectServicesSection = ({apiGet}) => {
     const handleCardClick = (id) => {
         setSelectedSlideId(id === selectedSlideId ? null : id);
     };
+
     const handleDetailsClick = async () => {
         if (selectedSlideId) {
             try {
@@ -31,6 +32,7 @@ const ProjectServicesSection = ({apiGet}) => {
         }
     };
     useEffect(() => {
+        
         const fetchDignities = async () => {
             try {
                 const response = await apiGet.get('/read/project/');
@@ -153,7 +155,7 @@ const ProjectServicesSection = ({apiGet}) => {
             }
         }
     };
-
+    
     return (
         <section className="project-services-section">
             <div className="container container--size-md project-services-section__container">
@@ -161,17 +163,17 @@ const ProjectServicesSection = ({apiGet}) => {
                 <div className="js-project-services-slider-init project-services-section__slider swiper">
                     <div className="swiper-wrapper">
                         {dignities.map((item) => (
-                            <div className="swiper-slide project-services-section__slider-slide" data-our-workflow-slide-project={item.id}>
+                            <div key={item.id} className="swiper-slide project-services-section__slider-slide" data-our-workflow-slide-project={item.id}>
                                 <picture className="bg-color bg-color--theme-darkgrey bg-color--opacity-55 project-services-section__slider-picture">
                                     <img src={item.bw_preview_photo} alt="Цифровое воссоединение" />
                                 </picture>
                                 <div className="project-services-section__slider-content">
                                     <div className="project-services-section__slider-title">{item.name}</div>
-                                    <a href="#" className="btn btn--size-md btn--theme-accent-fill project-services-section__slider-btn" onClick={handleDetailsClick}>
+                                    <Link key={item.id} to={`/project/${item.id}`} className="btn btn--size-md btn--theme-accent-fill project-services-section__slider-btn" onClick={handleDetailsClick}>
                                         <span className="btn__inner">
                                             <span className="btn__title">Подробнее</span>
                                         </span>
-                                    </a>
+                                    </Link>
                                 </div>
                             </div >
                         ))}
@@ -188,7 +190,7 @@ const ProjectServicesSection = ({apiGet}) => {
                         </button>
                         <div className="swiper-pagination">
                             {dignities.map((item) => (
-                                <span value={item.id} onClick={() => handlePaginationClick(sliderRef, item.id)} className={item.id === currentSlideId ?"serviceBulletProject swiper-pagination-bullet-active swiper-pagination-bullet swiper-pagination-bullet-project": "serviceBulletProject swiper-pagination-bullet swiper-pagination-bullet-project"}></span>
+                                <span key={item.id} value={item.id} onClick={() => handlePaginationClick(sliderRef, item.id)} className={item.id === currentSlideId ?"serviceBulletProject swiper-pagination-bullet-active swiper-pagination-bullet swiper-pagination-bullet-project": "serviceBulletProject swiper-pagination-bullet swiper-pagination-bullet-project"}></span>
                             ))}
                         </div>
                         <button onClick={handleNextClick1} type="button" className="swiper-button swiper-button--theme-gray swiper-button-next js-project-services-slider-btn-next">

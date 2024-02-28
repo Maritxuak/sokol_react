@@ -4,11 +4,22 @@ import { ReactComponent as Close } from "../../images/icons/close.svg";
 import React from "react";
 import { useState } from "react";
 import PhoneFileValidation from "../../PhoneFileValidation";
+import PropTypes from 'prop-types';
+import PhoneInput from 'react-phone-input-2'
 
 
+const CtaSection = ({apiGet}) => {
+  const [PhoneNumber, setPhoneNumber] = useState('');
+  const [valid, setValid] = useState(true);
+  const handleChange = (value) => {
+      setPhoneNumber(value);
+      setValid(validatePhoneNumber(value))
+  }
 
-const CtaSection = () => {
-
+  const validatePhoneNumber = (phoneNumber) => {
+      const phoneNumberPattern = /^\d{11}$/;
+      return phoneNumberPattern.test(phoneNumber);
+  }
   const [inputContent, setInputContent] = useState('')
 
   const handleiInputChange = (event) => {
@@ -33,6 +44,30 @@ const CtaSection = () => {
   const handleSelect = (option) => {
     setSelected(option);
   };
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+  
+    const formData = new FormData(event.target);
+    formData.append("selectedOption", selected.value);
+  
+    try {
+      const response = await fetch("http://localhost:8000/api/create/FeedBack", {
+        method: "POST",
+        body: formData,
+      });
+  
+      if (response.ok) {
+        // Обработка успешного ответа
+        console.log("Запись успешно создана!");
+      } else {
+        // Обработка ошибки
+        console.error("Ошибка при создании записи");
+      }
+    } catch (error) {
+      console.error("Произошла ошибка:", error);
+    }
+  };
+
 
   return (
     <>
@@ -55,11 +90,11 @@ const CtaSection = () => {
                 </div>
               </div>
               <div className="row__col--6 cta-section__block-col cta-section__block-col--form">
-                <form action="#" className="cta-section__form">
+                <form onSubmit={handleSubmit} action="#" className="cta-section__form">
                   <div className="u-control cta-section__form-line">
                     <input
                       type="text"
-                      name="cta_name"
+                      name="name"
                       className="u-input u-input--theme-white u-input--size-md u-control__input"
                       placeholder=""
                     />
@@ -68,7 +103,19 @@ const CtaSection = () => {
                     </p>
                   </div>
                   <div className="u-control cta-section__form-line phone">
-                    <PhoneFileValidation/>
+                  <div className="iti iti--allow-dropdown">
+            <label className="u-input u-input--theme-white u-input--size-md u-input--iti u-control__input is-active-country phone">
+                <PhoneInput
+                country={'ru'}
+                value = {PhoneNumber}
+                onChange={handleChange}
+                inputProps={{
+                    required: true,
+                }}
+                />
+            </label>
+            {! valid && <p className="error">Введите действительный номер телефона.</p>}
+        </div>
                     <p className="u-control__placeholder">
                       <span className="u-control__placeholder-title"></span>
                     </p>
@@ -76,7 +123,7 @@ const CtaSection = () => {
                   <div className="u-control cta-section__form-line">
                     <input
                       type="text"
-                      name="cta_company"
+                      name="name_company"
                       className="u-input u-input--theme-white u-input--size-md u-control__input"
                       placeholder=""
                     />
@@ -93,7 +140,7 @@ const CtaSection = () => {
                       </svg>
                       <input
                         type="file"
-                        name="cta_file"
+                        name="document"
                         className="u-control__file-el"
                         value=""
                       />
@@ -115,9 +162,9 @@ const CtaSection = () => {
                   </div>
                   <div className={selected === null ? "cta-section__form-line u-control" : "cta-section__form-line u-control is-select-active"} >
                     <select
-                      name="cta_appeal"
+                      name="category"
                       id="js-select-init"
-                      class="cta-section__form-select"
+                      className="cta-section__form-select"
                     >
                       <option
                         value="Не выбрано"
@@ -184,14 +231,14 @@ const CtaSection = () => {
                     </select>
                     <div
                       className={click ? "nice-select cta-section__form-select" : "nice-select cta-section__form-select open"}
-                      tabindex="0"
+                      tabIndex="0"
                       onClick={() => setClick(!click)}
                     >
                       <span className={`${selected ? selected.value : ""} current`}>
                         {selected ? selected.label : ""}
                       </span>
                       <div className="nice-select-dropdown">                   
-                            {(<ul class="list">
+                            {(<ul className="list">
                               {options.map((option) => (
                               <li
                               key={option.value} onClick={() => handleSelect(option)}
@@ -203,18 +250,18 @@ const CtaSection = () => {
                             </ul>)}
                       </div>
                     </div>
-                    <p class="u-control__placeholder">
-                      <span class="u-control__placeholder-title">
+                    <p className="u-control__placeholder">
+                      <span className="u-control__placeholder-title">
                         Что вас интересует?
                       </span>
                     </p>
                     </div>
                     <div className="u-control cta-section__form-line">
-                      <textarea className={inputContent === '' ? "u-input u-input--theme-white u-input cta-section__form-line textareasection" : "u-input u-input--theme-white u-input cta-section__form-line textareasection textareaactive"} name="" id="" cols="20" rows="5" value={inputContent} onChange={handleiInputChange}>
+                      <textarea name="dsc" className={inputContent === '' ? "u-input u-input--theme-white u-input cta-section__form-line textareasection" : "u-input u-input--theme-white u-input cta-section__form-line textareasection textareaactive"} id="" cols="20" rows="5" value={inputContent} onChange={handleiInputChange}>
                       
                       </textarea>
-                      <p class="u-control__placeholder">
-                          <span class="u-control__placeholder-title">
+                      <p className="u-control__placeholder">
+                          <span className="u-control__placeholder-title">
                             Описание
                           </span>
                         </p>
@@ -244,7 +291,7 @@ const CtaSection = () => {
                   <button
                     type="submit"
                     className="btn btn--size-md btn--theme-accent-fill cta-section__form-btn"
-                    disabled
+                    disabled={!selected}
                   >
                     <span className="btn__inner">
                       <span className="btn__title">Отправить</span>

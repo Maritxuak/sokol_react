@@ -72,7 +72,7 @@ const Project = () =>{
   return(
   <>
     <ProjectLayout apiGet = {axiosInstance}/>
-    <CtaSection />
+    <CtaSection apiGet = {axiosInstance}/>
   </>
   );
 };
@@ -91,16 +91,12 @@ function App() {
       ],
     },
     {
-      path: "/service",
+      path: "/service/:id",
       element: <Services />,
     },
     {
-      path: "/project",
+      path: "/project/:id",
       element: <Project/>
-    },
-    {
-      path: "contacts/:contactId",
-      element: <Contact />,
     },
   ]);
   
