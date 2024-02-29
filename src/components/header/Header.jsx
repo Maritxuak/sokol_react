@@ -1,7 +1,17 @@
 import "./header.css"
 import React, { useState } from "react"
 import headerlogo from '../../images/logo.png'
-const Header = ({click, setClick, scroll, setScroll, handleScroll, handleBool, bool}) => {
+const Header = () => {
+  const [scroll, setScroll] = React.useState(0);
+  const [click, setClick] = React.useState(true);
+  React.useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const handleScroll = () => {
+    setScroll(window.scrollY);
+  };
     return (
 <header className={scroll < 300 ? "header--theme-sticky header" : "header--theme-sticky header is-sticky"}>
   <div className="container container--size-md header__container">
@@ -45,25 +55,19 @@ const Header = ({click, setClick, scroll, setScroll, handleScroll, handleBool, b
         <nav className="header__nav" role="navigation">
           <ul className="header__nav-list">
             <li className="header__nav-item">
-              <a href="#" className="header__nav-link">О компании</a>
-            </li>
-            <li className="header__nav-item">
               <a href="#" className="header__nav-link is-active">Услуги</a>
             </li>
             <li className="header__nav-item">
-              <a href="#" className="header__nav-link">Специалисты</a>
+              <a href="#" className="header__nav-link">За что нас ценят?</a>
             </li>
             <li className="header__nav-item">
-              <a href="#" className="header__nav-link">Подход</a>
+              <a href="#" className="header__nav-link">Как мы работаем?</a>
             </li>
             <li className="header__nav-item">
-              <a href="#" className="header__nav-link">Репутация</a>
+              <a href="#" className="header__nav-link">Условия сотрудничества</a>
             </li>
             <li className="header__nav-item">
               <a href="#" className="header__nav-link">Проекты</a>
-            </li>
-            <li className="header__nav-item">
-              <a href="#" className="header__nav-link">Консультация</a>
             </li>
           </ul>
         </nav>

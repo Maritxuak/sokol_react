@@ -64,12 +64,12 @@ const ServicesLayout = ({apiGet, actualId}) => {
         <>
             <section className="services-layout site__services-layout">
                 <div className="container container--size-md services-layout__container">
-                    <h1 className="services-layout__title">Создание и оптимизация лендингов и мультилендингов</h1>
+                    <h1 className="services-layout__title">{object.name}</h1>
                     <div className="row services-layout__row-content">
                         <div className="row__col--6 services-layout__col services-layout__col--item">
                             <article className="services-layout__item">
                                 <p className="services-layout__item-suptitle">Разработка систем с веб-интерфейсом</p>
-                                <h3 className="services-layout__item-title">Создание и оптимизация лендингов и&nbsp;мультилендингов</h3>
+                                <h3 className="services-layout__item-title">{object.name}</h3>
                                 <p className="services-layout__item-suptitle">Кол-во часов работы</p>
                                 <p className="services-layout__item-price">от 70 до 130ч</p>
                                 <div className="services-layout__item-btns">
@@ -81,7 +81,7 @@ const ServicesLayout = ({apiGet, actualId}) => {
 
                                     <a href="#services-layout-2" className={idActive === 2 ? `js-services-layout-nav btn btn--size-md btn--theme-gray-outline services-layout__item-btn is-active` : "js-services-layout-nav btn btn--size-md btn--theme-gray-outline services-layout__item-btn"} onClick={() => handleIdActive(2)}>
                                         <span className="btn__inner">
-                                            <span className="btn__title">Это поможет</span>
+                                            <span className="btn__title">Что входит в услугу?</span>
                                         </span>
                                     </a>
 
@@ -90,8 +90,7 @@ const ServicesLayout = ({apiGet, actualId}) => {
                         </div>
                         <div className="row__col--6 services-layout__col services-layout__col--content">
                             <div className="content services-layout__description">
-                                <p>При заказе данной услуги специалисты проведут анализ вашего текущего лендинга, и&nbsp;работу с мультилендингами.</p>
-                                <p>В результате вы получите оптимизированный и эффективный лендинг, способствующий повышению конверсии и привлечению целевой аудитории.</p>
+                                {object.dsc}
                             </div>
                         </div>
                     </div>

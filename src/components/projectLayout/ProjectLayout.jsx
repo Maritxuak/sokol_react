@@ -11,12 +11,14 @@ const ProjectLayout = ({ apiGet }) => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  
   const [dignities, setDignities] = useState([]); // Изменено на dignities
   const [object, setObject] = useState([])
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    console.log("dignities1", dignities);
+    
   }, [dignities]);
 
   // const newArray = dignities.qoutes.map((item) => (

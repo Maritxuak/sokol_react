@@ -18,10 +18,23 @@ const HeroSection = ({ currentSlideId, setCurrentSlideId, apiGet }) => {
     const [dignities, setDignities] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [openCardId, setOpenCardId] = useState(null);
+    let sensorSet = false;
 
     const handleCardClick = (id) => {
         setOpenCardId(id);
     };
+    const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+    const SetClick = () => {
+        if (isMobileDevice) {
+            console.log("Телефон")
+            const element1 = document.querySelector('.services-card__dropdown .q');
+            
+
+        } else {
+            console.log("ПК")
+        }
+    }
 
     const { selectedItemId, setSelectedItemId } = useUserSelectedItemId() || {};
     const handleItemClick = (itemId) => {
@@ -71,7 +84,7 @@ const HeroSection = ({ currentSlideId, setCurrentSlideId, apiGet }) => {
     }, []);
 
     return (
-            <section className="hero-section">
+            <section id="main" className="hero-section">
                 <div className="container container--size-md hero-section__container">
                     <div className="row hero-section__row">
                         <div className="hero-section__col hero-section__col--content row__col--9">
@@ -125,7 +138,7 @@ const HeroSection = ({ currentSlideId, setCurrentSlideId, apiGet }) => {
                                 <picture className="bg-color bg-color--theme-darkgrey bg-color--opacity-75 services-card__picture">
                                     <img src={services_card_1} alt="Разработка систем с веб-интерфейсом" />
                                 </picture>
-                                <div className="services-card__inner">
+                                <div className="services-card__inner" onClick={SetClick}>
                                     <div className="services-card__content">
                                         <h3 className="services-card__title">Разработка систем с веб-интерфейсом</h3>
                                         <p className="services-card__text">Создание веб-систем с удобным интерфейсом, оптимизированных под нужды вашего бизнеса.</p>
@@ -135,7 +148,7 @@ const HeroSection = ({ currentSlideId, setCurrentSlideId, apiGet }) => {
                                     <ul className="services-card__dropdown-list">
                                         {dignities.filter((item) => item.category === "1").map((item) => (
                                             <li key={item.id}>
-                                                <Link key={item.id} to={`/service/1`} className="services-card__link" onClick={() => handleItemClick(item.id)}>
+                                                <Link to={`/service/1`} key={item.id} className="services-card__link" onClick={() => handleItemClick(item.id)}>
                                                     <span className="services-card__link-title">{item.name}</span>
                                                     <svg className="u-icon services-card__link-icon">
                                                         <Arrow4 />
@@ -162,12 +175,12 @@ const HeroSection = ({ currentSlideId, setCurrentSlideId, apiGet }) => {
                                     <ul className="services-card__dropdown-list">
                                         {dignities.filter((item) => item.category === "2").map((item) => (
                                             <li>
-                                                <a href="#" className="services-card__link">
+                                                <Link to={`/service/2`}  className="services-card__link">
                                                     <span className="services-card__link-title">{item.name}</span>
                                                     <svg className="u-icon services-card__link-icon">
                                                         <Arrow4 />
                                                     </svg>
-                                                </a>
+                                                </Link>
                                             </li>
                                         ))}
                                     </ul>
@@ -189,12 +202,12 @@ const HeroSection = ({ currentSlideId, setCurrentSlideId, apiGet }) => {
                                     <ul className="services-card__dropdown-list">
                                         {dignities.filter((item) => item.category === "3").map((item) => (
                                             <li>
-                                                <a href="#" className="services-card__link">
+                                                <Link to={`/service/3`}  className="services-card__link">
                                                     <span className="services-card__link-title">{item.name}</span>
                                                     <svg className="u-icon services-card__link-icon">
                                                         <Arrow4 />
                                                     </svg>
-                                                </a>
+                                                </Link>
                                             </li>
                                         ))}
                                     </ul>
@@ -216,12 +229,12 @@ const HeroSection = ({ currentSlideId, setCurrentSlideId, apiGet }) => {
                                     <ul className="services-card__dropdown-list">
                                         {dignities.filter((item) => item.category === "4").map((item) => (
                                             <li>
-                                                <a href="#" className="services-card__link">
+                                                <Link to={`/service/4`}  className="services-card__link">
                                                     <span className="services-card__link-title">{item.name}</span>
                                                     <svg className="u-icon services-card__link-icon">
                                                         <Arrow4 />
                                                     </svg>
-                                                </a>
+                                                </Link>
                                             </li>
                                         ))}
                                     </ul>
@@ -243,12 +256,12 @@ const HeroSection = ({ currentSlideId, setCurrentSlideId, apiGet }) => {
                                     <ul className="services-card__dropdown-list">
                                         {dignities.filter((item) => item.category === "5").map((item) => (
                                             <li>
-                                                <a href="#" className="services-card__link">
+                                                <Link to={`/service/5`}  className="services-card__link">
                                                     <span className="services-card__link-title">{item.name}</span>
                                                     <svg className="u-icon services-card__link-icon">
                                                         <Arrow4 />
                                                     </svg>
-                                                </a>
+                                                </Link>
                                             </li>
                                         ))}
                                     </ul>
@@ -270,12 +283,12 @@ const HeroSection = ({ currentSlideId, setCurrentSlideId, apiGet }) => {
                                     <ul className="services-card__dropdown-list">
                                         {dignities.filter((item) => item.category === "6").map((item) => (
                                             <li>
-                                                <a href="#" className="services-card__link">
+                                                <Link to={`/service/6`}  className="services-card__link">
                                                     <span className="services-card__link-title">{item.name}</span>
                                                     <svg className="u-icon services-card__link-icon">
                                                         <Arrow4 />
                                                     </svg>
-                                                </a>
+                                                </Link>
                                             </li>
                                         ))}
                                     </ul>

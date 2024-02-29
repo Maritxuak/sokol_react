@@ -32,6 +32,7 @@ import PhoneFileValidation from './PhoneFileValidation'
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import Contact from './components/contact/Contact';
+import HeaderSmall from './components/header/HeaderSmall';
 
 const axiosInstance = axios.create({
   baseURL: 'http://localhost:8000/api',
@@ -46,24 +47,13 @@ const Layout = () => {
   );
 };
 
-const Main = () => {
-  return (
-    <>
-      <HeroSection apiGet = {axiosInstance}/>
-      <About />
-      <Benifest apiGet = {axiosInstance}/>
-      <OurWorkflow />
-      <ProjectServicesSection apiGet = {axiosInstance}/>
-      <CtaSection />
-    </>
-  );
-};
 const Services = () =>{
   return(
   <>
+    <HeaderSmall />
     <ServicesLayout  apiGet = {axiosInstance}/>
-    <TypicalSection />
-    <CtaSection />
+    <TypicalSection apiGet = {axiosInstance}/>
+    <CtaSection apiGet = {axiosInstance}/>
   </>
   );
 };
@@ -71,6 +61,7 @@ const Services = () =>{
 const Project = () =>{
   return(
   <>
+    <HeaderSmall />
     <ProjectLayout apiGet = {axiosInstance}/>
     <CtaSection apiGet = {axiosInstance}/>
   </>
@@ -78,28 +69,6 @@ const Project = () =>{
 };
 function App() {
   const url = 3
-
-  const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <Layout />,
-      children: [
-        {
-          path: "/",
-          element: <Main />,
-        },
-      ],
-    },
-    {
-      path: "/service/:id",
-      element: <Services />,
-    },
-    {
-      path: "/project/:id",
-      element: <Project/>
-    },
-  ]);
-  
   const { id } = useParams();
   const [scroll, setScroll] = React.useState(0);
   const [data, setData] = useState([]);
@@ -113,15 +82,56 @@ function App() {
   const handleScroll = () => {
     setScroll(window.scrollY);
   };
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Layout />,
+      children: [
+        {
+          path: "/",
+          element: <Header click={click} setClick={setClick} scroll={scroll} setScroll={setScroll} handleScroll={handleScroll} />,
+        },
+        {
+          path: "/",
+          element: <Main />,
+        },
+
+      ],
+    },
+    {
+      path: "/service/:id",
+      element: <Services />,
+    },
+    {
+      path: "/project/:id",
+      element: <Project/>
+    },
+  ]);
 
   return (
     <div className={!click ? "" : "is-menu-opened"}>
-      <Header click={click} setClick={setClick} scroll={scroll} setScroll={setScroll} handleScroll={handleScroll} />
+    
     <RouterProvider router={router} />
     
       <Footer />
     </div>
   );
 }
+
+const Main = () => {
+
+
+  return (
+    <>
+      <Header/>
+      <HeroSection apiGet = {axiosInstance}/>
+      <About />
+      <Benifest apiGet = {axiosInstance}/>
+      <OurWorkflow />
+      <ProjectServicesSection apiGet = {axiosInstance}/>
+      <CtaSection apiGet = {axiosInstance}/>
+    </>
+  );
+};
 
 export default App;

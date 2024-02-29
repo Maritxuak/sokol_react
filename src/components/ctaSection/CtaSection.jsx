@@ -2,7 +2,7 @@ import { ReactComponent as Checked } from "../../images/icons/checked.svg";
 import { ReactComponent as FileAttach } from "../../images/icons/file-attach.svg";
 import { ReactComponent as Close } from "../../images/icons/close.svg";
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PhoneFileValidation from "../../PhoneFileValidation";
 import PropTypes from "prop-types";
 import PhoneInput from "react-phone-input-2";
@@ -19,15 +19,42 @@ const CtaSection = ({ apiGet }) => {
     const phoneNumberPattern = /^\d{11}$/;
     return phoneNumberPattern.test(phoneNumber);
   };
-
+  const [isLoading, setIsLoading] = useState(true);
+  const [dignities, setDignities] = useState([]);
   const [inputContent, setInputContent] = useState("");
 
   const handleiInputChange = (event) => {
     setInputContent(event.target.value);
   };
+  useEffect(() => {
+        
+    const fetchDignities = async () => {
+        try {
+            const response = await apiGet.get('/read/services/');
+            console.log(response.data)
+            if (response.data) {
+                const formattedDignities = response.data.map((item) => ({
+                    id: item.id,
+                    name: item.name,
+                    category: item.category,
+                    dsc: item.dsc,
+                    included_in_the_service: item.included_in_the_service,
 
+                }));
+                setDignities(formattedDignities);
+            } else {
+                console.error('Объект data не определен');
+            }
+            setIsLoading(false);
+        } catch (error) {
+            setIsLoading(false);
+        }
+    };
+
+    fetchDignities();
+}, [apiGet]);
   const [click, setClick] = React.useState(true);
-
+console.log("cta", dignities)
   const [selected, setSelected] = useState(null);
 
   const options = [
@@ -77,7 +104,7 @@ const CtaSection = ({ apiGet }) => {
     event.preventDefault();
 
     const formData = new FormData(event.target);
-    formData.append("category", selected.label);
+    formData.append("category", selected);
     formData.append("number_phone", PhoneNumber);
     event.preventDefault();
 
@@ -95,10 +122,7 @@ const CtaSection = ({ apiGet }) => {
     if (file) {
       formData.append("document", file);
     }
-    console.log("Данные для отправки:");
-    for (var pair of formData.entries()) {
-      console.log(pair[0] + ": " + pair[1]);
-    }
+
 
     try {
       const response = await fetch(
@@ -236,8 +260,8 @@ const CtaSection = ({ apiGet }) => {
                       id="js-select-init"
                       className="cta-section__form-select"
                       onChange={(e) => {
-                        const selectedOption = options.find(
-                          (option) => option.value === e.target.value
+                        const selectedOption = dignities.find(
+                          (item) => item.name === e.target.name
                         );
                         setSelected(selectedOption);
                       }}>
@@ -246,63 +270,7 @@ const CtaSection = ({ apiGet }) => {
                         value="Не выбрано"
                         selected="selected"
                         disabled="disabled"></option>
-                      <option value="Создание и оптимизация лендингов и мультилендингов">
-                        Создание и оптимизация лендингов и мультилендингов
-                      </option>
-                      <option value="Разработка веб-сайтов под ключ">
-                        Разработка веб-сайтов под ключ
-                      </option>
-                      <option value="Разработка интернет-магазинов">
-                        Разработка интернет-магазинов
-                      </option>
-                      <option value="Интеграция и настройка CRM и ERP систем">
-                        Интеграция и настройка CRM и ERP систем
-                      </option>
-                      <option value="Разработка корпоративных порталов и систем управления">
-                        Разработка корпоративных порталов и систем управления
-                      </option>
-                      <option value="Разработка корпоративных порталов и систем управления">
-                        Разработка корпоративных порталов и систем управления
-                      </option>
-                      <option value="Разработка корпоративных порталов и систем управления">
-                        Разработка корпоративных порталов и систем управления
-                      </option>
-                      <option value="Разработка корпоративных порталов и систем управления">
-                        Разработка корпоративных порталов и систем управления
-                      </option>
-                      <option value="Разработка корпоративных порталов и систем управления">
-                        Разработка корпоративных порталов и систем управления
-                      </option>
-                      <option value="Разработка корпоративных порталов и систем управления">
-                        Разработка корпоративных порталов и систем управления
-                      </option>
-                      <option value="Разработка корпоративных порталов и систем управления">
-                        Разработка корпоративных порталов и систем управления
-                      </option>
-                      <option value="Разработка корпоративных порталов и систем управления">
-                        Разработка корпоративных порталов и систем управления
-                      </option>
-                      <option value="Разработка корпоративных порталов и систем управления">
-                        Разработка корпоративных порталов и систем управления
-                      </option>
-                      <option value="Разработка корпоративных порталов и систем управления">
-                        Разработка корпоративных порталов и систем управления
-                      </option>
-                      <option value="Разработка корпоративных порталов и систем управления">
-                        Разработка корпоративных порталов и систем управления
-                      </option>
-                      <option value="Разработка корпоративных порталов и систем управления">
-                        Разработка корпоративных порталов и систем управления
-                      </option>
-                      <option value="Разработка корпоративных порталов и систем управления">
-                        Разработка корпоративных порталов и систем управления
-                      </option>
-                      <option value="Разработка корпоративных порталов и систем управления">
-                        Разработка корпоративных порталов и систем управления
-                      </option>
-                      <option value="Разработка корпоративных порталов и систем управления">
-                        Разработка корпоративных порталов и систем управления
-                      </option>
+
                     </select>
                     <div
                       className={
@@ -314,17 +282,18 @@ const CtaSection = ({ apiGet }) => {
                       onClick={() => setClick(!click)}>
                       <span
                         className={`${selected ? selected.value : ""} current`}>
-                        {selected ? selected.label : ""}
+                        {selected ? selected : ""}
                       </span>
                       <div className="nice-select-dropdown">
                         {
                           <ul className="list">
-                            {options.map((option) => (
+                            {dignities.map((item) => (
                               <li
-                                key={option.value}
-                                onClick={() => handleSelect(option)}
+                                key={item.id}
+                                value={item.name}
+                                onClick={() => handleSelect(item.name)}
                                 className="option selected disabled focus">
-                                {option.label}
+                                {item.name}
                               </li>
                             ))}
                           </ul>

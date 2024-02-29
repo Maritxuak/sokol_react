@@ -31,6 +31,8 @@ const ProjectServicesSection = ({apiGet}) => {
             }
         }
     };
+    
+
     useEffect(() => {
         
         const fetchDignities = async () => {

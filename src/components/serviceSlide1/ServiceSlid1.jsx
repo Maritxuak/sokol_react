@@ -14,7 +14,6 @@ const ServiceSlidFirst = ({
   let sliderKey = 1;
   let paginationKey = 1;
   let pagination = 1;
-  let buttonLeftKey = 1;
 
   const sliderRef1 = useRef([]);
 
@@ -90,7 +89,7 @@ const ServiceSlidFirst = ({
         }>
         <div className="row__col--12 services-layout__main-col services-layout__main-col--title">
           <h2 className="services-layout__main-title">
-            {dignities.name} Что входит в услугу
+            {dignities.name} Что входит в услугу?
           </h2>
         </div>
         <div className="row__col--6 services-layout__main-col services-layout__main-col--nav">
@@ -99,17 +98,17 @@ const ServiceSlidFirst = ({
               item.included_in_the_service
                 .filter((service) => service.category === "1")
                 .map((service) => {
-                    const paggination = pagination;
-                    pagination++;
+                  const paggination = pagination;
+                  pagination++;
                   return (
                     <li
                       className="services-layout__main-nav-item"
-                      >
+                    >
                       <button
                         onClick={() => handleClick(paggination, sliderRef1)}
                         type="button"
                         className={paggination - 1 ===
-                            sliderRef1.current.activeIndex ? "serviceBullet js-services-slider-btn-nav-1 services-layout__main-nav-btn is-active" : "serviceBullet js-services-slider-btn-nav-1 services-layout__main-nav-btn"}>
+                          sliderRef1.current.activeIndex ? "serviceBullet js-services-slider-btn-nav-1 services-layout__main-nav-btn is-active" : "serviceBullet js-services-slider-btn-nav-1 services-layout__main-nav-btn"}>
                         {service.name}
                       </button>
                     </li>
@@ -169,7 +168,7 @@ const ServiceSlidFirst = ({
                           key={pagginationKey}
                           className={
                             pagginationKey - 1 ===
-                            sliderRef1.current.activeIndex
+                              sliderRef1.current.activeIndex
                               ? "serviceBullet2 swiper-pagination-bullet swiper-pagination-bullet-active"
                               : "serviceBullet2 swiper-pagination-bullet"
                           }
