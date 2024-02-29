@@ -4,30 +4,29 @@ import { ReactComponent as Close } from "../../images/icons/close.svg";
 import React from "react";
 import { useState } from "react";
 import PhoneFileValidation from "../../PhoneFileValidation";
-import PropTypes from 'prop-types';
-import PhoneInput from 'react-phone-input-2'
-
+import PropTypes from "prop-types";
+import PhoneInput from "react-phone-input-2";
 
 const CtaSection = ({ apiGet }) => {
-  const [PhoneNumber, setPhoneNumber] = useState('');
+  const [PhoneNumber, setPhoneNumber] = useState("");
   const [valid, setValid] = useState(true);
   const handleChange = (value) => {
     setPhoneNumber(value);
-    setValid(validatePhoneNumber(value))
-  }
+    setValid(validatePhoneNumber(value));
+  };
 
   const validatePhoneNumber = (phoneNumber) => {
     const phoneNumberPattern = /^\d{11}$/;
     return phoneNumberPattern.test(phoneNumber);
-  }
-  
-  const [inputContent, setInputContent] = useState('')
+  };
+
+  const [inputContent, setInputContent] = useState("");
 
   const handleiInputChange = (event) => {
-    setInputContent(event.target.value)
-  }
+    setInputContent(event.target.value);
+  };
 
-  const [click, setClick] = React.useState(true)
+  const [click, setClick] = React.useState(true);
 
   const [selected, setSelected] = useState(null);
 
@@ -36,10 +35,22 @@ const CtaSection = ({ apiGet }) => {
     { label: "Разработка веб-сайтов под ключ", value: "2" },
     { label: "Разработка интернет-магазинов", value: "3" },
     { label: "Интеграция и настройка CRM и ERP систем", value: "4" },
-    { label: "Разработка корпоративных порталов и систем управления", value: "5" },
-    { label: "Разработка корпоративных порталов и систем управления", value: "6" },
-    { label: "Разработка корпоративных порталов и систем управления", value: "7" },
-    { label: "Разработка корпоративных порталов и систем управления", value: "8" },
+    {
+      label: "Разработка корпоративных порталов и систем управления",
+      value: "5",
+    },
+    {
+      label: "Разработка корпоративных порталов и систем управления",
+      value: "6",
+    },
+    {
+      label: "Разработка корпоративных порталов и систем управления",
+      value: "7",
+    },
+    {
+      label: "Разработка корпоративных порталов и систем управления",
+      value: "8",
+    },
   ];
 
   const handleSelect = (option) => {
@@ -47,10 +58,10 @@ const CtaSection = ({ apiGet }) => {
   };
 
   //form
-  const [name, setName] = useState('');
+  const [name, setName] = useState("");
   const [file, setFile] = useState(null);
-
-
+  const [send, setSend] = useState(false);
+  const [dis, setDis] = useState(true);
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -67,7 +78,7 @@ const CtaSection = ({ apiGet }) => {
 
     const formData = new FormData(event.target);
     formData.append("category", selected.label);
-    formData.append("number_phone", PhoneNumber)
+    formData.append("number_phone", PhoneNumber);
     event.preventDefault();
 
     if (!inputContent) {
@@ -75,11 +86,10 @@ const CtaSection = ({ apiGet }) => {
     } else {
       formData.append("dsc", inputContent);
     }
-  
-    
+
     console.log("Данные для отправки:");
     for (var pair of formData.entries()) {
-      console.log(pair[0] + ': ' + pair[1]);
+      console.log(pair[0] + ": " + pair[1]);
     }
 
     if (file) {
@@ -87,21 +97,23 @@ const CtaSection = ({ apiGet }) => {
     }
     console.log("Данные для отправки:");
     for (var pair of formData.entries()) {
-      console.log(pair[0] + ': ' + pair[1]);
+      console.log(pair[0] + ": " + pair[1]);
     }
 
-    
     try {
-      const response = await fetch("http://localhost:8000/api/create/FeedBack", {
-        method: "POST",
-        body: formData,
-      });
+      const response = await fetch(
+        "http://localhost:8000/api/create/FeedBack",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
 
       if (response.ok) {
-
+        setSend(true)
+        setDis(false)
         console.log("Запись успешно создана!");
       } else {
-
         console.error("Ошибка при создании записи");
       }
     } catch (error) {
@@ -109,7 +121,7 @@ const CtaSection = ({ apiGet }) => {
     }
   };
 
-  const [activeForm, setActiveForm] = useState(false)
+  const [activeForm, setActiveForm] = useState(false);
 
   return (
     <>
@@ -132,7 +144,10 @@ const CtaSection = ({ apiGet }) => {
                 </div>
               </div>
               <div className="row__col--6 cta-section__block-col cta-section__block-col--form">
-                <form onSubmit={handleSubmit} action="#" className="cta-section__form">
+                <form
+                  onSubmit={handleSubmit}
+                  action="#"
+                  className="cta-section__form">
                   <div className="u-control cta-section__form-line">
                     <input
                       type="text"
@@ -149,10 +164,9 @@ const CtaSection = ({ apiGet }) => {
                   <div className="u-control cta-section__form-line phone">
                     <div className="iti iti--allow-dropdown">
                       <label className="u-input u-input--theme-white u-input--size-md u-input--iti u-control__input is-active-country phone">
-
                         <PhoneInput
                           name="number_phone"
-                          country={'ru'}
+                          country={"ru"}
                           value={PhoneNumber}
                           onChange={handleChange}
                           inputProps={{
@@ -160,7 +174,11 @@ const CtaSection = ({ apiGet }) => {
                           }}
                         />
                       </label>
-                      {!valid && <p className="error">Введите действительный номер телефона.</p>}
+                      {!valid && (
+                        <p className="error">
+                          Введите действительный номер телефона.
+                        </p>
+                      )}
                     </div>
                     <p className="u-control__placeholder">
                       <span className="u-control__placeholder-title"></span>
@@ -195,35 +213,39 @@ const CtaSection = ({ apiGet }) => {
                       <span className="u-input u-input--theme-white u-input--size-md u-control__file-input"></span>
                       <p className="u-control__placeholder">
                         <span className="u-control__placeholder-title">
-                          {file ? file.name : 'Файл с информацией о проекте'}
+                          {file ? file.name : "Файл с информацией о проекте"}
                         </span>
                       </p>
                       <button
                         type="button"
-                        className="js-attach-file-remove u-control__file-remove"
-                      >
+                        className="js-attach-file-remove u-control__file-remove">
                         <svg className="u-icon">
                           <Close />
                         </svg>
                       </button>
                     </label>
                   </div>
-                  <div className={selected === null ? "cta-section__form-line u-control" : "cta-section__form-line u-control is-select-active"} >
+                  <div
+                    className={
+                      selected === null
+                        ? "cta-section__form-line u-control"
+                        : "cta-section__form-line u-control is-select-active"
+                    }>
                     <select
                       name="category"
                       id="js-select-init"
                       className="cta-section__form-select"
                       onChange={(e) => {
-                        const selectedOption = options.find(option => option.value === e.target.value);
+                        const selectedOption = options.find(
+                          (option) => option.value === e.target.value
+                        );
                         setSelected(selectedOption);
-                      }}
-                    >
+                      }}>
                       <option
                         required
                         value="Не выбрано"
                         selected="selected"
-                        disabled="disabled"
-                      ></option>
+                        disabled="disabled"></option>
                       <option value="Создание и оптимизация лендингов и мультилендингов">
                         Создание и оптимизация лендингов и мультилендингов
                       </option>
@@ -283,24 +305,30 @@ const CtaSection = ({ apiGet }) => {
                       </option>
                     </select>
                     <div
-                      className={click ? "nice-select cta-section__form-select" : "nice-select cta-section__form-select open"}
+                      className={
+                        click
+                          ? "nice-select cta-section__form-select"
+                          : "nice-select cta-section__form-select open"
+                      }
                       tabIndex="0"
-                      onClick={() => setClick(!click)}
-                    >
-                      <span className={`${selected ? selected.value : ""} current`}>
+                      onClick={() => setClick(!click)}>
+                      <span
+                        className={`${selected ? selected.value : ""} current`}>
                         {selected ? selected.label : ""}
                       </span>
                       <div className="nice-select-dropdown">
-                        {(<ul className="list">
-                          {options.map((option) => (
-                            <li
-                              key={option.value} onClick={() => handleSelect(option)}
-                              className="option selected disabled focus"
-                            >
-                              {option.label}
-                            </li>
-                          ))}
-                        </ul>)}
+                        {
+                          <ul className="list">
+                            {options.map((option) => (
+                              <li
+                                key={option.value}
+                                onClick={() => handleSelect(option)}
+                                className="option selected disabled focus">
+                                {option.label}
+                              </li>
+                            ))}
+                          </ul>
+                        }
                       </div>
                     </div>
                     <p className="u-control__placeholder">
@@ -310,9 +338,18 @@ const CtaSection = ({ apiGet }) => {
                     </p>
                   </div>
                   <div className="u-control cta-section__form-line">
-                    <textarea name="dsc" className={inputContent === '' ? "u-input u-input--theme-white u-input cta-section__form-line textareasection" : "u-input u-input--theme-white u-input cta-section__form-line textareasection textareaactive"} id="" cols="20" rows="5" value={inputContent} onChange={handleiInputChange}>
-
-                    </textarea>
+                    <textarea
+                      name="dsc"
+                      className={
+                        inputContent === ""
+                          ? "u-input u-input--theme-white u-input cta-section__form-line textareasection"
+                          : "u-input u-input--theme-white u-input cta-section__form-line textareasection textareaactive"
+                      }
+                      id=""
+                      cols="20"
+                      rows="5"
+                      value={inputContent}
+                      onChange={handleiInputChange}></textarea>
                     <p className="u-control__placeholder">
                       <span className="u-control__placeholder-title">
                         Описание
@@ -323,7 +360,6 @@ const CtaSection = ({ apiGet }) => {
                     <label className="u-checkbox__label">
                       <input
                         type="checkbox"
-
                         className="u-checkbox__control"
                         required
                         value="Персональные данные"
@@ -343,11 +379,15 @@ const CtaSection = ({ apiGet }) => {
 
                   <button
                     type="submit"
-                    className="btn btn--size-md btn--theme-accent-fill cta-section__form-btn"
-                    disabled={!selected || !name || !PhoneNumber}
-                  >
+                    className={
+                      send
+                        ? "btn btn--size-md btn--theme-accent-fill cta-section__form-btn success"
+                        : "btn btn--size-md btn--theme-accent-fill cta-section__form-btn"
+                    }
+                    disabled={!selected || !name || !PhoneNumber || !dis}
+                    >
                     <span className="btn__inner">
-                      <span className="btn__title">Отправить</span>
+                      <span className="btn__title">{send ? 'Отправленно' :'Отправить'}</span>
                     </span>
                   </button>
                 </form>

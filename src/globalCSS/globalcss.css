@@ -6127,7 +6127,12 @@ select.cta-section__form-select {
 .none{
     display: none;
 }
-/* .slide_our_work{
+.slide_our_work{
     padding: 80rem 60rem;
     margin: 0rem -1rem;
-} */
+}
+.success{
+    background-color: #2eff50 !important;
+    color: #212121 !important;
+    transition: .5s all;
+}
