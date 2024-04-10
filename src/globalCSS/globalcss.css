@@ -4012,7 +4012,7 @@ padding: 20px 30px;
     z-index: 998
 }
 
-.header__container {
+.header__container,.header_container{
     height: 110rem;
     padding-top: 12rem;
     padding-bottom: 12rem;
@@ -6153,4 +6153,39 @@ select.cta-section__form-select {
     background-color: #2eff50 !important;
     color: #212121 !important;
     transition: .5s all;
+}
+.modal-hidden{
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0vh;
+    background-color: #f2f2f2;
+    z-index: -9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    overflow: hidden;
+    transition: all .5s;
+}
+.modal {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: #f2f2f2;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    transition: all .5s;
+}
+.header_nav-list{
+    background-color: #f2f2f2;
+    list-style: none;}
+.header_nav-list.mobile{
+    font-size: 20rem;
 }

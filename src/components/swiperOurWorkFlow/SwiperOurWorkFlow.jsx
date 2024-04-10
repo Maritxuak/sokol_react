@@ -69,7 +69,7 @@ const SwiperOurWorkFlow = () => {
         }
     };
     return (
-        <div className="row terms-cooperation__row">
+        <div id="cooperation" className="row terms-cooperation__row">
             <div className="row__col--7 terms-cooperation__col terms-cooperation__col--content">
                 <div className="terms-cooperation__content">
                     <h3 className="terms-cooperation__title">Условия сотрудничества</h3>

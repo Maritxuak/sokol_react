@@ -22,6 +22,7 @@ const CtaSection = ({ apiGet }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [dignities, setDignities] = useState([]);
   const [inputContent, setInputContent] = useState("");
+  const [checkbox, setCheckbox] = useState(false)
 
   const handleiInputChange = (event) => {
     setInputContent(event.target.value);
@@ -31,7 +32,6 @@ const CtaSection = ({ apiGet }) => {
     const fetchDignities = async () => {
         try {
             const response = await apiGet.get('/read/services/');
-            console.log(response.data)
             if (response.data) {
                 const formattedDignities = response.data.map((item) => ({
                     id: item.id,
@@ -54,7 +54,6 @@ const CtaSection = ({ apiGet }) => {
     fetchDignities();
 }, [apiGet]);
   const [click, setClick] = React.useState(true);
-console.log("cta", dignities)
   const [selected, setSelected] = useState(null);
 
   const options = [
@@ -114,7 +113,6 @@ console.log("cta", dignities)
       formData.append("dsc", inputContent);
     }
 
-    console.log("Данные для отправки:");
     for (var pair of formData.entries()) {
       console.log(pair[0] + ": " + pair[1]);
     }
@@ -136,7 +134,7 @@ console.log("cta", dignities)
       if (response.ok) {
         setSend(true)
         setDis(false)
-        console.log("Запись успешно создана!");
+
       } else {
         console.error("Ошибка при создании записи");
       }
@@ -166,7 +164,9 @@ console.log("cta", dignities)
                     </p>
                   </div>
                 </div>
+                
               </div>
+              
               <div className="row__col--6 cta-section__block-col cta-section__block-col--form">
                 <form
                   onSubmit={handleSubmit}
@@ -331,6 +331,8 @@ console.log("cta", dignities)
                         type="checkbox"
                         className="u-checkbox__control"
                         required
+                        defaultchecked={checkbox}
+                        onChange={ e => setCheckbox(!checkbox)}
                         value="Персональные данные"
                       />
                       <span className="u-checkbox__inner">
@@ -353,7 +355,7 @@ console.log("cta", dignities)
                         ? "btn btn--size-md btn--theme-accent-fill cta-section__form-btn success"
                         : "btn btn--size-md btn--theme-accent-fill cta-section__form-btn"
                     }
-                    disabled={!selected || !name || !PhoneNumber || !dis}
+                    disabled={!selected || !name || !PhoneNumber || !dis || !checkbox}
                     >
                     <span className="btn__inner">
                       <span className="btn__title">{send ? 'Отправленно' :'Отправить'}</span>

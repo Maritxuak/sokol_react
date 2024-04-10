@@ -28,9 +28,7 @@ const ProjectLayout = ({ apiGet }) => {
   useEffect(() => {
     const fetchDignities = async () => {
       try {
-        console.log('id:', id);
         const response = await apiGet.get(`/read/project/${id}/`);
-        console.log("response", response.data)
         setDignities([response.data])
         setObject(response.data)
 

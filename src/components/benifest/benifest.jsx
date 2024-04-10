@@ -17,7 +17,6 @@ const Benifest = ({apiGet}) => {
     const fetchDignities = async () => {
       try {
         const response = await apiGet.get('/read/dignities/');
-        console.log(response.data)
         if (response.data) {
           const formattedDignities = response.data.map((item) => ({
             id: item.id,
@@ -43,7 +42,7 @@ const Benifest = ({apiGet}) => {
     return <div>Loading...</div>;
   }
   return (
-    <section className="benefits-section">
+    <section id="benifest" className="benefits-section">
       <div className="container container--size-md benefits-section__container">
         <h2 className="benefits-section__title">За что нас ценят?</h2>
         {dignities.map((item) => (

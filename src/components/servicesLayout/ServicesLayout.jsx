@@ -8,8 +8,6 @@ import { useParams} from "react-router-dom"
 
 const ServicesLayout = ({apiGet, actualId}) => {
 
-    console.log(useParams())
-
     const {id} = useParams();
 
     const [idActive, setIdActive] = React.useState(0)
@@ -21,17 +19,11 @@ const ServicesLayout = ({apiGet, actualId}) => {
     const [dignities, setDignities] = useState([]);
     const [object, setObject] = useState([])
     const [isLoading, setIsLoading] = useState(true);
-    
-    useEffect(() => {
-      console.log("dignities1", dignities);
-    }, [dignities]);
 
     useEffect(() => {
         const fetchDignities = async () => {
           try {
-            console.log('id:', id);
             const response = await apiGet.get(`/read/services/${id}/`);
-            console.log("response", response.data)
             setDignities([response.data])
             setObject(response.data)
     

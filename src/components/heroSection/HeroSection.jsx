@@ -27,12 +27,10 @@ const HeroSection = ({ currentSlideId, setCurrentSlideId, apiGet }) => {
 
     const SetClick = () => {
         if (isMobileDevice) {
-            console.log("Телефон")
             const element1 = document.querySelector('.services-card__dropdown .q');
             
 
         } else {
-            console.log("ПК")
         }
     }
 

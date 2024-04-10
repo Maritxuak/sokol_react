@@ -69,15 +69,10 @@ const ServiceSlidFirst = ({
   const [currentSlideId, setCurrentSlideId] = useState(1);
 
   const handleClick = (item, activeIdSlide) => {
-    console.log("item", item);
-    console.log("активный слайд", activeIdSlide.current.activeIndex);
     sliderRef1.current.slideTo(item - 1);
     setCurrentSlideId(item);
   };
-
-
-  console.log("activeSlide", activeSlide);
-  console.log("activeButton", activeButton);
+  
   return (
     <SelectItemIdProvider>
       <div

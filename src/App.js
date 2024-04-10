@@ -33,6 +33,7 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import Contact from './components/contact/Contact';
 import HeaderSmall from './components/header/HeaderSmall';
+import HeaderEmpty from './components/header/HeaderEmpty.jsx';
 
 const axiosInstance = axios.create({
   baseURL: 'http://localhost:8000/api',
@@ -50,7 +51,7 @@ const Layout = () => {
 const Services = () =>{
   return(
   <>
-    <HeaderSmall />
+    <HeaderEmpty />
     <ServicesLayout  apiGet = {axiosInstance}/>
     <TypicalSection apiGet = {axiosInstance}/>
     <CtaSection apiGet = {axiosInstance}/>
@@ -61,7 +62,7 @@ const Services = () =>{
 const Project = () =>{
   return(
   <>
-    <HeaderSmall />
+    <HeaderEmpty />
     <ProjectLayout apiGet = {axiosInstance}/>
     <CtaSection apiGet = {axiosInstance}/>
   </>
