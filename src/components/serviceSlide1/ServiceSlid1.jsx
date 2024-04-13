@@ -84,7 +84,7 @@ const ServiceSlidFirst = ({
         }>
         <div className="row__col--12 services-layout__main-col services-layout__main-col--title">
           <h2 className="services-layout__main-title">
-            {dignities.name} Что входит в услугу?
+            Как это вам поможет?
           </h2>
         </div>
         <div className="row__col--6 services-layout__main-col services-layout__main-col--nav">

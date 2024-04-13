@@ -73,7 +73,7 @@ const ServiceSliderSecond = ({ idActive,
     return (
         <div id="services-layout-2" className={idActive === 2 ? `row services-layout__row-main is-show` : "row services-layout__row-main"}>
             <div className="row__col--22 services-layout__main-col services-layout__main-col--title">
-                <h2 className="services-layout__main-title">Что входит в услугу</h2>
+                <h2 className="services-layout__main-title">Что входит в услугу?</h2>
             </div>
             <div className="row__col--6 services-layout__main-col services-layout__main-col--nav">
                 <ul className="services-layout__main-nav">
