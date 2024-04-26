@@ -17,6 +17,7 @@ const ServicesLayout = ({apiGet, actualId}) => {
     }, [idActive]);
 
     const [dignities, setDignities] = useState([]);
+    console.log(dignities);
     const [object, setObject] = useState([])
     const [isLoading, setIsLoading] = useState(true);
 

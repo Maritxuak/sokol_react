@@ -79,7 +79,7 @@ const ServiceSliderSecond = ({ idActive,
                 <ul className="services-layout__main-nav">
                     {dignities.map((item) =>
                         item.included_in_the_service
-                            .filter((service) => service.category === "2")
+                        .filter((service) => service.category === "2")
                             .map((service) => {
                                 const paggination = pagination;
                                 pagination++;

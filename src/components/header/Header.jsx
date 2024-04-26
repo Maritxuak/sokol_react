@@ -142,7 +142,7 @@ const Header = () => {
             <ul className="header_nav-list mobile">
               <li className="header__nav-item d-flex justify-content-center">
                 <a href="#main" onClick={ () => setClick(!click)} className="header__nav-link">
-                  Услуги
+                  Услуги моб
                 </a>
               </li>
               <li className="header__nav-item d-flex justify-content-center">

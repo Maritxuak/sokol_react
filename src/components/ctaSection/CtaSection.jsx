@@ -355,7 +355,7 @@ const CtaSection = ({ apiGet }) => {
                         ? "btn btn--size-md btn--theme-accent-fill cta-section__form-btn success"
                         : "btn btn--size-md btn--theme-accent-fill cta-section__form-btn"
                     }
-                    disabled={!selected || !name || !PhoneNumber || !dis || !checkbox}
+                    disabled={!selected || !name || !PhoneNumber || !dis || !checkbox || !valid}
                     >
                     <span className="btn__inner">
                       <span className="btn__title">{send ? 'Отправленно' :'Отправить'}</span>

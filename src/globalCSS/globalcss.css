@@ -6189,3 +6189,6 @@ select.cta-section__form-select {
 .header_nav-list.mobile{
     font-size: 20rem;
 }
+.pic{
+    max-height: 600px;
+}

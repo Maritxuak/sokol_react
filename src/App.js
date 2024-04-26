@@ -65,6 +65,7 @@ const Project = () =>{
     <HeaderEmpty />
     <ProjectLayout apiGet = {axiosInstance}/>
     <CtaSection apiGet = {axiosInstance}/>
+    <TypicalSection apiGet = {axiosInstance}/>
   </>
   );
 };

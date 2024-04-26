@@ -45,8 +45,8 @@ const ProjectLayout = ({ apiGet }) => {
     <section className="project-layout">
       <div className="project-layout__poster-wrapper">
         <span className="bg-color bg-color--theme-darkgrey bg-color--opacity-25"></span>
-        <picture className="project-layout__poster">
-          <img srс={object.title_photo} alt="Цифровая трансформация в сфере недвижимости" />
+        <picture className="project-layout__picture pic">
+          <img src={object.title_photo} alt="" />
         </picture>
       </div>
       <div className="container container--size-md project-layout__container">
@@ -112,7 +112,7 @@ const ProjectLayout = ({ apiGet }) => {
                           <header className="reviews-card__header">
                             <div className="reviews-card__header-media">
                               <picture className="reviews-card__header-avatar">
-                                <img src={reviewsCard2} alt="Александр Усович" />
+                                <img src={reviewsCard1} alt="Александр Усович" />
                               </picture>
                             </div>
                             <div className="reviews-card__header-content">

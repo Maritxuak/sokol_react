@@ -86,12 +86,22 @@ const ServiceSlidFirst = ({
           <h2 className="services-layout__main-title">
             Как это вам поможет?
           </h2>
+          {/* {dignities.map((item) =>
+              item.included_in_the_service
+                .map((service) => {
+                  return(
+                    <div className="twins">
+                      fgdg
+                    </div>
+                  );
+                })
+            )} */}
         </div>
         <div className="row__col--6 services-layout__main-col services-layout__main-col--nav">
           <ul className="services-layout__main-nav">
             {dignities.map((item) =>
               item.included_in_the_service
-                .filter((service) => service.category === "1")
+              .filter((service) => service.category === "1")
                 .map((service) => {
                   const paggination = pagination;
                   pagination++;
