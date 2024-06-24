@@ -69,7 +69,6 @@ const HeroSection = ({ currentSlideId, setCurrentSlideId, apiGet }) => {
                         included_in_the_service: item.included_in_the_service,
                     }));
                     setDignities(formattedDignities);
-                    console.log(dignities)
                 } else {
                     console.error('Объект data не определен');
                 }
