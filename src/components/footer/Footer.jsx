@@ -5,38 +5,6 @@ const Footer = () =>{
         <footer className="footer site__footer">
   <div className="container container--size-md footer__container">
     <div className="row footer__row">
-      <div className="footer__col footer__col--nav row__col--3">
-        <p className="footer__title">О компании</p>
-        <nav className="footer__nav">
-          <ul className="footer__nav-list">
-            <li className="footer__nav-item">
-              <a href="#" className="footer__nav-link">О нас</a>
-            </li>
-            <li className="footer__nav-item">
-              <a href="#" className="footer__nav-link">Вакансии</a>
-            </li>
-            <li className="footer__nav-item">
-              <a href="#" className="footer__nav-link">Контакты</a>
-            </li>
-          </ul>
-        </nav>
-      </div>
-      <div className="footer__col footer__col--nav row__col--3">
-        <p className="footer__title">О компании</p>
-        <nav className="footer__nav">
-          <ul className="footer__nav-list">
-            <li className="footer__nav-item">
-              <a href="#" className="footer__nav-link">О нас</a>
-            </li>
-            <li className="footer__nav-item">
-              <a href="#" className="footer__nav-link">Вакансии</a>
-            </li>
-            <li className="footer__nav-item">
-              <a href="#" className="footer__nav-link">Контакты</a>
-            </li>
-          </ul>
-        </nav>
-      </div>
       <div className="footer__col footer__col--nav row__col--4">
         <p className="footer__title">Услуги</p>
         <nav className="footer__nav">
@@ -59,21 +27,15 @@ const Footer = () =>{
           </ul>
         </nav>
       </div>
-      <div className="footer__col footer__col--nav row__col--2">
+      <div className="footer__col footer__col--nav row__col--3">
         <p className="footer__title">Контакты</p>
         <nav className="footer__nav">
           <ul className="footer__nav-list">
             <li className="footer__nav-item">
-              <a href="tel:+" className="footer__nav-link">7 (ххх) ххх хх хх</a>
+              <a href="tel:+" className="footer__nav-link">7 (999) 483 9500</a>
             </li>
             <li className="footer__nav-item">
-              <a href="tel:+" className="footer__nav-link">7 (ххх) ххх хх хх</a>
-            </li>
-            <li className="footer__nav-item">
-              <a href="mailto:" className="footer__nav-link">Почта</a>
-            </li>
-            <li className="footer__nav-item">
-              <a href="#" className="footer__nav-link">Телеграм</a>
+              <a href="mailto:it@rentier.world" className="footer__nav-link">Почта: it@rentier.world</a>
             </li>
           </ul>
         </nav>

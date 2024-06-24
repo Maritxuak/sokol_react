@@ -17,7 +17,7 @@ const HeaderSmall = () => {
                     <div className="header__dropdown">
                         <ul className="header__contacts">
                             <li className="header__contacts-item">
-                                <a href="mailto:cokol@gmail.com" className="header__contacts-link">Cokol@gmail.com</a>
+                                <a href="mailto:it@rentier.world" className="header__contacts-link">it@rentier.world</a>
                             </li>
                             <li className="header__contacts-item">
                                 <a href="tel:+89994839500" className="header__contacts-link">8 (999) 483 95 00</a>

@@ -13,6 +13,7 @@ import { ReactComponent as Arrow4 } from "../../images/icons/arrow-type-4.svg";
 import { ReactComponent as Arrow1 } from "../../images/icons/arrow-type-1.svg";
 import { useState, useEffect } from "react";
 import { useUserSelectedItemId } from "../provider/Provider"
+
 const HeroSection = ({ currentSlideId, setCurrentSlideId, apiGet }) => {
    
     const [dignities, setDignities] = useState([]);
@@ -68,6 +69,7 @@ const HeroSection = ({ currentSlideId, setCurrentSlideId, apiGet }) => {
                         included_in_the_service: item.included_in_the_service,
                     }));
                     setDignities(formattedDignities);
+                    console.log(dignities)
                 } else {
                     console.error('Объект data не определен');
                 }
@@ -146,7 +148,7 @@ const HeroSection = ({ currentSlideId, setCurrentSlideId, apiGet }) => {
                                     <ul className="services-card__dropdown-list">
                                         {dignities.filter((item) => item.category === "1").map((item) => (
                                             <li key={item.id}>
-                                                <Link to={`/service/1`} key={item.id} className="services-card__link" onClick={() => handleItemClick(item.id)}>
+                                                <Link to={`/service/` + item.id} key={item.id} className="services-card__link" onClick={() => handleItemClick(item.id)}>
                                                     <span className="services-card__link-title">{item.name}</span>
                                                     <svg className="u-icon services-card__link-icon">
                                                         <Arrow4 />
@@ -173,7 +175,7 @@ const HeroSection = ({ currentSlideId, setCurrentSlideId, apiGet }) => {
                                     <ul className="services-card__dropdown-list">
                                         {dignities.filter((item) => item.category === "2").map((item) => (
                                             <li>
-                                                <Link to={`/service/2`}  className="services-card__link">
+                                                <Link to={`/service/` + item.id}  className="services-card__link">
                                                     <span className="services-card__link-title">{item.name}</span>
                                                     <svg className="u-icon services-card__link-icon">
                                                         <Arrow4 />
@@ -200,7 +202,7 @@ const HeroSection = ({ currentSlideId, setCurrentSlideId, apiGet }) => {
                                     <ul className="services-card__dropdown-list">
                                         {dignities.filter((item) => item.category === "3").map((item) => (
                                             <li>
-                                                <Link to={`/service/3`}  className="services-card__link">
+                                                <Link to={`/service/` + item.id}  className="services-card__link">
                                                     <span className="services-card__link-title">{item.name}</span>
                                                     <svg className="u-icon services-card__link-icon">
                                                         <Arrow4 />
@@ -227,7 +229,7 @@ const HeroSection = ({ currentSlideId, setCurrentSlideId, apiGet }) => {
                                     <ul className="services-card__dropdown-list">
                                         {dignities.filter((item) => item.category === "4").map((item) => (
                                             <li>
-                                                <Link to={`/service/4`}  className="services-card__link">
+                                                <Link to={`/service/` + item.id}  className="services-card__link">
                                                     <span className="services-card__link-title">{item.name}</span>
                                                     <svg className="u-icon services-card__link-icon">
                                                         <Arrow4 />
@@ -254,7 +256,7 @@ const HeroSection = ({ currentSlideId, setCurrentSlideId, apiGet }) => {
                                     <ul className="services-card__dropdown-list">
                                         {dignities.filter((item) => item.category === "5").map((item) => (
                                             <li>
-                                                <Link to={`/service/5`}  className="services-card__link">
+                                                <Link to={`/service/` + item.id}  className="services-card__link">
                                                     <span className="services-card__link-title">{item.name}</span>
                                                     <svg className="u-icon services-card__link-icon">
                                                         <Arrow4 />
@@ -281,7 +283,7 @@ const HeroSection = ({ currentSlideId, setCurrentSlideId, apiGet }) => {
                                     <ul className="services-card__dropdown-list">
                                         {dignities.filter((item) => item.category === "6").map((item) => (
                                             <li>
-                                                <Link to={`/service/6`}  className="services-card__link">
+                                                <Link to={`/service/` + item.id}  className="services-card__link">
                                                     <span className="services-card__link-title">{item.name}</span>
                                                     <svg className="u-icon services-card__link-icon">
                                                         <Arrow4 />

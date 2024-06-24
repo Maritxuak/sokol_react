@@ -35,10 +35,10 @@ const Header = () => {
             <ul className="header__contacts">
               <li className="header__contacts-item">
                 <a
-                  href="mailto:cokol@gmail.com"
+                  href="mailto:it@rantier.world"
                   className="header__contacts-link"
                 >
-                  Cokol@gmail.com
+                  it@rantier.world
                 </a>
               </li>
               <li className="header__contacts-item">
@@ -99,10 +99,10 @@ const Header = () => {
             <ul className="d-lg-block header__contacts">
               <li className="header__contacts-item">
                 <a
-                  href="mailto:cokol@gmail.com"
+                  href="mailto:it@rentier.world"
                   className="header__contacts-link"
                 >
-                  Cokol@gmail.com
+                  it@rentier.world
                 </a>
               </li>
               <li className="header__contacts-item">
